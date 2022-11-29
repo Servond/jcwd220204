@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react"
 import ListingRow from "../components/ListingRow"
 import { axiosInstance } from "../api"
-import { Box, Center, Heading, HStack, Text } from "@chakra-ui/react"
+import { Box, Center, HStack, Text } from "@chakra-ui/react"
 import { GrLinkPrevious, GrAdd } from "react-icons/gr"
 import { Link } from "react-router-dom"
 
 const Listing = () => {
-  const [properties, setProperties] = useState([])
+  const [listing, setListing] = useState([])
 
-  const fetchProperty = async () => {
+  const fetchListing = async () => {
     try {
       const response = await axiosInstance.get("/property")
 
-      setProperties(response.data.data)
+      setListing(response.data.data)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const renderPropertyRow = () => {
-    return properties.map((val) => {
+  const renderListongRow = () => {
+    return listing.map((val) => {
       return (
         <ListingRow
           id={val.id}
@@ -31,7 +31,7 @@ const Listing = () => {
   }
 
   useEffect(() => {
-    fetchProperty()
+    fetchListing()
   }, [])
 
   return (
@@ -49,7 +49,7 @@ const Listing = () => {
           Your Listings
         </Text>
 
-        {renderPropertyRow()}
+        {renderListongRow()}
       </Box>
     </Center>
   )

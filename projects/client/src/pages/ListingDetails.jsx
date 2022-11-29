@@ -1,13 +1,11 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
   Image,
   Flex,
   VStack,
-  Button,
   Heading,
   SimpleGrid,
   StackDivider,
@@ -16,19 +14,24 @@ import {
   ListItem,
   Divider,
   HStack,
-  Img,
+  Tag,
+  IconButton,
 } from "@chakra-ui/react"
 import React, { useEffect, useState } from "react"
 import { axiosInstance } from "../api"
 import { Link, useParams } from "react-router-dom"
 import RoomCard from "../components/RoomCard"
-import { GrLinkPrevious, GrLocation } from "react-icons/gr"
+import { GrLinkPrevious, GrAdd } from "react-icons/gr"
 import { BiEditAlt } from "react-icons/bi"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
 
 const ListingDetails = () => {
   const [listing, setListing] = useState([])
   const [room, setRoom] = useState([])
-  const [propertyImage, setPropertyImage] = useState([])
+  const [propertyPhoto, setPropertyPhoto] = useState([])
   const params = useParams()
 
   const fetchListingDetails = async () => {
@@ -37,11 +40,13 @@ const ListingDetails = () => {
 
       setListing(response.data.data)
       setRoom(response.data.data.PropertyItems)
-      setPropertyImage(response.data.data.PropertyImages)
+      setPropertyPhoto(response.data.data.PropertyImages)
     } catch (err) {
       console.log(err)
     }
   }
+
+
 
   const renderRoomCard = () => {
     return room.map((val) => {
@@ -55,6 +60,17 @@ const ListingDetails = () => {
         />
       )
     })
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 10000,
+    arrows: true,
   }
 
   useEffect(() => {
@@ -76,28 +92,23 @@ const ListingDetails = () => {
         spacing={{ base: 8, md: 10 }}
         pt={{ base: 18, md: 17 }}
       >
-        <Flex>
-          {propertyImage.length > 0 ? (
+        <Slider {...settings}>
+          {propertyPhoto.map((val) => (
             <Image
+              src={val.image_url}
               rounded={"md"}
-              src={propertyImage[0].image_url}
               fit={"cover"}
               align={"center"}
               w={"100%"}
-              h={{ base: "100%", sm: "400px", lg: "500px" }}
+              h={{ base: "350px", sm: "400px", lg: "500px" }}
             />
-          ) : (
-            <Image
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&usqp=CAU"
-              }
-            />
-          )}
-        </Flex>
+          ))}
+        </Slider>
+
         <Stack spacing={{ base: 6, md: 5 }}>
-          <Box as={"header"}>
+          <VStack as={"header"} alignItems="start">
             <Heading
-              lineHeight={2}
+              //lineHeight={2}
               fontWeight={600}
               fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
             >
@@ -111,7 +122,10 @@ const ListingDetails = () => {
             >
               {listing.address}
             </Text>
-          </Box>
+            <Tag size={"md"} variant="solid" colorScheme="blackAlpha">
+              {listing?.Category?.category_name}
+            </Tag>
+          </VStack>
 
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -158,6 +172,8 @@ const ListingDetails = () => {
       </SimpleGrid>
       <Box py={{ base: 18, md: 7 }}>
         <Divider borderColor={useColorModeValue("gray.200", "gray.600")} />
+        <HStack justifyContent={"space-between"}>
+
         <Text
           fontSize={{ base: "16px", lg: "18px" }}
           color={useColorModeValue("yellow.500", "yellow.300")}
@@ -167,6 +183,10 @@ const ListingDetails = () => {
         >
           Rooms
         </Text>
+        <IconButton backgroundColor={"unset"} _hover={"unset"} >
+        <GrAdd size="25px"/>
+        </IconButton>
+        </HStack>
 
         <SimpleGrid columns={[1, 2, 3]} spacing={5}>
           {renderRoomCard()}

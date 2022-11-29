@@ -1,12 +1,9 @@
 import React from "react"
 import {
-  Badge,
   Box,
   Button,
   Center,
   Flex,
-  Heading,
-  HStack,
   Image,
   Stack,
   Text,
@@ -19,12 +16,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverArrow,
-  IconButton,
 } from "@chakra-ui/react"
 import { TfiTrash } from "react-icons/tfi";
 import { Link } from "react-router-dom"
@@ -78,7 +69,7 @@ const ListingRow = ({ name, image_url, id }) => {
             <ModalBody>Are you sure want to delete this listing?</ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="red" mr={3}>
+              <Button variant={"solid"} mr={3}>
                 Delete
               </Button>
               <Button variant="ghost" onClick={onClose}>

@@ -1,6 +1,7 @@
 const { Op } = require("sequelize")
 const db = require("../models")
 const Property = db.Property
+const Room = db.PropertyItem
 
 module.exports = {
     getAllProperties: async (req, res) => {
@@ -40,5 +41,28 @@ module.exports = {
           })
         }
       },
+
+      getRoomById: async (req, res) => {
+        try {
+          const findRoombyId = await Room.findOne({
+            where: {
+              id: req.params.id
+            },
+            include: {all: true}
+          })
+    
+          res.status(200).json({
+            message: "Find Room by ID",
+            data: findRoombyId,
+          })
+        } catch (err) {
+          console.log(err)
+          return res.status(500).json({
+            message: "Server error",
+          })
+        }
+      },
+
+
 
     }
