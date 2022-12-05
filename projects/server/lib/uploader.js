@@ -10,7 +10,9 @@ const upload = ({
       cb(null, "public")
     },
     filename: (req, file, cb) => {
-      cb(null, `${filePrefix}-${fileName}.${file.mimetype.split("/")[1]}`)
+      const unique = Date.now() + "-" + Math.round(Math.random() * 1e9)
+      console.log(file)
+      cb(null, `${filePrefix}-${unique}.${file.mimetype.split("/")[1]}`)
     },
   })
 
@@ -26,7 +28,7 @@ const upload = ({
   return multer({
     storage: diskStorage,
     fileFilter,
-  }) 
+  })
 }
 
 module.exports = {

@@ -32,35 +32,41 @@ app.use("/public", express.static("public"))
 // NOTE : Add your routes here
 
 app.get("/api", (req, res) => {
-  res.send(`Hello, this is my API`);
-});
+  res.send(`Hello, this is my API`)
+})
 
 app.get("/api/greetings", (req, res, next) => {
   res.status(200).json({
     message: "Hello, Student !",
-  });
-});
+  })
+})
+
+app.use("/auth", authRoute)
+// app.use("/public", express.static("public"))
+// const register = require("./routes/register")
+
+// app.use("/signup", register)
 
 // ===========================
 
 // not found
 app.use((req, res, next) => {
   if (req.path.includes("/api/")) {
-    res.status(404).send("Not found !");
+    res.status(404).send("Not found !")
   } else {
-    next();
+    next()
   }
-});
+})
 
 // error
 app.use((err, req, res, next) => {
   if (req.path.includes("/api/")) {
-    console.error("Error : ", err.stack);
-    res.status(500).send("Error !");
+    console.error("Error : ", err.stack)
+    res.status(500).send("Error !")
   } else {
-    next();
+    next()
   }
-});
+})
 
 //#endregion
 
@@ -77,7 +83,7 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, (err) => {
   if (err) {
-    console.log(`ERROR: ${err}`);
+    console.log(`ERROR: ${err}`)
   } else {
     db.sequelize.sync({ alter: true })
 
@@ -86,4 +92,4 @@ app.listen(PORT, (err) => {
     }
     console.log(`APP RUNNING at ${PORT} ✅`);
   }
-});
+})

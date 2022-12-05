@@ -1,0 +1,95 @@
+:root {
+  --PrimaryColor: hsl(220, 92%, 53%);
+  --HoverColor: hsl(239, 92%, 53%);
+  --WhiteColor: hsl(0, 0%, 100%);
+  --BlackColor: hsl(0, 0%, 5%);
+  //   --TextColor: hsl(273, 100%, 65%);
+  --TextColor: hsl(273, 100%, 0%);
+  --WhiteColorDeam: hsl(0, 0%, 90%);
+  --GreyBg: hsl(0, 0%, 95%);
+  --GreyText: rgb(190, 190, 190);
+  --InputColor: hsl(330, 12%, 97%);
+  --button-background: dodgerblue;
+  --button-color: white;
+
+  --dropdown-highlight: dodgerblue;
+  --dropdown-width: 160px;
+  --dropdown-background: white;
+  --dropdown-color: black;
+}
+
+// .box-container {
+
+.card-container {
+  width: 300px;
+  height: 81vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 1px 10px 1px black;
+  justify-content: center;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  margin: auto;
+  margin-top: -600px;
+  // display: table-row-group;
+
+  .upper-container {
+    height: 100px;
+    border-radius: 0 10px 0px;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(
+      circle,
+      rgba(238, 174, 202, 1) 0%,
+      rgba(148, 187, 233, 1) 100%
+    );
+
+    .image-container {
+      background: white;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      transform: translate(95px, 45px);
+      justify-self: center;
+      justify-items: center;
+      align-self: center;
+      align-items: center;
+      img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        border: 3px solid dodgerblue;
+        margin-right: 100px;
+        position: relative;
+      }
+    }
+  }
+}
+// }
+.lower-container {
+  height: 300px;
+  background: white;
+  text-align: center;
+  margin-top: 50px;
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  margin: 1rem;
+  margin-top: 15px;
+  color: white;
+  font-weight: bolder;
+  background-color: var(--PrimaryColor);
+  width: 100px;
+  height: 35px;
+  padding: 0.6rem;
+  border-radius: 6px;
+
+  border: none;
+  &:hover {
+    background-color: var(--HoverColor);
+    transform: scale(1.2);
+  }
+}

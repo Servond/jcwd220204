@@ -1,0 +1,215 @@
+:root {
+  --PrimaryColor: hsl(46, 100%, 56%);
+  --HoverColor: hsl(46, 69%, 44%);
+  --WhiteColor: hsl(0, 0%, 100%);
+  --BlackColor: hsl(0, 0%, 5%);
+  // --TextColor: hsl(273, 100%, 65%);
+  --TextColor: hsl(273, 100%, 0%);
+  --WhiteColorDeam: hsl(0, 0%, 90%);
+  --GreyBg: hsl(0, 0%, 95%);
+  --GreyText: rgb(190, 190, 190);
+  --InputColor: hsl(330, 12%, 97%);
+}
+
+.navBarSection {
+  height: 100vh;
+  margin-right: 90%;
+  justify-content: center;
+  align-items: "right";
+  width: 100%;
+  display: flex;
+
+  // max-width: max-content;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    width: 105%;
+    padding: 1rem;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    background: hsl(220, 92%, 53%);
+    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
+    border: 1px solid yellow;
+
+    .logoDiv {
+      .logo {
+        color: var(--WhiteColor);
+
+        font-weight: 500;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+          color: white;
+          font-size: 25px;
+        }
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .navBar {
+        background: var(--GreyBg);
+        position: fixed;
+        height: max-content;
+        padding: 1rem;
+        width: fit-content;
+        top: 0;
+        left: -500%;
+        margin-right: 0;
+        box-shadow: 0 2px 4px rgba(209, 209, 209, 0.904);
+        transition: 0.5s ease;
+        z-index: 2;
+        box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
+
+        .navLists {
+          justify-content: center;
+          width: 360px;
+          margin: auto;
+
+          .navItem {
+            padding: 1rem 0;
+
+            .navLink {
+              color: var(--TextColor);
+              font-size: 0.9rem;
+              font-weight: 600;
+              &:hover {
+                color: var(--PrimaryColor);
+              }
+            }
+          }
+          .headerBtns {
+            // flex-direction: column;
+            .btn {
+              margin-top: 1rem;
+
+              a {
+                font-weight: 600;
+
+                &:hover {
+                  color: var(--WhiteColor);
+                }
+              }
+            }
+            .loginBtn {
+              background: none;
+              border: 1px solid var(--PrimaryColor);
+
+              a {
+                color: var(--PrimaryColor);
+              }
+              &:hover {
+                background: var(--HoverColor);
+
+                a {
+                  color: var(--WhiteColor);
+                }
+              }
+            }
+          }
+        }
+        .closeNavbar {
+          position: absolute;
+          top: 1rem;
+          right: 1.5rem;
+          color: var(--PrimaryColor);
+          &:hover .icon {
+            color: var(--HoverColor);
+          }
+        }
+      }
+
+      .activeNavbar {
+        left: 0;
+      }
+    }
+
+    .toggleNavBar {
+      .icon {
+        font-size: 25px;
+        color: var(--PrimaryColor);
+        &:hover {
+          color: var(--HoverColor);
+        }
+      }
+    }
+  }
+
+  // .activeHeader {
+  //   background: hsl(273, 100%, 75%);
+  //   box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
+  // }
+}
+
+@media screen and (min-width: 769px) {
+  .toggleNavBar,
+  .closeNavbar {
+    display: none;
+  }
+  .header {
+    padding: 1.5rem 2rem;
+    .navBar {
+      .navLists {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+
+        .navItem {
+          .navLink {
+            color: var(--WhiteColor);
+            padding: 0 0.45rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+          }
+        }
+
+        .headerBtns {
+          .btn {
+            margin-top: 1rem;
+            margin-left: 1rem;
+
+            a {
+              font-weight: 600;
+
+              &:hover {
+                color: var(--WhiteColor);
+              }
+            }
+          }
+          .loginBtn {
+            background: none;
+            border: 1px solid var(--WhiteColor);
+
+            &:hover {
+              background: var(--PrimaryColor);
+              a {
+                color: var(--WhiteColor);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.option-navbar {
+  display: none;
+}
+.option-open li {
+  padding: 10px 15px;
+  margin-right: 0px;
+}
+.option-open {
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+}
