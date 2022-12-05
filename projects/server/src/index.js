@@ -41,12 +41,6 @@ app.get("/api/greetings", (req, res, next) => {
   })
 })
 
-app.use("/auth", authRoute)
-// app.use("/public", express.static("public"))
-// const register = require("./routes/register")
-
-// app.use("/signup", register)
-
 // ===========================
 
 // not found
@@ -71,13 +65,13 @@ app.use((err, req, res, next) => {
 //#endregion
 
 //#region CLIENT
-// const clientPath = "../../client/build";
-// app.use(express.static(join(__dirname, clientPath)));
+const clientPath = "../../client/build"
+app.use(express.static(join(__dirname, clientPath)))
 
 // Serve the HTML page
-// app.get("*", (req, res) => {
-//   res.sendFile(join(__dirname, clientPath, "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(join(__dirname, clientPath, "index.html"))
+})
 
 //#endregion
 

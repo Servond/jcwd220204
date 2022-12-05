@@ -22,6 +22,8 @@ import Comment from "./components/Tenant/Comment"
 import Analytics from "./components/Tenant/Analytics"
 import OrderList from "./components/Tenant/OrderList"
 import Property from "./components/Tenant/Property"
+import SignInTenant from "./components/sign-in-form-Tenant/sign-in.component"
+import SignIn from "./components/sign-in-form/sign-in.component"
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -114,7 +116,8 @@ function App() {
           element={authSelector.id === 0 ? <Login /> : <MyProfile />}
         />
         <Route path="/notfound" element={<NotFoundPage />} />
-
+  <Route path="/login" element={<SignIn />} />
+      <Route path="/logintenant" element={<SignInTenant />} />
         <Route path="/editprofile" element={<EditProfile />} />
 
         {/* ========== Tenant Area =========== */}

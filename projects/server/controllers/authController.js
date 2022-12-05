@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt")
 const { signToken } = require("../lib/jwt")
 const { verifyGoogleToken } = require("../lib/firebase")
 
-
 const authController = {
   register: async (req, res) => {
     try {
@@ -15,7 +14,7 @@ const authController = {
       }
 
       const findUserByEmail = await User.findOne({
-        where: {email}
+        where: { email },
       })
 
       if (findUserByEmail) {
@@ -25,12 +24,12 @@ const authController = {
       }
 
       await User.create({
-        email, 
-        first_name, 
-        last_name, 
+        email,
+        first_name,
+        last_name,
         phone_number,
         role,
-        ktp: req.body.ktp
+        ktp: req.body.ktp,
       })
 
       return res.status(200).json({
@@ -43,73 +42,27 @@ const authController = {
       })
     }
   },
-
-  // loginUser: async (req, res) => {
-  //   try {
-  //     const { email, password } = req.body
-
-  //     const findUserByEmail = await User.findOne({
-  //       where: { email },
-  //     })
-
-  //     if (!findUserByEmail) {
-  //       return res.status(400).json({
-  //         message: "User not found",
-  //       })
-  //     }
-
-  //     const passwordValid = bcrypt.compareSync(
-  //       password,
-  //       findUserByEmail.password
-  //     )
-
-  //     if (!passwordValid) {
-  //       return res.status(400).json({
-  //         message:
-  //           "Sorry, your password was incorrect. Please double-check your password.",
-  //       })
-  //     }
-
-  //     delete findUserByEmail.dataValues.password
-
-  //     const token = signToken({
-  //       id: findUserByEmail.id
-  //     })
-
-  //     return res.status(201).json({
-  //       message: "User logged in",
-  //       data: findUserByEmail,
-  //       token
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //     return res.status(500).json({
-  //       message: "Server error",
-  //     })
-  //   }
-  // },
-  // refreshToken: async (req, res) => {},
-
-
-
   loginWithGoogle: async (req, res) => {
     try {
       const { googleToken } = req.body
 
-      const {email} = await verifyGoogleToken(googleToken)
-
-      const [user, created] = await User.findOrCreate({
+      const { email } = await verifyGoogleToken(googleToken)
+      // console.log(googleToken)
+      const [user] = await User.findOrCreate({
         where: { email },
+        defaults: {
+          is_verified: true,
+        },
       })
 
       const token = signToken({
-        id: user.id
+        id: user.id,
       })
 
       return res.status(201).json({
         message: "User logged in",
         data: user,
-        token
+        token,
       })
     } catch (error) {
       console.log(error)
@@ -133,32 +86,6 @@ const authController = {
       })
     } catch (err) {
       console.log(err)
-      return res.status(500).json({
-        message: "Server error",
-      })
-    }
-  },
-  loginWithGoogle: async (req, res) => {
-    try {
-      const { googleToken } = req.body
-
-      const { email } = await verifyGoogleToken(googleToken)
-
-      const [user] = await User.findOrCreate({
-        where: { email },
-      })
-
-      const token = signToken({
-        id: user.id,
-      })
-
-      return res.status(201).json({
-        message: "User logged in",
-        data: user,
-        token,
-      })
-    } catch (error) {
-      console.log(error)
       return res.status(500).json({
         message: "Server error",
       })
