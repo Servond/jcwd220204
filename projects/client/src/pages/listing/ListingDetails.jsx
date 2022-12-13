@@ -95,9 +95,12 @@ const ListingDetails = () => {
       )
     })
   }
+  // const propId = listing.map((val) => val.id)
+  // console.log(propId)
   // console.log(listing)
+
   // console.log(images)
-  console.log(room)
+  console.log(listing)
 
   const [index, setIndex] = useState(0)
 
@@ -128,7 +131,7 @@ const ListingDetails = () => {
         <Link to={`/tenant/${authSelector.id}`}>
           <GrLinkPrevious size={"25px"} />
         </Link>
-        <Link to="/edit">
+        <Link to={`/property/edit/${listing.id}`}>
           <BiEditAlt size={"25px"} />
         </Link>
       </HStack>
@@ -140,8 +143,8 @@ const ListingDetails = () => {
         <Slider {...settings}>
           {images?.map((val) => (
             <Image
-              src={val.image_url}
-              // src={`http://localhost:8000/public/${val.image_url}`}
+              // src={val.image_url}
+              src={`http://localhost:8000/public/${val.image_url}`}
               rounded={"md"}
               fit={"cover"}
               align={"center"}

@@ -36,11 +36,6 @@ const SignIn = () => {
   const selector = useSelector((state) => state.auth)
 
   // LOGOUT
-  const logoutBtnHandler = () => {
-    localStorage.removeItem("auth_token")
-    dispatch(logout())
-    navigate("/")
-  }
 
   //const {dispatch} = useContext(AuthContext)
 
@@ -135,7 +130,7 @@ const SignIn = () => {
   if (authSelector.role === "user") {
     navigate("/")
   } else if (authSelector.role === "tenant") {
-    navigate("/tenant")
+    navigate(`/tenant/${authSelector.id}`)
   }
 
   return (

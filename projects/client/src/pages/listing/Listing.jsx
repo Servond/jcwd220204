@@ -68,7 +68,7 @@ const Listing = () => {
         </Center>
         <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
           <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
-          <Link to="/">
+          <Link to="/property-form">
             <GrAdd size={"25px"} />
           </Link>
         </HStack>

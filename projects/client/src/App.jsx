@@ -29,6 +29,9 @@ import SignIn from "./components/sign-in-form/sign-in.component"
 import SignInTenant from "./components/sign-in-form-Tenant/sign-in.component"
 import Property from "./components/Tenant/Property"
 import Loader from "./components/loader/Loader"
+import PropertyForm from "./components/property-form/property-form.component"
+import PostPropImg from "./components/postPropImg/post-prop-img.component"
+import EditProperty from "./components/editProperty/edit-property.component"
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -138,6 +141,9 @@ function App() {
         <Route path="/property" element={<Property />} />
         <Route path="/orderlist" element={<OrderList />} />
         {/* <Route path="/sidebar" element={<Sidebar />} /> */}
+        <Route path="/property/edit/:id" element={<EditProperty />} />
+        <Route path="/property-form" element={<PropertyForm />} />
+        <Route path="/property/image/:id" element={<PostPropImg />} />
         <Route path="/listing" element={<Listing />} />
 
         <Route path="/listing/details/:id" element={<ListingDetails />} />

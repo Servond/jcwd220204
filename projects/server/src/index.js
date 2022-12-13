@@ -10,7 +10,10 @@ const propertiesRoute = require("../routes/propertiesRoute")
 const roomRoute = require("../routes/roomRoute")
 const tenantRoute = require("../routes/tenantRoute")
 const citiesRoute = require("../routes/citiesRoute")
+const categoryRoute = require("../routes/categoriesRoute")
+
 const fs = require("fs")
+const { verifyToken } = require("../middlewares/authMiddleware")
 
 const PORT = process.env.PORT || 8000
 const app = express()
@@ -42,10 +45,12 @@ app.get("/api/greetings", (req, res, next) => {
 
 app.use("/auth", authRoute)
 app.use("/public", express.static("public"))
-app.use("/property", propertiesRoute)
+app.use("/property", verifyToken, propertiesRoute)
 app.use("/room", roomRoute)
 app.use("/tenant", tenantRoute)
 app.use("/cities", citiesRoute)
+app.use("/category", categoryRoute)
+
 // const register = require("./routes/register")
 
 // app.use("/signup", register)
