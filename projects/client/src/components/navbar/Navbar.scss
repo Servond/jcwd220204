@@ -76,6 +76,7 @@
               color: var(--TextColor);
               font-size: 0.9rem;
               font-weight: 600;
+              cursor: pointer;
               &:hover {
                 color: var(--HoverColor);
               }
@@ -88,6 +89,7 @@
 
               a {
                 font-weight: 600;
+                cursor: pointer;
 
                 &:hover {
                   color: var(--WhiteColor);

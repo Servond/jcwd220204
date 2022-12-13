@@ -3,15 +3,20 @@ import { useState } from "react"
 import "./Navbar.scss"
 import { IoIosHome } from "react-icons/io"
 import { HiX, HiMenu } from "react-icons/hi"
-import Login from "../../pages/Login"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 import Popular from "../popular/Popular"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import SignIn from "../sign-in-form/sign-in.component"
+import { logout } from "../../redux/features/authSlice"
+import { Text } from "@chakra-ui/react"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [openOption, setOpenOption] = useState(false)
   const [active, setActive] = useState("navBar")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const showNav = () => {
     setActive("navBar activeNavbar")
   }
@@ -30,6 +35,11 @@ const Navbar = () => {
   }
   window.addEventListener("scroll", addBg)
 
+  const logoutBtnHandler = () => {
+    localStorage.removeItem("auth_token")
+    dispatch(logout())
+    navigate("/")
+  }
   return (
     <section className="navBarSection">
       <div className={transparent}>
@@ -73,13 +83,18 @@ const Navbar = () => {
                 My Profile
               </a>
             </li>
+            <li className="navItem">
+              <Text onClick={logoutBtnHandler} color="white" cursor="pointer">
+                Logout
+              </Text>
+            </li>
             <div className="headerBtns flex">
               {/* <Link className="btn loginBtn" to="/login">
                 Login/Signup
               </Link> */}
               <button className="btn loginBtn">
                 <Link to="/login">
-                  <a href="/login">Login/Logout</a>
+                  <a href="/login">Login</a>
                 </Link>
               </button>
               <button className="btn">

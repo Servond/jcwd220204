@@ -5,16 +5,13 @@ import { useEffect, useState } from "react"
 import Home from "./components/home/Home"
 
 import { Route, Router, Routes, useLocation } from "react-router-dom"
-import Login from "./pages/Login"
 import { Link } from "react-router-dom"
 import Navbar from "./components/navbar/Navbar"
 import SignUpForm from "./components/sign-up-form/sign-up-form.components"
-import SignInForm from "./components/sign-in-form/sign-in-form.components"
 import MyProfile from "./components/my-profile/MyProfile"
 import EditProfile from "./components/edit-profile/EditProfile"
 import Tenant from "./components/Tenant/Tenant"
 import NotFoundPage from "./components/404"
-import Footer from "./components/Footer/Footer"
 
 import { useDispatch, useSelector } from "react-redux"
 import { axiosInstance } from "./api/index"
@@ -28,7 +25,8 @@ import OrderList from "./components/Tenant/OrderList"
 import Listing from "./pages/listing/Listing"
 import ListingDetails from "./pages/listing/ListingDetails"
 import AddRoom from "./components/room/AddRoom"
-
+import SignIn from "./components/sign-in-form/sign-in.component"
+import SignInTenant from "./components/sign-in-form-Tenant/sign-in.component"
 import Property from "./components/Tenant/Property"
 import Loader from "./components/loader/Loader"
 // import Sidebar from "./components/sidebar/Sidebar"
@@ -112,11 +110,13 @@ function App() {
       {/* {!loaded ? <Loader /> : <ListingDetails />} */}
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/login-tenant" element={<SignInTenant />} />
+
         <Route path="/register" element={<SignUpForm />} />
         <Route
           path="/myprofile"
-          element={authSelector.id === 0 ? <Login /> : <MyProfile />}
+          element={authSelector.id === 0 ? <SignIn /> : <MyProfile />}
         />
         <Route path="/notfound" element={<NotFoundPage />} />
 

@@ -72,24 +72,7 @@ module.exports = {
       })
     }
   },
-  getCityId: async (req, res) => {
-    try {
-      const findCity = await Cities.findByPk(req.params.id, {
-        include: {
-          model: db.Properties,
-        },
-      })
-      res.status(200).json({
-        message: "Find city  name",
-        data: findCity,
-      })
-    } catch (err) {
-      console.log(err)
-      return res.status(500).json({
-        message: err.message,
-      })
-    }
-  },
+
   getRoom: async (req, res) => {
     try {
       const findRoomById = await Properties.findAll({
