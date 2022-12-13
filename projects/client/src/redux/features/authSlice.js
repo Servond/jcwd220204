@@ -11,6 +11,7 @@ const initialState = {
   role: "",
   phone_number: "",
   ktp: "",
+  loginWith: "",
 }
 
 const authSlice = createSlice({
@@ -27,6 +28,7 @@ const authSlice = createSlice({
       state.role = action.payload.role
       state.phone_number = action.payload.phone_number
       state.ktp = action.payload.ktp
+      state.loginWith = action.payload.loginWith
       // state.first_name = action.payload.first_name
       // state.last_name = action.payload.last_name
       console.log(action.payload)
@@ -42,6 +44,7 @@ const authSlice = createSlice({
       state.role = ""
       state.phone_number = ""
       state.ktp = ""
+      state.loginWith = ""
     },
   },
 })

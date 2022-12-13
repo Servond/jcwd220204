@@ -5,12 +5,13 @@ import image from "../../assets/Foto_Danar_Sadan_Bastian_4x6-removebg-preview.jp
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Avatar, useToast } from "@chakra-ui/react"
+import { Avatar, Button, useDisclosure, useToast } from "@chakra-ui/react"
 import { axiosInstance } from "../../api/index"
 import { useEffect } from "react"
 import { useFormik } from "formik"
 import { auth } from "../../config/firebase"
 import Navbar from "../navbar/Navbar"
+import ReAuth from "../reAuthUser/reAuth.component"
 // import { Avatar } from "@chakra-ui/react"
 
 const MyProfile = () => {
@@ -19,6 +20,7 @@ const MyProfile = () => {
   const [user, setUser] = useState({})
   const params = useParams()
   const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   console.log(authSelector)
 
@@ -52,11 +54,17 @@ const MyProfile = () => {
             <h4>{authSelector.phone_number}</h4>
 
             <h4>{authSelector.birthdate}</h4>
+
+            {authSelector.loginWith === "email" ? (
+              <h4 onClick={onOpen}>Change Password</h4>
+            ) : null}
+
             <Link to={"/editprofile"}>
               <button type="submit">Edit Profile</button>
             </Link>
           </div>
         </div>
+        <ReAuth isOpen={isOpen} onClose={onClose} />
       </div>
     </>
   )
