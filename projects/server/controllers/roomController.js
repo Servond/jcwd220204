@@ -23,27 +23,10 @@ module.exports = {
   },
   getRoom: async (req, res) => {
     try {
-      // const findRoomById = await Properties.findAll({
-      //   include: {
-      //     model: db.PropertyItems,
-      //     include: {
-      //       model: db.Images,
-      //     },
-      //     // include: [
-      //     //   {
-      //     //     model: Images,
-      //     //
-      //     //
-      //     //   },
-      //     // ],
-      //   },
-
       const findRoomById = await Properties.findByPk(req.params.id, {
         include: {
           model: db.PropertyItem,
-          include: {
-            model: db.Images,
-          },
+          include: [{ model: db.Images }, { model: db.Calendar }],
         },
       })
       res.status(200).json({

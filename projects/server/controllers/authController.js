@@ -35,6 +35,50 @@ const authController = {
     }
   },
 
+  loginUser: async (req, res) => {
+    try {
+      const { email, password } = req.body
+
+      const findUserByEmail = await User.findOne({
+        where: { email },
+      })
+
+      if (!findUserByEmail) {
+        return res.status(400).json({
+          message: "User not found",
+        })
+      }
+
+      const passwordValid = bcrypt.compareSync(
+        password,
+        findUserByEmail.password
+      )
+
+      if (!passwordValid) {
+        return res.status(400).json({
+          message:
+            "Sorry, your password was incorrect. Please double-check your password.",
+        })
+      }
+
+      delete findUserByEmail.dataValues.password
+
+      const token = signToken({
+        id: findUserByEmail.id,
+      })
+
+      return res.status(201).json({
+        message: "User logged in",
+        data: findUserByEmail,
+        token,
+      })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Server error",
+      })
+    }
+  },
   refreshToken: async (req, res) => {
     try {
       const findUserById = await User.findByPk(req.user.id)
@@ -60,13 +104,9 @@ const authController = {
       const { googleToken } = req.body
 
       const { email } = await verifyGoogleToken(googleToken)
-      // console.log(googleToken)
+
       const [user] = await User.findOrCreate({
         where: { email },
-        defaults: {
-          is_verified: true,
-          loginWith: "google",
-        },
       })
 
       const token = signToken({

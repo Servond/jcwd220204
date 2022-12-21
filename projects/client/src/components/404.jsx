@@ -5,12 +5,7 @@ import Error from "../assets/error.jpg"
 const NotFoundPage = () => {
   return (
     <>
-      <Box
-        textAlign="center"
-        py="50"
-        px="6"
-        //  mt={"-120vh"}
-      >
+      <Box textAlign="center" py="50" px="6">
         <Image src={Error} alt="" />
         <Text color="gray.500" mb="6">
           Please register as a tenant to use this feature

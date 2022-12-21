@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react"
 import ListingRow from "../../components/room/ListingRow"
 import { axiosInstance } from "../../api"
-import { Box, Center, HStack, Text } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Center,
+  Flex,
+  HStack,
+  Menu,
+  MenuButton,
+  Text,
+  VStack,
+} from "@chakra-ui/react"
 import { GrLinkPrevious, GrAdd } from "react-icons/gr"
-import { Link, useParams } from "react-router-dom"
+import { Link, NavLink, useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Listing = () => {
+  const authSelector = useSelector((state) => state.auth)
   const [listing, setListing] = useState([])
   const [city, setCity] = useState([])
   const params = useParams()
-
-  // const fetchCities = async () => {
-  //   try {
-  //     const responseCities = await axiosInstance.get(
-  //       `/property/city/${params.id}`
-  //     )
-
-  //     setCity(responseCities.data.data)
-  //     console.log(responseCities, "coba")
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   const fetchListing = async () => {
     try {
@@ -43,38 +43,76 @@ const Listing = () => {
           properties={val.PropertyImages}
           address={val.address}
           city={val.City}
-          // image_url={val?.PropertyImages[0]?.image_url}
         />
       )
     })
   }
+  const Menu = ["Properties", "Order", "Finances"]
 
   useEffect(() => {
     fetchListing()
   }, [])
 
   return (
-    <Center>
-      <Box marginTop={"100px"}>
-        <Center>
-          <Text
-            fontFamily={"sans-serif"}
-            fontWeight="bold"
-            fontSize={"2xl"}
-            position="absolute"
-          >
-            Your List of Properties
-          </Text>
-        </Center>
-        <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
-          <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
-          <Link to="/property-form">
-            <GrAdd size={"25px"} />
-          </Link>
-        </HStack>
+    <Center marginTop={"100px"}>
+      <VStack>
+        <Box height={"50px"} maxW="400px">
+          <HStack spacing={"2"} as="nav">
+            <ButtonGroup variant={"link"}>
+              <Link to="/">
+                <Button
+                  color={"white"}
+                  cursor="pointer"
+                  backgroundColor={"green.500"}
+                  fontSize={"15px"}
+                >
+                  Properties
+                </Button>
+              </Link>
+              <Link to={`/orderlist?id=${authSelector.id}`}>
+                <Button
+                  color={"white"}
+                  cursor="pointer"
+                  backgroundColor={"green.500"}
+                  fontSize={"15px"}
+                >
+                  Order List
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  color={"white"}
+                  cursor="pointer"
+                  backgroundColor={"green.500"}
+                  fontSize={"15px"}
+                >
+                  Finances
+                </Button>
+              </Link>
+            </ButtonGroup>
+          </HStack>
+        </Box>
+        <Box>
+          <Center>
+            <Text
+              fontFamily={"sans-serif"}
+              fontWeight="bold"
+              fontSize={"2xl"}
+              position="absolute"
+            >
+              Your List of Properties
+            </Text>
+          </Center>
+          <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
+            <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
+            <Link to="/">
+              <GrAdd size={"25px"} />
+            </Link>
+          </HStack>
 
-        {renderListingRow()}
-      </Box>
+          {renderListingRow()}
+        </Box>
+      </VStack>
     </Center>
   )
 }
