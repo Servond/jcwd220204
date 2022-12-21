@@ -11,6 +11,8 @@ const roomRoute = require("../routes/roomRoute")
 const tenantRoute = require("../routes/tenantRoute")
 const citiesRoute = require("../routes/citiesRoute")
 const categoryRoute = require("../routes/categoriesRoute")
+const transactionRoute = require("../routes/transactionRoute")
+const schedule = require("../schedule/paymentCheck")
 
 const fs = require("fs")
 const { verifyToken } = require("../middlewares/authMiddleware")
@@ -50,6 +52,7 @@ app.use("/room", roomRoute)
 app.use("/tenant", tenantRoute)
 app.use("/cities", citiesRoute)
 app.use("/category", categoryRoute)
+app.use("/transaction", transactionRoute)
 
 // const register = require("./routes/register")
 
@@ -101,3 +104,4 @@ app.listen(PORT, (err) => {
     console.log(`APP RUNNING at ${PORT} ✅`)
   }
 })
+schedule.invoke()
