@@ -1,0 +1,614 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Ambon"
+  },
+  {
+    "id": 2,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Balikpapan"
+  },
+  {
+    "id": 3,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Banda Aceh"
+  },
+  {
+    "id": 4,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bandar Lampung"
+  },
+  {
+    "id": 5,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bandung"
+  },
+  {
+    "id": 6,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Banjarbaru"
+  },
+  {
+    "id": 7,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Banjarmasin"
+  },
+  {
+    "id": 8,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Batam"
+  },
+  {
+    "id": 9,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Batu"
+  },
+  {
+    "id": 10,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bau-Bau"
+  },
+  {
+    "id": 11,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bekasi"
+  },
+  {
+    "id": 12,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bengkulu"
+  },
+  {
+    "id": 13,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bima"
+  },
+  {
+    "id": 14,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Binjai"
+  },
+  {
+    "id": 15,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bireuen"
+  },
+  {
+    "id": 16,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bitung"
+  },
+  {
+    "id": 17,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Blangkejeren"
+  },
+  {
+    "id": 18,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Blitar"
+  },
+  {
+    "id": 19,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bogor"
+  },
+  {
+    "id": 20,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bontang"
+  },
+  {
+    "id": 21,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Bukittinggi"
+  },
+  {
+    "id": 22,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Cianjur"
+  },
+  {
+    "id": 23,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Cilegon"
+  },
+  {
+    "id": 24,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Cimahi"
+  },
+  {
+    "id": 25,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Cirebon"
+  },
+  {
+    "id": 26,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Denpasar"
+  },
+  {
+    "id": 27,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Depok"
+  },
+  {
+    "id": 28,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Dumai"
+  },
+  {
+    "id": 29,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Gorontalo"
+  },
+  {
+    "id": 30,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Jakarta"
+  },
+  {
+    "id": 31,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Jambi"
+  },
+  {
+    "id": 32,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Jayapura"
+  },
+  {
+    "id": 33,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Kediri"
+  },
+  {
+    "id": 34,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Kendari"
+  },
+  {
+    "id": 35,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Kota Sorong"
+  },
+  {
+    "id": 36,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Kupang"
+  },
+  {
+    "id": 37,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Langsa"
+  },
+  {
+    "id": 38,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Lhokseumawe"
+  },
+  {
+    "id": 39,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Lubuklinggau"
+  },
+  {
+    "id": 40,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Madiun"
+  },
+  {
+    "id": 41,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Magelang"
+  },
+  {
+    "id": 42,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Makassar"
+  },
+  {
+    "id": 43,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Malang"
+  },
+  {
+    "id": 44,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Manado"
+  },
+  {
+    "id": 45,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Manokwari"
+  },
+  {
+    "id": 46,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Mataram"
+  },
+  {
+    "id": 47,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Medan"
+  },
+  {
+    "id": 48,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Merauke"
+  },
+  {
+    "id": 49,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Metro"
+  },
+  {
+    "id": 50,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Meulaboh"
+  },
+  {
+    "id": 51,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Mojokerto"
+  },
+  {
+    "id": 52,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Padang"
+  },
+  {
+    "id": 53,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Padang Panjang"
+  },
+  {
+    "id": 54,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Padang Sidempuan"
+  },
+  {
+    "id": 55,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pagar Alam"
+  },
+  {
+    "id": 56,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Palangkaraya"
+  },
+  {
+    "id": 57,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Palembang"
+  },
+  {
+    "id": 58,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Palopo"
+  },
+  {
+    "id": 59,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Palu"
+  },
+  {
+    "id": 60,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pangkal Pinang"
+  },
+  {
+    "id": 61,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pare-Pare"
+  },
+  {
+    "id": 62,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pariaman"
+  },
+  {
+    "id": 63,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pasuruan"
+  },
+  {
+    "id": 64,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Payakumbuh"
+  },
+  {
+    "id": 65,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pekalongan"
+  },
+  {
+    "id": 66,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pekanbaru"
+  },
+  {
+    "id": 67,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pematang Siantar"
+  },
+  {
+    "id": 68,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Pontianak"
+  },
+  {
+    "id": 69,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Prabumulih"
+  },
+  {
+    "id": 70,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Probolinggo"
+  },
+  {
+    "id": 71,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Purwokerto"
+  },
+  {
+    "id": 72,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Redelong (Simpang Tiga Redelong)"
+  },
+  {
+    "id": 73,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Sabang"
+  },
+  {
+    "id": 74,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Salatiga"
+  },
+  {
+    "id": 75,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Samarinda"
+  },
+  {
+    "id": 76,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Sawah Lunto"
+  },
+  {
+    "id": 77,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Semarang"
+  },
+  {
+    "id": 78,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Serang"
+  },
+  {
+    "id": 79,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Sibolga"
+  },
+  {
+    "id": 80,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Sigli"
+  },
+  {
+    "id": 81,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Singkawang"
+  },
+  {
+    "id": 82,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Singkil"
+  },
+  {
+    "id": 83,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Solok"
+  },
+  {
+    "id": 84,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "South Tangerang"
+  },
+  {
+    "id": 85,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Sukabumi"
+  },
+  {
+    "id": 86,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Surabaya"
+  },
+  {
+    "id": 87,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Surakarta"
+  },
+  {
+    "id": 88,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Takengon"
+  },
+  {
+    "id": 89,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tangerang"
+  },
+  {
+    "id": 90,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tanjung Balai"
+  },
+  {
+    "id": 91,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tanjung Pinang"
+  },
+  {
+    "id": 92,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tapaktuan"
+  },
+  {
+    "id": 93,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tarakan"
+  },
+  {
+    "id": 94,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tasikmalaya"
+  },
+  {
+    "id": 95,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tebing Tinggi"
+  },
+  {
+    "id": 96,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tegal"
+  },
+  {
+    "id": 97,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tenggarong"
+  },
+  {
+    "id": 98,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Ternate"
+  },
+  {
+    "id": 99,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tidore"
+  },
+  {
+    "id": 100,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tomohon"
+  },
+  {
+    "id": 101,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Tual"
+  },
+  {
+    "id": 102,
+    "createdAt": "2022-11-29",
+    "updatedAt": "2022-11-29",
+    "cities_name": "Yogyakarta"
+  }
+]
