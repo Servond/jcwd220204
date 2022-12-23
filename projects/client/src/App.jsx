@@ -32,6 +32,7 @@ import Loader from "./components/loader/Loader"
 import PropertyForm from "./components/property-form/property-form.component"
 import PostPropImg from "./components/postPropImg/post-prop-img.component"
 import EditProperty from "./components/editProperty/edit-property.component"
+import PaymentProof from "./components/proofPayment/proofPayment.component"
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -145,6 +146,7 @@ function App() {
         <Route path="/property-form" element={<PropertyForm />} />
         <Route path="/property/image/:id" element={<PostPropImg />} />
         <Route path="/listing" element={<Listing />} />
+        <Route path="/payment-proof/:id" element={<PaymentProof />} />
 
         <Route path="/listing/details/:id" element={<ListingDetails />} />
       </Routes>
