@@ -9,17 +9,13 @@ const DummyTransaction = () => {
   const toast = useToast()
   const navigate = useNavigate()
   const authSelector = useSelector((state) => state.auth)
-  const params = useParams()
-  const [getTransactionId, setGetTransactionId] = useState("")
 
   const dummyTrans = async () => {
     try {
       const dummyResponse = await axiosInstance.post("/transaction/")
-      //   setGetTransactionId(dummyResponse.data.data)
-      //   console.log(dummyResponse.data.data.id)
 
       if (authSelector.role === "user") {
-        navigate("/")
+        navigate(`/payment-proof/${dummyResponse.data.data.id}`)
       } else {
         navigate("/login")
       }
