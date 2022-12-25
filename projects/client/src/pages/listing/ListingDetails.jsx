@@ -38,8 +38,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useSelector } from "react-redux"
 import { useFormik } from "formik"
-import { async } from "@firebase/util"
-import axios from "axios"
 
 const ListingDetails = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -59,13 +57,13 @@ const ListingDetails = () => {
       setListing(response.data.data)
       setPropertyPhoto(response.data.data)
       setImages(response.data.data.PropertyImages)
-      console.log(response)
     } catch (err) {
       console.log(err)
     }
   }
   console.log(images)
 
+  //=======================GET ROOM
   const fetchRoom = async () => {
     try {
       const response = await axiosInstance.get(`/room/${params.id}`)
@@ -190,7 +188,7 @@ const ListingDetails = () => {
         <Link to={`/tenant/${authSelector.id}`}>
           <GrLinkPrevious size={"25px"} />
         </Link>
-        <Link to="/edit">
+        <Link to={`/property/edit/${params.id}`}>
           <BiEditAlt size={"25px"} />
         </Link>
       </HStack>
@@ -203,7 +201,8 @@ const ListingDetails = () => {
         <Carousel autoplay effect="fade" nextArrow={StackDivider}>
           {images?.map((val) => (
             <Image
-              src={val.image_url}
+              // src={val.image_url}
+              src={`http://localhost:8000/public/${val.image_url}`}
               rounded={"md"}
               fit={"cover"}
               align={"center"}

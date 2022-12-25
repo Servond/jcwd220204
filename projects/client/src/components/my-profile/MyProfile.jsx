@@ -62,6 +62,17 @@ const MyProfile = () => {
             <Link to={"/editprofile"}>
               <button type="submit">Edit Profile</button>
             </Link>
+            {authSelector.loginWith === "email" ? (
+              <li className="navbar-li">
+                <Link
+                  className="login-transform"
+                  // to="/reauth"
+                  onClick={onOpen}
+                >
+                  Change Password
+                </Link>
+              </li>
+            ) : null}
           </div>
         </div>
         <ReAuth isOpen={isOpen} onClose={onClose} />

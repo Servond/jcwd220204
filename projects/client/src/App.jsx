@@ -1,6 +1,5 @@
 import axios from "axios"
 
-
 import { useEffect, useState } from "react"
 
 import { Route, Router, Routes, useLocation } from "react-router-dom"
@@ -8,20 +7,28 @@ import { Route, Router, Routes, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { axiosInstance } from "./api/index"
 import { login } from "./redux/features/authSlice"
+import ListingDetails from "./pages/listing/ListingDetails"
+import Navbar from "./components/navbar/Navbar"
+import MyProfile from "./components/my-profile/MyProfile"
 
 import OrderList from "./components/order/OrderList"
 import Listing from "./pages/listing/Listing"
+import NotFoundPage from "./components/404"
+import EditProfile from "./components/edit-profile/EditProfile"
 
+import Home from "./components/home/Home"
 import AddRoom from "./components/room/AddRoom"
 import SignIn from "./components/sign-in-form/sign-in.component"
 import SignInTenant from "./components/sign-in-form-Tenant/sign-in.component"
-import Property from "./components/Tenant/Property"
+import SignUpForm from "./components/sign-up-form/sign-up-form.components"
+
 import Loader from "./components/loader/Loader"
 import PropertyForm from "./components/property-form/property-form.component"
 import PostPropImg from "./components/postPropImg/post-prop-img.component"
 import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
+import UserPage from "./components/user/User"
 
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
@@ -30,7 +37,6 @@ import PaymentApproval from "./components/paymentApproval/paymentApproval"
 //   createUserDocumentFromAuth,
 // } from "./utils/firebase/firebase.utils"
 
-
 import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 
 function App() {
@@ -38,17 +44,6 @@ function App() {
   // console.log(authSelector, "test")
   const [message, setMessage] = useState("")
   const location = useLocation()
-
-  const renderTenaantRoutes = () => {
-    if (authSelector.role === "tenant") {
-      return (
-        <>
-          <Route path="/tenant" element={<Tenant />} />
-        </>
-      )
-    }
-    return null
-  }
 
   const [authCheck, setAuthCheck] = useState(false)
   const dispatch = useDispatch()
@@ -90,25 +85,46 @@ function App() {
 
   return (
     <main>
+      <Navbar />
       <Routes>
+        <Route index element={<Home />} />
         <Route path="/inputroom" element={<AddRoom />} />
         <Route path="/orderlist" element={<OrderList />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/register" element={<SignUpForm />} />
+        <Route
+          path="/myprofile"
+          element={authSelector.id === 0 ? <SignIn /> : <MyProfile />}
+        />
+        <Route path="/editprofile" element={<EditProfile />} />
         <Route
           path="/tenant/:id"
-          element={authSelector.role === "tenant" ? <Listing /> : null}
+          element={
+            authSelector.role === "tenant" ? <Listing /> : <NotFoundPage />
+          }
         />
 
         <Route path="/property/edit/:id" element={<EditProperty />} />
         <Route path="/property-form" element={<PropertyForm />} />
         <Route path="/property/image/:id" element={<PostPropImg />} />
-        <Route path="/listing" element={<Listing />} />
+        <Route
+          path="/tenant/:id"
+          element={
+            authSelector.role === "tenant" ? <Listing /> : <NotFoundPage />
+          }
+        />
         <Route path="/payment-proof/:id" element={<PaymentProof />} />
         <Route path="/payment-approval/:id" element={<PaymentApproval />} />
 
         <Route path="/dummy-transaction/" element={<DummyTransaction />} />
 
-
         <Route path="/listing/details/:id" element={<ListingDetails />} />
+        <Route
+          path="/user/:id"
+          element={
+            authSelector.role === "user" ? <UserPage /> : <NotFoundPage />
+          }
+        />
       </Routes>
     </main>
   )
