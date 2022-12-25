@@ -1,5 +1,9 @@
 const express = require("express")
 const transactionController = require("../controllers/transactionController")
+
+const router = express.Router()
+
+router.get("/:id", transactionController.getTransaction)
 const { upload } = require("../lib/uploader")
 const { verifyToken } = require("../middlewares/authMiddleware")
 

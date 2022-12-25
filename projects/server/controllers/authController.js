@@ -104,13 +104,9 @@ const authController = {
       const { googleToken } = req.body
 
       const { email } = await verifyGoogleToken(googleToken)
-      // console.log(googleToken)
+
       const [user] = await User.findOrCreate({
         where: { email },
-        defaults: {
-          is_verified: true,
-          loginWith: "google",
-        },
       })
 
       const token = signToken({
