@@ -1,9 +1,3 @@
-:root {
-  --primary: #0091ff;
-  --dark: #061b28;
-  --gray: #756388;
-  --light: #ffffff;
-}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,10 +12,6 @@ code {
     monospace;
 }
 
-/* /* body {
-  background: orange;
-} */
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   padding: 0;
@@ -32,36 +22,26 @@ code {
 }
 
 /* Colors */
-:root {
+/* :root {
   --PrimaryColor: hsl(293, 100%, 70%);
   --HoverColor: hsl(293, 90%, 60%);
   --WhiteColor: hsl(0, 0%, 100%);
   --BlackColor: hsl(0, 0%, 5%);
-  /* --TextColor: hsl(273, 100%, 65%); */
-  --TextColor: hsl(273, 100%, 0%);
+  --TextColor: hsl(273, 100%, 65%); */
+/* --TextColor: hsl(273, 100%, 0%);
   --WhiteColorDeam: hsl(0, 0%, 90%);
   --GreyBg: hsl(0, 0%, 95%);
-  --GreyText: rgb(190, 190, 190);
-  --InputColor: hsl(330, 12%, 97%);
-  /* box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); */
-}
+  --GreyText: rgb(190, 190, 190); */
+/* --InputColor: hsl(330, 12%, 97%); */
+/* box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); */
+/* } */
 
 a {
   text-decoration: none;
-  color: black;
 }
 
 li {
   list-style: none;
-}
-
-.section {
-  padding: 4rem 0 2rem;
-}
-
-.container {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .icon {
@@ -69,29 +49,6 @@ li {
   cursor: pointer;
   color: orange;
 }
-
-.grid {
-  display: grid;
-  align-items: center;
-}
-
-.btn {
-  padding: 0.4rem 1.5rem;
-  background: var(--PrimaryColor);
-  border: none;
-  outline: none;
-  border-radius: 3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn a {
-  color: var(--WhiteColor);
-  font-weight: 500;
-}
-
 .btn:hover a {
   color: var(--WhiteColor);
 }
