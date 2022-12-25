@@ -33,6 +33,7 @@ import PostPropImg from "./components/postPropImg/post-prop-img.component"
 import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
+import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -44,11 +45,11 @@ function App() {
   // const [loaded, setLoaded] = useState(false)
 
   const authSelector = useSelector((state) => state.auth)
-  console.log(authSelector, "test")
+  // console.log(authSelector, "test")
   const [message, setMessage] = useState("")
   const location = useLocation()
 
-  console.log(location, "test2")
+  // console.log(location, "test2")
 
   const renderTenaantRoutes = () => {
     if (authSelector.role === "tenant") {
@@ -148,6 +149,7 @@ function App() {
         <Route path="/listing" element={<Listing />} />
         <Route path="/payment-proof/:id" element={<PaymentProof />} />
         <Route path="/payment-approval/:id" element={<PaymentApproval />} />
+        <Route path="/dummy-transaction/" element={<DummyTransaction />} />
 
         <Route path="/listing/details/:id" element={<ListingDetails />} />
       </Routes>
