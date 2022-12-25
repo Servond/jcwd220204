@@ -85,13 +85,18 @@ const transactionController = {
       const start = moment().add(3, "days").format("YYYY-MM-DD HH:mm:ss")
       const end = moment().add(5, "days").format("YYYY-MM-DD HH:mm:ss")
 
+      const foundUserById = await db.User.findByPk(req.user.id)
+
       const dummyTransaction = await db.Transaction.create({
         start_date: start,
         end_date: end,
         price: 30000,
         PropertyItemId: 1,
         PropertyId: 386,
-        UserId: 60,
+
+        // UserId: 60,
+        UserId: foundUserById.id,
+
         exp_date: expired_date,
         status: "waiting for payment",
       })

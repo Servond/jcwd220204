@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       ktp: DataTypes.STRING,
       role: { type: DataTypes.STRING, defaultValue: "user" },
       phone_number: DataTypes.STRING,
-      loginWith: DataTypes.STRING,
     },
     {
       sequelize,

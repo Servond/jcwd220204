@@ -10,6 +10,8 @@ const upload = ({
       cb(null, "public")
     },
     filename: (req, file, cb) => {
+      // const unique = Date.now() + "-" + Math.round(Math.random() * 1e9)
+      // console.log(file)
       const { originalname } = file
       fileName = originalname + Date.now()
       cb(null, `${filePrefix}-${fileName}.${file.mimetype.split("/")[1]}`)

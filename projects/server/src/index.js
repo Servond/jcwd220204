@@ -12,6 +12,7 @@ const tenantRoute = require("../routes/tenantRoute")
 const citiesRoute = require("../routes/citiesRoute")
 const calendarRoute = require("../routes/calendarRoute")
 const transactionRoute = require("../routes/transactionRoute")
+
 const fs = require("fs")
 const categoryRoute = require("../routes/categoriesRoute")
 const schedule = require("../schedule/paymentCheck")
@@ -56,8 +57,8 @@ app.use("/property", verifyToken, propertiesRoute)
 app.use("/room", roomRoute)
 app.use("/tenant", tenantRoute)
 app.use("/cities", citiesRoute)
-app.use("/category", categoryRoute)
-
+app.use("/calendar", calendarRoute)
+app.use("/transaction", transactionRoute)
 // const register = require("./routes/register")
 
 // app.use("/signup", register)

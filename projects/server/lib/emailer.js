@@ -36,10 +36,12 @@ const emailer = async ({ to, subject, text, html }) => {
     // port: 587,
   })
   await transporter.sendMail({
+
     to, //Email penerima
     subject, //Subject email
     text, //Body email dalam bentuk text
     html, //Body email dalam bentuk HTML
+
   })
 }
 
