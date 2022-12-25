@@ -27,6 +27,7 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
   const [images, setImages] = useState([])
 
   const getImages = properties.map((val) => val.image_url)
+  console.log(getImages)
 
   return (
     <Center py={2} px={5} top="0" zIndex="0">
@@ -43,7 +44,7 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
         >
           <Flex flex={0.5} ml="-10px">
             <Image
-              src={getImages[0]}
+              src={`http://localhost:8000/public/${getImages[0]}`}
               borderRadius="2xl"
               h="-moz-max-content"
               width={"150px"}
