@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       payment_proof: DataTypes.STRING,
       status: DataTypes.STRING,
       exp_date: DataTypes.DATE,
+      is_checked: { type: DataTypes.BOOLEAN, defaultValue: false },
     },
     {
       sequelize,

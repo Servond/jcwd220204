@@ -13,6 +13,10 @@ const citiesRoute = require("../routes/citiesRoute")
 const calendarRoute = require("../routes/calendarRoute")
 const transactionRoute = require("../routes/transactionRoute")
 const fs = require("fs")
+const categoryRoute = require("../routes/categoriesRoute")
+const schedule = require("../schedule/paymentCheck")
+
+const { verifyToken } = require("../middlewares/authMiddleware")
 
 const PORT = process.env.PORT || 8000
 const app = express()
@@ -44,7 +48,11 @@ app.get("/api/greetings", (req, res, next) => {
 
 app.use("/auth", authRoute)
 app.use("/public", express.static("public"))
-app.use("/property", propertiesRoute)
+
+app.use("/calendar", calendarRoute)
+app.use("/transaction", transactionRoute)
+
+app.use("/property", verifyToken, propertiesRoute)
 app.use("/room", roomRoute)
 app.use("/tenant", tenantRoute)
 app.use("/cities", citiesRoute)

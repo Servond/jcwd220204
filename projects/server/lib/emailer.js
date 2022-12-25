@@ -14,6 +14,7 @@ const emailer = async ({ to, subject, text, html }) => {
   await transporter.sendMail({
     to,
     subject,
+    text,
     html,
   })
 }

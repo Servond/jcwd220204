@@ -19,5 +19,9 @@
   },
   "workspaces": [
     "projects/*"
-  ]
+  ],
+  "dependencies": {
+    "moment": "^2.29.4",
+    "node-schedule": "^2.1.0"
+  }
 }

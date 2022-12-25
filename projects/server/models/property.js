@@ -8,19 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Property.belongsTo(models.Cities)
+      // define association here
       Property.belongsTo(models.Categories)
-      Property.hasMany(models.PropertyItem, { onDelete: "CASCADE" })
-      Property.hasMany(models.PropertyFacilities)
-      Property.hasMany(models.PropertyImage, { onDelete: "CASCADE" })
+      Property.belongsTo(models.Cities)
       Property.belongsTo(models.User)
+      Property.hasMany(models.PropertyItem, { onDelete: "CASCADE" })
+      Property.hasMany(models.PropertyImage, { onDelete: "CASCADE" })
+      Property.hasMany(models.Transaction)
     }
   }
   Property.init(
     {
-      name: DataTypes.STRING,
-      address: DataTypes.STRING,
-      description: DataTypes.TEXT,
+      name: { type: DataTypes.STRING, allowNull: false },
+      address: { type: DataTypes.STRING, allowNull: false },
+      description: { type: DataTypes.STRING, allowNull: false },
+      rules: DataTypes.STRING,
     },
     {
       sequelize,
