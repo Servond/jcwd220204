@@ -21,11 +21,27 @@ import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
 
+import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
+
+
 function App() {
   const authSelector = useSelector((state) => state.auth)
-  console.log(authSelector, "test")
+  // console.log(authSelector, "test")
   const [message, setMessage] = useState("")
   const location = useLocation()
+
+
+
+  const renderTenaantRoutes = () => {
+    if (authSelector.role === "tenant") {
+      return (
+        <>
+          <Route path="/tenant" element={<Tenant />} />
+        </>
+      )
+    }
+    return null
+  }
 
   const [authCheck, setAuthCheck] = useState(false)
   const dispatch = useDispatch()
@@ -88,6 +104,7 @@ function App() {
         <Route path="/listing" element={<Listing />} />
         <Route path="/payment-proof/:id" element={<PaymentProof />} />
         <Route path="/payment-approval/:id" element={<PaymentApproval />} />
+        <Route path="/dummy-transaction/" element={<DummyTransaction />} />
 
         <Route path="/listing/details/:id" element={<ListingDetails />} />
       </Routes>

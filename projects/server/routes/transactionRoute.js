@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.get("/:id", transactionController.getTransaction)
 const { upload } = require("../lib/uploader")
+const { verifyToken } = require("../middlewares/authMiddleware")
 
 const router = express.Router()
 
@@ -16,7 +17,7 @@ router.patch(
   }).single("payment_proof"),
   transactionController.paymentProof
 )
-router.post("/", transactionController.createTransactionDummy)
+router.post("/", verifyToken, transactionController.createTransactionDummy)
 router.patch("/approve/:id", transactionController.transactionApprove)
 router.patch("/reject/:id", transactionController.transactionReject)
 router.patch("/canceled/:id", transactionController.transactionCanceled)
