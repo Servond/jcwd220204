@@ -38,6 +38,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useSelector } from "react-redux"
 import { useFormik } from "formik"
+import { async } from "@firebase/util"
+import axios from "axios"
 
 const ListingDetails = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -57,13 +59,13 @@ const ListingDetails = () => {
       setListing(response.data.data)
       setPropertyPhoto(response.data.data)
       setImages(response.data.data.PropertyImages)
+      console.log(response)
     } catch (err) {
       console.log(err)
     }
   }
   console.log(images)
 
-  //=======================GET ROOM
   const fetchRoom = async () => {
     try {
       const response = await axiosInstance.get(`/room/${params.id}`)

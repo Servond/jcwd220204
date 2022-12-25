@@ -1,0 +1,239 @@
+:root {
+  --PrimaryColor: hsl(46, 100%, 56%);
+  --HoverColor: hsl(46, 69%, 44%);
+  --WhiteColor: hsl(0, 0%, 100%);
+  --BlackColor: hsl(0, 0%, 5%);
+  //   --TextColor: hsl(273, 100%, 65%);
+  --TextColor: hsl(273, 100%, 0%);
+  --WhiteColorDeam: hsl(0, 0%, 90%);
+  --GreyBg: hsl(0, 0%, 95%);
+  --GreyText: rgb(190, 190, 190);
+  --InputColor: hsl(330, 12%, 97%);
+}
+
+.footer-container {
+  background-color: hsl(220, 92%, 53%);
+  padding: 4rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
+  // height: 30rem;
+}
+
+.footer-container:hover {
+  background-color: hsl(220, 80%, 43%);
+}
+
+.footer-subscription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  color: #fff;
+  margin-top: -75px;
+}
+
+.footer-subscription > p {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.footer-subscription-heading:hover {
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #fffb13;
+}
+
+.footer-subscription-text {
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+
+.footer-input {
+  padding: 8px 2px;
+  border-radius: 2px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border: 1px solid #fff;
+}
+
+.footer-input:hover {
+  padding: 8px 20px;
+  border-radius: 2px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border: 1px solid rgb(239, 255, 11);
+  background-color: rgb(239, 255, 11);
+}
+
+.footer-links {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+.footer-links-wrapper {
+  display: flex;
+}
+
+.footer-btn {
+  color: white;
+  width: 100px;
+  height: 40px;
+  background-color: hsl(220, 92%, 53%);
+  background-color: transparent;
+  border: 1px solid white;
+  transition: all 0.3s ease-out;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-btn:hover {
+  color: rgb(241, 245, 22);
+  width: 100px;
+  height: 40px;
+  background-color: hsl(220, 92%, 53%);
+  background-color: transparent;
+  border: 1px solid rgb(201, 241, 22);
+  transition: all 0.3s ease-out;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-link-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px;
+  text-align: left;
+  width: 160px;
+  box-sizing: border-box;
+}
+
+.footer-link-items > h2 {
+  margin-bottom: 16px;
+}
+
+.footer-link-items > h2 {
+  color: #fff;
+}
+
+.footer-link-items a {
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.footer-link-items a:hover {
+  color: #ecf00f;
+  transition: 0.3s ease-out;
+}
+
+.footer-email-form h2 {
+  margin-bottom: 2rem;
+}
+
+.footer-input::placeholder {
+  color: #b1b1b1;
+}
+
+.social-icon-link {
+  color: #fff;
+  font-size: 24px;
+}
+
+.social-icon-link:hover {
+  color: rgb(255, 240, 24);
+  font-size: 24px;
+}
+
+.social-media {
+  max-width: 1000px;
+  width: 100px;
+}
+
+.social-media-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+}
+
+.social-icons:hover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  color: rgb(255, 251, 6);
+}
+
+.social-logo {
+  color: #fff;
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.social-logo:hover {
+  color: hsl(220, 80%, 43%);
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.website-rights {
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.website-rights:hover {
+  color: hsl(220, 80%, 43%);
+  margin-bottom: 16px;
+}
+
+@media screen and (max-width: 690) {
+  .footer-links {
+    padding-top: 2rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .footer-links-wrapper {
+    flex-direction: column;
+  }
+
+  .social-media-wrap {
+    flex-direction: column;
+  }
+}

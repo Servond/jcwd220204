@@ -6,7 +6,6 @@ const router = express.Router()
 const maxSize = 1 * 1024 * 1024
 
 router.post("/register", authController.registerUser)
-router.post("/login", authController.loginUser)
 router.get("/refresh-token", verifyToken, authController.refreshToken)
 router.post("/login/google", authController.loginWithGoogle)
 
