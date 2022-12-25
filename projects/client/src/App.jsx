@@ -1,6 +1,5 @@
 import axios from "axios"
 import logo from "./logo.svg"
-import "./App.css"
 import { useEffect, useState } from "react"
 import Home from "./components/home/Home"
 
@@ -33,6 +32,7 @@ import PropertyForm from "./components/property-form/property-form.component"
 import PostPropImg from "./components/postPropImg/post-prop-img.component"
 import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
+import PaymentApproval from "./components/paymentApproval/paymentApproval"
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -147,6 +147,7 @@ function App() {
         <Route path="/property/image/:id" element={<PostPropImg />} />
         <Route path="/listing" element={<Listing />} />
         <Route path="/payment-proof/:id" element={<PaymentProof />} />
+        <Route path="/payment-approval/:id" element={<PaymentApproval />} />
 
         <Route path="/listing/details/:id" element={<ListingDetails />} />
       </Routes>

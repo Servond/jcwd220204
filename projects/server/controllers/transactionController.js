@@ -1,6 +1,11 @@
 const moment = require("moment")
 const db = require("../models")
 const automaticPaymentCheck = require("../schedule/paymentCheck")
+const automaticSendMail = require("../schedule/reminderCheckin")
+const emailer = require("../lib/emailer")
+
+const fs = require("fs")
+const handlebars = require("handlebars")
 
 const transactionController = {
   paymentProof: async (req, res) => {
@@ -83,15 +88,16 @@ const transactionController = {
       const dummyTransaction = await db.Transaction.create({
         start_date: start,
         end_date: end,
-        price: 1000,
+        price: 30000,
         PropertyItemId: 1,
-        PropertyId: 384,
+        PropertyId: 386,
         UserId: 60,
         exp_date: expired_date,
         status: "waiting for payment",
       })
 
       automaticPaymentCheck(dummyTransaction)
+      automaticSendMail(dummyTransaction)
 
       return res.status(200).json({
         message: "create transaction",
@@ -101,6 +107,185 @@ const transactionController = {
       console.log(err)
       return res.status(500).json({
         message: "Server error",
+      })
+    }
+  },
+  transactionApprove: async (req, res) => {
+    try {
+      await db.Transaction.update(
+        {
+          status: "in progress",
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      )
+
+      const findTransactionData = await db.Transaction.findOne({
+        where: {
+          id: req.params.id,
+        },
+        include: [
+          { model: db.Property },
+          { model: db.PropertyItem },
+          { model: db.User },
+        ],
+      })
+
+      const findPropImg = await db.Property.findByPk(
+        findTransactionData.Property.id,
+        {
+          include: [{ model: db.PropertyImage, attributes: ["image_url"] }],
+        }
+      )
+
+      const findRoomImg = await db.PropertyItem.findByPk(
+        findTransactionData.PropertyItem.id,
+        {
+          include: [{ model: db.Images, attributes: ["picture_url"] }],
+        }
+      )
+
+      const getStatus = Object.values(findTransactionData.dataValues)[5]
+
+      const getUserEmail = Object.values(findTransactionData.User.dataValues)[2]
+
+      const getPropName = Object.values(
+        findTransactionData.Property.dataValues
+      )[1]
+
+      const getPropAddress = Object.values(
+        findTransactionData.Property.dataValues
+      )[2]
+
+      const getPropRules = Object.values(
+        findTransactionData.Property.dataValues
+      )[4]
+
+      const getRoomType = Object.values(
+        findTransactionData.PropertyItem.dataValues
+      )[1]
+
+      const getRoomCapacity = Object.values(
+        findTransactionData.PropertyItem.dataValues
+      )[3]
+
+      const getStartDate = moment(findTransactionData.start_date).format(
+        "DD-mm-YYYY"
+      )
+
+      const getEndDate = moment(findTransactionData.end_date).format(
+        "DD-mm-YYYY"
+      )
+      const getPropImg = findPropImg.PropertyImages[0].image_url
+
+      const getTotalPrice = findTransactionData.price
+      const getRoomPrice = findTransactionData.PropertyItem.price
+      const getRoomImg = findRoomImg.Images[0].picture_url
+
+      const rawHtml = fs.readFileSync("templates/reminderDetail.html", "utf-8")
+      const compiledHTML = handlebars.compile(rawHtml)
+      const htmlresult = compiledHTML({
+        getPropName,
+        getPropAddress,
+        getPropRules,
+        getRoomType,
+        getRoomCapacity,
+        getStatus,
+        getPropImg,
+        getStartDate,
+        getEndDate,
+        getTotalPrice,
+        getRoomPrice,
+        getRoomImg,
+      })
+
+      await emailer({
+        to: getUserEmail,
+        html: htmlresult,
+        subect: "Your Booking Detail",
+        text: "Hallo",
+      })
+
+      return res.status(200).json({
+        message: "payment approved",
+        data: findTransactionData,
+        findPropImg,
+      })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        message: err.message,
+      })
+    }
+  },
+  transactionReject: async (req, res) => {
+    try {
+      await db.Transaction.update(
+        {
+          status: "waiting for payment",
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      )
+      return res.status(200).json({
+        message: "payment rejected",
+      })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({
+        message: err.message,
+      })
+    }
+  },
+  transactionCanceled: async (req, res) => {
+    try {
+      await db.Transaction.update(
+        {
+          status: "canceled",
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      )
+      return res.status(200).json({
+        message: "Canceled",
+      })
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({
+        message: err.message,
+      })
+    }
+  },
+  getDataTransactionApproval: async (req, res) => {
+    try {
+      const findTransactionData = await db.Transaction.findOne({
+        where: {
+          id: req.params.id,
+        },
+        include: [
+          { model: db.Property },
+          { model: db.PropertyItem },
+          { model: db.User },
+        ],
+      })
+
+      return res.status(200).json({
+        message: "Get user transaction",
+        data: findTransactionData,
+      })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        message: err.message,
       })
     }
   },
