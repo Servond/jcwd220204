@@ -12,6 +12,7 @@ const tenantRoute = require("../routes/tenantRoute")
 const citiesRoute = require("../routes/citiesRoute")
 const calendarRoute = require("../routes/calendarRoute")
 const transactionRoute = require("../routes/transactionRoute")
+const reviewRoute = require("../routes/reviewRoute")
 
 const fs = require("fs")
 const categoryRoute = require("../routes/categoriesRoute")
@@ -52,6 +53,7 @@ app.use("/public", express.static("public"))
 
 app.use("/calendar", calendarRoute)
 app.use("/transaction", transactionRoute)
+app.use("/review", reviewRoute)
 
 app.use("/property", verifyToken, propertiesRoute)
 app.use("/room", roomRoute)

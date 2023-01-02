@@ -17,41 +17,17 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  useToast,
 } from "@chakra-ui/react"
 import { TfiTrash } from "react-icons/tfi"
-import { Link, useParams } from "react-router-dom"
-import { axiosInstance } from "../../api"
+import { Link } from "react-router-dom"
 
 const ListingRow = ({ name, image_url, id, properties, address, city }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const params = useParams()
-  const toast = useToast()
 
   const [images, setImages] = useState([])
 
   const getImages = properties.map((val) => val.image_url)
-
-  const DeleteProperty = async () => {
-    try {
-      const deleted = await axiosInstance.delete(
-        `/property/delete/${params.id}`
-      )
-      console.log(deleted)
-      toast({
-        title: "Property Deleted",
-        description: "Success delete property",
-        status: "success",
-      })
-    } catch (err) {
-      console.log(err)
-      toast({
-        title: "Error deleted property",
-        description: "Error delete property",
-        status: "error",
-      })
-    }
-  }
+  console.log(getImages, "coba")
 
   return (
     <Center py={2} px={5} top="0" zIndex="0">
@@ -65,9 +41,11 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
           boxShadow={"base"}
           padding={5}
           position="static"
+          // mb={"300px"}
         >
           <Flex flex={0.5} ml="-10px">
             <Image
+              // src={getImages[0]}
               src={`http://localhost:8000/public/${getImages[0]}`}
               borderRadius="2xl"
               h="-moz-max-content"
@@ -105,10 +83,10 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
         <ModalContent w="350px">
           <ModalHeader>Delete Listing</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Are you sure want to delete this Property?</ModalBody>
+          <ModalBody>Are you sure want to delete this listing?</ModalBody>
 
           <ModalFooter>
-            <Button variant={"solid"} mr={3} onClick={DeleteProperty}>
+            <Button variant={"solid"} mr={3}>
               Delete
             </Button>
             <Button variant="ghost" onClick={onClose}>

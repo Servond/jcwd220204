@@ -56,8 +56,8 @@ const OrderList = () => {
       position={"static"}
       // mb="12rem"
       mt="4.5rem"
-      border={"2px solid red"}
       height="auto"
+      mb={"27rem"}
     >
       <Link to={`/tenant/${findParams}`}>
         <GrLinkPrevious size={"25px"} />

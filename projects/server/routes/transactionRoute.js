@@ -22,5 +22,8 @@ router.patch("/reject/:id", transactionController.transactionReject)
 router.patch("/canceled/:id", transactionController.transactionCanceled)
 router.get("/data/:id", transactionController.getDataTransaction)
 router.get("/user-data/:id", transactionController.getDataTransactionApproval)
+//============
+router.get("/:id", transactionController.getTransaction)
+router.get("/user/:id", transactionController.getUserTransaction)
 
 module.exports = router

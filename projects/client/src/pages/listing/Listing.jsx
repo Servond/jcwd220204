@@ -54,7 +54,7 @@ const Listing = () => {
   }, [])
 
   return (
-    <Center marginTop={"100px"}>
+    <Center marginTop={"100px"} mb="400px">
       <VStack>
         <Box height={"50px"} maxW="400px">
           <HStack spacing={"2"} as="nav">

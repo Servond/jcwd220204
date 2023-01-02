@@ -29,6 +29,7 @@ import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
 import UserPage from "./components/user/User"
+import DetailProperty from "./components/user/DetailProperty"
 
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
@@ -137,6 +138,7 @@ function App() {
             authSelector.role === "user" ? <UserPage /> : <NotFoundPage />
           }
         />
+        <Route path="/roomdetail/:id" element={<DetailProperty />} />
       </Routes>
     </main>
   )
