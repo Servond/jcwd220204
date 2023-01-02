@@ -10,11 +10,12 @@ router.get("/city/:id", propertiesController.getCityId)
 // router.get("/room", propertiesController.getRoom)
 
 router.post(
-  "/",
+  "/create",
   //   verifyToken,
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "property_img",
+    maxSize: 3 * 1024 * 1024,
   }).array("image_url", 6),
   propertiesController.propertyPost
 )
@@ -31,6 +32,7 @@ router.post(
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "property_img",
+    maxSize: 2 * 1000000,
   }).single("image_url"),
   propertiesController.propertyImagePost
 )

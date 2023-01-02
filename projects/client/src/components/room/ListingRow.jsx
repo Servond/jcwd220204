@@ -20,37 +20,42 @@ import {
   useToast,
 } from "@chakra-ui/react"
 import { TfiTrash } from "react-icons/tfi"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { axiosInstance } from "../../api"
 
 const ListingRow = ({ name, image_url, id, properties, address, city }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const params = useParams()
   const toast = useToast()
 
   const [images, setImages] = useState([])
 
   const getImages = properties.map((val) => val.image_url)
 
-  const deleteProperty = async () => {
+  const DeleteProperty = async () => {
     try {
-      await axiosInstance.delete(`property/delete/${id}`)
-      window.location.reload(false)
+      const deleted = await axiosInstance.delete(
+        `/property/delete/${params.id}`
+      )
+      console.log(deleted)
       toast({
-        title: "Property deleted",
-        status: "error",
+        title: "Property Deleted",
+        description: "Success delete property",
+        status: "success",
       })
     } catch (err) {
       console.log(err)
+      toast({
+        title: "Error deleted property",
+        description: "Error delete property",
+        status: "error",
+      })
     }
   }
 
   return (
     <Center py={2} px={5} top="0" zIndex="0">
-      <Link
-        to={`/listing/details/
-      ${id}
-      `}
-      >
+      <Link to={`/listing/details/${id}`}>
         <Stack
           borderRadius="2xl"
           w="340px"
@@ -62,12 +67,8 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
           position="static"
         >
           <Flex flex={0.5} ml="-10px">
-            {/* {properties.map((val) => (
-              <Image src={val.image_url} h="100%" layout={"fill"} />
-            ))} */}
-
             <Image
-              src={getImages[0]}
+              src={`http://localhost:8000/public/${getImages[0]}`}
               borderRadius="2xl"
               h="-moz-max-content"
               width={"150px"}
@@ -88,12 +89,6 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
             >
               {name || "name"}
               <br />
-              {/* {images.map((val) => (
-                <Image src={val.picture_url} h="100%" layout={"fill"} />
-              ))} */}
-              {/* {city.map((val) => (
-                <Text>{val?.cities_name}</Text>
-              ))} */}
               <Text fontSize={"small"} fontFamily={"mono"} fontWeight="light">
                 {city?.cities_name || "cities"}
               </Text>
@@ -110,10 +105,10 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
         <ModalContent w="350px">
           <ModalHeader>Delete Listing</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Are you sure want to delete this listing?</ModalBody>
+          <ModalBody>Are you sure want to delete this Property?</ModalBody>
 
           <ModalFooter>
-            <Button variant={"solid"} mr={3} onClick={deleteProperty}>
+            <Button variant={"solid"} mr={3} onClick={DeleteProperty}>
               Delete
             </Button>
             <Button variant="ghost" onClick={onClose}>

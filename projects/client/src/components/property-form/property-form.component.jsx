@@ -82,12 +82,25 @@ const PropertyForm = () => {
         for (let i = 0; i < values.image_url.length; i++) {
           newProperty.append("image_url", values.image_url[i])
         }
-        const response = await axiosInstance.post("/property/", newProperty)
+        const response = await axiosInstance.post(
+          "/property/create",
+          newProperty
+        )
+
+        if (response.name === "AxiosError") {
+          throw new Error(
+            response.message,
+            toast({
+              title: "Failed create new property",
+              status: "error",
+            })
+          )
+        }
         console.log(response)
         navigate(`/tenant/${authSelector.id}`)
         toast({
           title: "Property successful added",
-          description: response.data.message,
+          // description: response.data.message,
           status: "success",
         })
       } catch (err) {
@@ -95,7 +108,7 @@ const PropertyForm = () => {
 
         toast({
           title: "Added new property failed",
-          description: err.response.message,
+          // description: err.response.message,
           status: "error",
         })
       }
@@ -116,9 +129,6 @@ const PropertyForm = () => {
     })
 
     setSelectedImages((previousImages) => previousImages.concat(imagesArray))
-
-    // FOR BUG IN CHROME
-    // event.target.value = ""
   }
 
   function deleteHandler(image) {
@@ -253,8 +263,15 @@ const PropertyForm = () => {
             >
               Upload Your Image
             </Text>
-            <label
-              className="label-btn"
+            <Button
+              display="flex"
+              alignItems="center"
+              backgroundColor="blue.500"
+              width="fit-content"
+              minWidth="350px"
+              mb="10px"
+              color="white"
+              _hover={{ backgroundColor: "blue.400" }}
               onClick={() => inputFileRef.current.click()}
             >
               <Flex gap="10px">
@@ -263,8 +280,17 @@ const PropertyForm = () => {
                 </Center>
                 <Text>Choose Images</Text>
               </Flex>
-            </label>
-            <Button type="submit">Submit</Button>
+            </Button>
+            <Button
+              type="submit"
+              width="fit-content"
+              minWidth="350px"
+              backgroundColor="green.500"
+              color="white"
+              _hover={{ backgroundColor: "green.400" }}
+            >
+              Submit
+            </Button>
             {/* </Center> */}
           </Box>
 

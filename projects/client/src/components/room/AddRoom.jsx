@@ -13,6 +13,8 @@ import {
   useToast,
   CloseButton,
   useDisclosure,
+  Textarea,
+  HStack,
 } from "@chakra-ui/react"
 import { useFormik } from "formik"
 import { BsUpload } from "react-icons/bs"
@@ -26,6 +28,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom"
+import { MdOutlineKeyboardBackspace } from "react-icons/md"
 
 const AddRoom = () => {
   const toast = useToast()
@@ -133,16 +136,25 @@ const AddRoom = () => {
           p="6"
           my="12"
           border={"2px solid"}
-          borderColor="red"
+          borderColor="gray.400"
           height={"auto"}
         >
+          <HStack
+            onClick={() => navigate(-1)}
+            bgColor="red"
+            borderRadius={"5px"}
+            maxWidth={"-webkit-max-content"}
+          >
+            <MdOutlineKeyboardBackspace color="white" />
+            <Text>Back</Text>
+          </HStack>
           <Heading lineHeight="1.1" fontSize={{ base: "2xl", md: "3xl" }}>
             Add New Room :
           </Heading>
           <form onSubmit={formik.handleSubmit}>
             <FormControl isRequired>
               <FormLabel>Room type</FormLabel>
-              <Input
+              <Textarea
                 placeholder="type here"
                 type="text"
                 onChange={formChangeHandler}
@@ -152,7 +164,7 @@ const AddRoom = () => {
             </FormControl>
             <FormControl isRequired>
               <FormLabel>Description</FormLabel>
-              <Input
+              <Textarea
                 placeholder="type here"
                 type="text"
                 h={"200px"}
@@ -164,7 +176,7 @@ const AddRoom = () => {
             </FormControl>
             <FormControl isRequired>
               <FormLabel>Capacity</FormLabel>
-              <Input
+              <Textarea
                 placeholder="type here"
                 type="number"
                 onChange={formChangeHandler}

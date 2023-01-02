@@ -20,6 +20,10 @@ import {
   useDisclosure,
   useToast,
   textDecoration,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react"
 import { Carousel } from "antd"
 import React, { useEffect, useState } from "react"
@@ -38,8 +42,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useSelector } from "react-redux"
 import { useFormik } from "formik"
-import { async } from "@firebase/util"
-import axios from "axios"
 
 const ListingDetails = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -59,13 +61,13 @@ const ListingDetails = () => {
       setListing(response.data.data)
       setPropertyPhoto(response.data.data)
       setImages(response.data.data.PropertyImages)
-      console.log(response)
     } catch (err) {
       console.log(err)
     }
   }
   console.log(images)
 
+  //=======================GET ROOM
   const fetchRoom = async () => {
     try {
       const response = await axiosInstance.get(`/room/${params.id}`)
@@ -190,9 +192,35 @@ const ListingDetails = () => {
         <Link to={`/tenant/${authSelector.id}`}>
           <GrLinkPrevious size={"25px"} />
         </Link>
-        <Link to="/edit">
+        {/* ======================================= */}
+        {/* <Link to={`/property/edit/${params.id}`}>
           <BiEditAlt size={"25px"} />
-        </Link>
+        </Link> */}
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-Label="Option"
+            icon={<BiEditAlt />}
+            variant="outline"
+            border="none"
+            backgroundColor="transparent"
+            _hover={{ backgroundColor: "transparent" }}
+            cursor="pointer"
+            textColor="black"
+            textDecor="none"
+          />
+          <MenuList>
+            <MenuItem>
+              <Link to={`/property/edit/${params.id}`}>Edit Property</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={`/property/image/${params.id}`}>
+                Edit Property Image
+              </Link>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+        {/* ================================================ */}
       </HStack>
       <SimpleGrid
         columns={{ base: 1, lg: 2 }}
@@ -203,7 +231,8 @@ const ListingDetails = () => {
         <Carousel autoplay effect="fade" nextArrow={StackDivider}>
           {images?.map((val) => (
             <Image
-              src={val.image_url}
+              // src={val.image_url}
+              src={`http://localhost:8000/public/${val.image_url}`}
               rounded={"md"}
               fit={"cover"}
               align={"center"}

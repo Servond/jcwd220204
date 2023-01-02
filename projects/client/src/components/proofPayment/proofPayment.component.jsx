@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react"
 import { useRef, useState } from "react"
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { axiosInstance } from "../../api"
 
 const PaymentProof = () => {
@@ -26,6 +26,7 @@ const PaymentProof = () => {
   const [image, setImage] = useState({ preview: "", data: "" })
   const toast = useToast()
   const inputFileRef = useRef()
+  const navigate = useNavigate()
 
   // ======================== GET EXP DATE =================================
   const paymentExpDate = async () => {
@@ -36,7 +37,7 @@ const PaymentProof = () => {
     console.log(response)
   }
 
-  console.log(status)
+  // console.log(status)
   // ======================== Upload Payment =================================
 
   const handleSubmit = async (e) => {
@@ -53,7 +54,8 @@ const PaymentProof = () => {
         throw new Error(responsePaymentProof.message)
       }
 
-      console.log(responsePaymentProof)
+      // console.log(responsePaymentProof)
+      navigate("/")
       toast({
         status: "success",
         description: "Payment proof successful uploaded",
@@ -108,11 +110,9 @@ const PaymentProof = () => {
               <Text color="black">
                 <AccordionButton
                   backgroundColor="transparent"
-                  color="black"
                   borderTop="none"
                   borderLeft="none"
                   borderRight="none"
-                  borderBottom="black"
                   _hover={{ backgroundColor: "white" }}
                 >
                   <Box as="span" flex="1" textAlign="left">
@@ -243,7 +243,7 @@ const PaymentProof = () => {
                 Please upload your payment proof
               </Text>
               {image.preview && (
-                <Image src={image.preview} h="100%" width="100%" />
+                <Image src={image.preview} h="100%" width="100%" mb="10px" />
               )}
               <Input
                 type="file"

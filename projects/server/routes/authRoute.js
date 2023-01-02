@@ -1,13 +1,14 @@
 const express = require("express")
 const authController = require("../controllers/authController")
-const { verifyToken } = require("../middlewares/authMiddleware")
+const { verifyToken, tenant } = require("../middlewares/authMiddleware")
 const { upload } = require("../lib/uploader")
 const router = express.Router()
 const maxSize = 1 * 1024 * 1024
 
 router.post("/register", authController.registerUser)
 router.get("/refresh-token", verifyToken, authController.refreshToken)
-router.post("/login/google", authController.loginWithGoogle)
+router.post("/login-user", authController.loginUser)
+router.post("/login-tenant", authController.loginTenant)
 
 router.get("/users", authController.getAllUsers)
 router.get("/users/:id", authController.getUserById)

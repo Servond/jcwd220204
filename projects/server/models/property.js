@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Property.belongsTo(models.User)
       Property.hasMany(models.PropertyItem, { onDelete: "CASCADE" })
       Property.hasMany(models.PropertyImage, { onDelete: "CASCADE" })
-      Property.hasMany(models.Transaction)
+      Property.hasMany(models.Transaction, { onDelete: "CASCADE" })
     }
   }
   Property.init(
@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       description: { type: DataTypes.STRING, allowNull: false },
       rules: DataTypes.STRING,
     },
+
     {
+      paranoid: true,
       sequelize,
       modelName: "Property",
     }

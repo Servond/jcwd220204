@@ -40,18 +40,20 @@ const DummyTransaction = () => {
   //   console.log(getTransactionId)
 
   return (
-    <Box>
-      <Text fontSize="30px" fontWeight="bold">
-        Ceritanaya ini dummy checkout, hehe {":))"}
-      </Text>
-      <Center>
-        <Button
-          onClick={dummyTrans}
-          backgroundColor="blue.600"
-          _hover={{ backgroundColor: "blue.500" }}
-        >
-          Check Out
-        </Button>
+    <Box mt="50vh">
+      <Center display="block" textAlign="center">
+        <Text fontSize="30px" fontWeight="bold" mb="30px">
+          Ceritanaya ini dummy checkout, hehe {":))"}
+        </Text>
+        <Center>
+          <Button
+            onClick={dummyTrans}
+            backgroundColor="blue.600"
+            _hover={{ backgroundColor: "blue.500" }}
+          >
+            Check Out
+          </Button>
+        </Center>
       </Center>
     </Box>
   )

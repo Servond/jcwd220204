@@ -31,6 +31,26 @@ const verifyToken = (req, res, next) => {
   }
 }
 
+const tenant = async (req, res) => {
+  try {
+    const findTenantRole = await db.User.findOne({
+      where: {
+        id: req.User,
+      },
+    })
+
+    if (findTenantRole.role !== "tenant") {
+      throw new Error("forbident access")
+    }
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({
+      message: "server error",
+    })
+  }
+}
+
 module.exports = {
   verifyToken,
+  tenant,
 }

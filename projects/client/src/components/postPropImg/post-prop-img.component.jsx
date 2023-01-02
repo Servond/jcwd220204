@@ -173,10 +173,13 @@ const PostPropImg = () => {
               mb="24px"
               boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 20px"}
               borderRadius="8px"
+              position="relative"
               // border="1px solid red"
             >
               <CloseButton
                 position="absolute"
+                // MEDIA SCREEN ASU
+                // VIEW PORT
                 ml={{ base: "140px", md: "40.5vh" }}
                 mt={{ base: "2px", sm: "8px" }}
                 border="none"

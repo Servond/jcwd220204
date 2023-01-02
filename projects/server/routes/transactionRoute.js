@@ -10,10 +10,13 @@ router.patch(
   upload({
     acceptedFileTypes: ["jpg", "png", "jpeg"],
     filePrefix: "payment_proof",
+    maxSize: 1 * 1000000,
   }).single("payment_proof"),
   transactionController.paymentProof
 )
+
 router.post("/", verifyToken, transactionController.createTransactionDummy)
+
 router.patch("/approve/:id", transactionController.transactionApprove)
 router.patch("/reject/:id", transactionController.transactionReject)
 router.patch("/canceled/:id", transactionController.transactionCanceled)

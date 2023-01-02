@@ -1,39 +1,35 @@
 import axios from "axios"
-import logo from "./logo.svg"
+
 import { useEffect, useState } from "react"
-import Home from "./components/home/Home"
 
 import { Route, Router, Routes, useLocation } from "react-router-dom"
-import { Link } from "react-router-dom"
-import Navbar from "./components/navbar/Navbar"
-import SignUpForm from "./components/sign-up-form/sign-up-form.components"
-import MyProfile from "./components/my-profile/MyProfile"
-import EditProfile from "./components/edit-profile/EditProfile"
-import Tenant from "./components/Tenant/Tenant"
-import NotFoundPage from "./components/404"
 
 import { useDispatch, useSelector } from "react-redux"
 import { axiosInstance } from "./api/index"
 import { login } from "./redux/features/authSlice"
-
-import Dashboard from "./components/Tenant/Dashboard"
-import About from "./components/Tenant/About"
-import Comment from "./components/Tenant/Comment"
-import Analytics from "./components/Tenant/Analytics"
-import OrderList from "./components/Tenant/OrderList"
-import Listing from "./pages/listing/Listing"
 import ListingDetails from "./pages/listing/ListingDetails"
+import Navbar from "./components/navbar/Navbar"
+
+import OrderList from "./components/order/OrderList"
+import Listing from "./pages/listing/Listing"
+import NotFoundPage from "./components/404"
+import EditProfile from "./components/edit-profile/EditProfile"
+import MyProfile from "./components/my-profile/MyProfile"
+
+import Home from "./components/home/Home"
 import AddRoom from "./components/room/AddRoom"
 import SignIn from "./components/sign-in-form/sign-in.component"
 import SignInTenant from "./components/sign-in-form-Tenant/sign-in.component"
-import Property from "./components/Tenant/Property"
+import SignUpForm from "./components/sign-up-form/sign-up-form.components"
+
 import Loader from "./components/loader/Loader"
 import PropertyForm from "./components/property-form/property-form.component"
 import PostPropImg from "./components/postPropImg/post-prop-img.component"
 import EditProperty from "./components/editProperty/edit-property.component"
 import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
-import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
+import UserPage from "./components/user/User"
+
 // import Sidebar from "./components/sidebar/Sidebar"
 // import { useDispatch } from "react-redux"
 // import {
@@ -41,26 +37,26 @@ import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 //   createUserDocumentFromAuth,
 // } from "./utils/firebase/firebase.utils"
 
-function App() {
-  // const [loaded, setLoaded] = useState(false)
+import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 
+function App() {
   const authSelector = useSelector((state) => state.auth)
   // console.log(authSelector, "test")
   const [message, setMessage] = useState("")
   const location = useLocation()
 
-  // console.log(location, "test2")
+  console.log(location, "test2")
 
-  const renderTenaantRoutes = () => {
-    if (authSelector.role === "tenant") {
-      return (
-        <>
-          <Route path="/tenant" element={<Tenant />} />
-        </>
-      )
-    }
-    return null
-  }
+  // const renderTenaantRoutes = () => {
+  //   if (authSelector.role === "tenant") {
+  //     return (
+  //       <>
+  //         <Route path="/tenant" element={<Tenant />} />
+  //       </>
+  //     )
+  //   }
+  //   return null
+  // }
 
   const [authCheck, setAuthCheck] = useState(false)
   const dispatch = useDispatch()
@@ -99,61 +95,49 @@ function App() {
       setMessage(data?.message || "")
     })()
   }, [])
-  // useEffect(() => {
-  //   let timer = setTimeout(() => setLoaded(true), 2000)
-  //   return () => {
-  //     clearTimeout(timer)
-  //   }
-  // }, [])
 
   return (
     <main>
-      {/* {
-        location.pathname.match("tenant") ? : 
-        <Navbar />} */}
       <Navbar />
-      {/* {!loaded ? <Loader /> : <ListingDetails />} */}
       <Routes>
         <Route index element={<Home />} />
+        <Route path="/inputroom" element={<AddRoom />} />
+        <Route path="/orderlist" element={<OrderList />} />
         <Route path="/login" element={<SignIn />} />
-        <Route path="/login-tenant" element={<SignInTenant />} />
-
+        <Route path="login/tenant" element={<SignInTenant />} />
         <Route path="/register" element={<SignUpForm />} />
         <Route
           path="/myprofile"
           element={authSelector.id === 0 ? <SignIn /> : <MyProfile />}
         />
-        <Route path="/notfound" element={<NotFoundPage />} />
-
         <Route path="/editprofile" element={<EditProfile />} />
-        <Route path="/inputroom" element={<AddRoom />} />
-
-        {/* ========== Tenant Area =========== */}
         <Route
           path="/tenant/:id"
           element={
-            authSelector.role === "tenant" ? <Tenant /> : <NotFoundPage />
+            authSelector.role === "tenant" ? <Listing /> : <NotFoundPage />
           }
         />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/comment" element={<Comment />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/property" element={<Property />} />
-        <Route path="/orderlist" element={<OrderList />} />
-        {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         <Route path="/property/edit/:id" element={<EditProperty />} />
         <Route path="/property-form" element={<PropertyForm />} />
         <Route path="/property/image/:id" element={<PostPropImg />} />
-        <Route path="/listing" element={<Listing />} />
+        <Route
+          path="/tenant/:id"
+          element={
+            authSelector.role === "tenant" ? <Listing /> : <NotFoundPage />
+          }
+        />
         <Route path="/payment-proof/:id" element={<PaymentProof />} />
         <Route path="/payment-approval/:id" element={<PaymentApproval />} />
         <Route path="/dummy-transaction/" element={<DummyTransaction />} />
-
         <Route path="/listing/details/:id" element={<ListingDetails />} />
+        <Route
+          path="/user/:id"
+          element={
+            authSelector.role === "user" ? <UserPage /> : <NotFoundPage />
+          }
+        />
       </Routes>
-      {/* <Footer /> */}
     </main>
   )
 }
