@@ -15,7 +15,7 @@ import SimpleImageSlider from "react-simple-image-slider"
 const Popular = ({ id, name, city, properties_image }) => {
   const [images, setImages] = useState([])
   const getImages = properties_image.map((val) => val.image_url)
-  console.log(getImages)
+
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -29,14 +29,14 @@ const Popular = ({ id, name, city, properties_image }) => {
     <div className="popularMain">
       <section className="popular section container" id="popular">
         <div className="secContainer">
-          <Link to={`/roomdetail/${id}`}>
-            <div
-              style={{
-                marginTop: "5rem",
-              }}
-            >
-              <div className="mainContent">
-                <div className="singleDestination">
+          <div
+            style={{
+              marginTop: "5rem",
+            }}
+          >
+            <div className="mainContent">
+              <div className="singleDestination">
+                <Link to={`/roomdetail/${id}`}>
                   <div className="destImage">
                     {properties_image.map((val) => (
                       <img
@@ -55,10 +55,10 @@ const Popular = ({ id, name, city, properties_image }) => {
                       <h6>{city?.cities_name}</h6>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       </section>
     </div>

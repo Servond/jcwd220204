@@ -39,6 +39,8 @@ import DetailProperty from "./components/user/DetailProperty"
 // } from "./utils/firebase/firebase.utils"
 
 import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
+import Footer from "./components/Footer/Footer"
+import UserOrderList from "./pages/UserOrderList"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
@@ -139,7 +141,9 @@ function App() {
           }
         />
         <Route path="/roomdetail/:id" element={<DetailProperty />} />
+        <Route path="/userpage/:id" element={<UserOrderList />} />
       </Routes>
+      <Footer />
     </main>
   )
 }

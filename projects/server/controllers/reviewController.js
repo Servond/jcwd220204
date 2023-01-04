@@ -12,6 +12,7 @@ const reviewController = {
         review: req.body.review,
         UserId: req.body.UserId,
         PropertyId: req.body.PropertyId,
+        TransactionId: req.body.TransactionId,
         // UserId: "20",
         // PropertyId: "5",
       })

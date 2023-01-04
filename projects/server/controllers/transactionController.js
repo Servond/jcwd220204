@@ -318,6 +318,7 @@ const transactionController = {
           { model: db.Property },
           { model: db.PropertyItem },
           { model: db.User },
+          { model: db.Review },
         ],
       })
 
@@ -334,15 +335,16 @@ const transactionController = {
   },
   getUserTransaction: async (req, res) => {
     try {
-      const user = await User.findByPk(req.params.id, {
+      const user_name = await User.findByPk(req.params.id, {
         include: {
           model: Transaction,
         },
       })
-      if (user.Transactions.length === 0) {
+
+      if (user_name.Transactions.length === 0) {
         throw new error()
       }
-      const arrTransaction = user.Transactions.map((val) => val.id)
+      const arrTransaction = user_name.Transactions.map((val) => val.id)
       const userTransaction = await Transaction.findAll({
         where: {
           id: arrTransaction,

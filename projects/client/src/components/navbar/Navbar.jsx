@@ -70,7 +70,7 @@ const Navbar = () => {
                   Tenant Page
                 </a>
               ) : (
-                <a href={`/user/${authSelector.id}`} className="navLink">
+                <a href={`/userpage/${authSelector.id}`} className="navLink">
                   User Page
                 </a>
               )}
@@ -80,23 +80,24 @@ const Navbar = () => {
                 My Profile
               </a>
             </li>
-            <li className="navItem">
-              <Text onClick={logoutBtnHandler} color="white" cursor="pointer">
-                Logout
-              </Text>
-            </li>
+
             <div className="headerBtns flex">
-              {/* <Link className="btn loginBtn" to="/login">
-                Login/Signup
-              </Link> */}
-              <button className="btn loginBtn">
-                <Link to="/login">
-                  <a href="/login">Login</a>
-                </Link>
-              </button>
-              <button className="btn">
+              {authSelector.id === 0 ? (
+                <button className="btn loginBtn">
+                  <Link to="/login">
+                    <a href="/login">Login</a>
+                  </Link>
+                </button>
+              ) : (
+                <button className="btn loginBtn" onClick={logoutBtnHandler}>
+                  <Link to="/login">
+                    <a href="/login">Logout</a>
+                  </Link>
+                </button>
+              )}
+              {/* <button className="btn">
                 <a href="/register">Sign Up</a>
-              </button>
+              </button> */}
             </div>
           </ul>
 

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Transaction.belongsTo(models.User)
       Transaction.belongsTo(models.PropertyItem)
       Transaction.belongsTo(models.Property)
+      Transaction.hasOne(models.Review)
     }
   }
   Transaction.init(

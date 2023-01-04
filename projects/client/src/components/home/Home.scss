@@ -1,6 +1,6 @@
 :root {
   --PrimaryColor: hsl(46, 100%, 56%);
-  --HoverColor: hsl(46, 69%, 44%);
+  // --HoverColor: hsl(46, 69%, 44%);
   --WhiteColor: hsl(0, 0%, 100%);
   --BlackColor: hsl(0, 0%, 5%);
   --TextColor: hsl(273, 100%, 0%);
@@ -21,11 +21,10 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  // border: 2px solid red;
-  height: 750px;
 
   .secContainer {
     margin-top: 100px;
+
     .homeText {
       .title {
         color: var(--WhiteColor);
@@ -33,7 +32,6 @@
         font-weight: 700;
         line-height: 2.5rem;
         margin-left: 1rem;
-        // border: 2px solid red;
       }
       .subTitle {
         color: var(--WhiteColor);
@@ -58,11 +56,7 @@
       transform: translate(-50%);
       left: 50%;
       box-shadow: 0 2px 8px 4px rgba(178, 178, 178, 0.45);
-      margin-bottom: -50vh;
-
-      // margin-top: -10vh;
-
-      // margin: auto;
+      margin-bottom: -400px;
 
       .locationDiv,
       .distDiv,
@@ -110,9 +104,9 @@
   .home {
     .secContainer {
       .homeCard {
-        bottom: -100px;
-        width: 90%;
-        grid-template-columns: repeat(2, 1fr);
+        bottom: -10px;
+        // width: 90%;
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   }
@@ -127,6 +121,24 @@
         }
         .subTitle {
           font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .home {
+    .secContainer {
+      .homeText {
+        padding: 1rem 10rem;
+        .title {
+          font-size: 3.5rem;
+          margin: auto;
+          line-height: 4rem;
+        }
+        .subTitle {
+          width: 70%;
         }
       }
     }

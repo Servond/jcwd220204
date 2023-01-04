@@ -282,12 +282,13 @@ const PropertyForm = () => {
               </Flex>
             </Button>
             <Button
+              cursor={"pointer"}
               type="submit"
               width="fit-content"
               minWidth="350px"
-              backgroundColor="green.500"
+              backgroundColor="whatsapp.500"
               color="white"
-              _hover={{ backgroundColor: "green.400" }}
+              _hover={{ backgroundColor: "whatsapp.400" }}
             >
               Submit
             </Button>

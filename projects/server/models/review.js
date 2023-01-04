@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Review.belongsTo(models.User)
       Review.belongsTo(models.Property)
+      Review.belongsTo(models.Transaction)
       // define association here
     }
   }

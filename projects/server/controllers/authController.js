@@ -69,13 +69,12 @@ const authController = {
         },
       })
 
-      if (user.role !== "user") {
-        throw new Error("user not found")
-      }
-
       const token = signToken({
         id: user.id,
       })
+      if (user.role !== "user") {
+        throw new Error("user not found")
+      }
 
       return res.status(201).json({
         message: "User logged in",
@@ -99,13 +98,12 @@ const authController = {
         where: { email },
       })
 
-      if (user.role !== "tenant") {
-        throw new Error("tenant not found")
-      }
-
       const token = signToken({
         id: user.id,
       })
+      if (user.role !== "tenant") {
+        throw new Error("tenant not found")
+      }
 
       return res.status(201).json({
         message: "User logged in",

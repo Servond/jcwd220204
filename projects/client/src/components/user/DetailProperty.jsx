@@ -78,47 +78,6 @@ const DetailProperty = () => {
   }
   console.log(getDateRooms, "coba2")
 
-  // const newFormatted = getDateRooms.map((dateRoom) => {
-  //   const date = new Date(dateRoom.startDate)
-  //   const year = date.getFullYear()
-  //   const month = date.getMonth() + 1
-  //   const day = date.getDate()
-  //   const formattedNewDate = `${year}${month.toString().padStart(2, "0")}${day
-  //     .toString()
-  //     .padStart(2, "0")}`
-
-  //   dateRoom.formattedNewDate = formattedNewDate
-
-  //   return dateRoom
-  // })
-  // console.log(newFormatted, "coba")
-
-  // const findDate = (value) => {
-  //   console.log(value.format("YYYYMMDD"), "format")
-  // }
-
-  // const DateCellRender = (date) => {
-  //   const dateStr = date.format("YYYYMMDD")
-
-  //   let result = ""
-  //   for (let data of newFormatted) {
-  //     if (data.formattedNewDate === dateStr) {
-  //       result += `${data.PropertyItem.item_name}\n`
-  //     }
-  //   }
-  //   if (result !== "") {
-  //     return (
-  //       <div>
-  //         <Badge
-  //           status="error"
-  //           text={`${result}`}
-  //           style={{ fontSize: "0.5rem" }}
-  //         />
-  //       </div>
-  //     )
-  //   }
-  // }
-
   const contentStyle = {
     margin: 0,
     height: "160px",
