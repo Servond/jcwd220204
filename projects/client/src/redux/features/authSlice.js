@@ -29,15 +29,10 @@ const authSlice = createSlice({
       state.phone_number = action.payload.phone_number
       state.ktp = action.payload.ktp
       state.loginWith = action.payload.loginWith
-      // state.first_name = action.payload.first_name
-      // state.last_name = action.payload.last_name
-      console.log(action.payload)
     },
     logout: (state) => {
       state.id = 0
       state.email = ""
-      // state.first_name = ""
-      // state.last_name = ""
       state.gender = ""
       state.birthdate = ""
       state.profile_picture = ""

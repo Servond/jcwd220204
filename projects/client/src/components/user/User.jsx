@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react"
 import { Link, useParams, useLocation } from "react-router-dom"
 import { GrLinkPrevious } from "react-icons/gr"
 import { axiosInstance } from "../../api"
-import { Carousel as Carousel2, Progress } from "antd"
+import { Badge, Carousel as Carousel2, Progress } from "antd"
 import moment from "moment"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
@@ -139,9 +139,9 @@ const UserPage = ({
                 {address}, {cities_name}
               </Text>
               <Text fontSize={"14px"} fontFamily="monospace">
-                CheckIn: {moment(start_date).utc().format("YYYY-MM-DD")}
+                CheckIn: {moment(start_date).utc().format("LL")}
                 <br />
-                CheckOut: {moment(end_date).utc().format("YYYY-MM-DD")}
+                CheckOut: {moment(end_date).utc().format("LL")}
               </Text>
               <Text fontSize={"12px"}>
                 Order status: {status}

@@ -64,6 +64,7 @@ const RoomCard = ({
   onDelete,
   id,
   calendars,
+  fetchListingDetails,
 }) => {
   const params = useParams()
   const toast = useToast()
@@ -144,9 +145,10 @@ const RoomCard = ({
 
   const deleteRoomImg = async (id) => {
     try {
-      await axiosInstance.delete(`/room/deleteimage/${openImageId.id}`)
+      await axiosInstance.delete(`/room/deleteimage/${id}`)
+      fetchListingDetails()
       getImages()
-      setOpenImageId(null)
+      // setOpenImageId(null)
       // fetchRoom()
 
       toast({
@@ -200,6 +202,7 @@ const RoomCard = ({
   useEffect(
     () => {
       getImages()
+      fetchListingDetails()
     },
     [openImageId],
     [getImg],
@@ -395,7 +398,7 @@ const RoomCard = ({
                       >
                         <ModalOverlay />
                         <ModalContent>
-                          <ModalHeader>Edit Your Room Photo</ModalHeader>
+                          <ModalHeader>Edit Your Room Images</ModalHeader>
                           <ModalBody>
                             <Stack spacing="6">
                               <Box>
@@ -532,16 +535,23 @@ const RoomCard = ({
                             ))}
                           </ModalBody>
                           <ModalFooter>
-                            <Button
-                              onClick={modalImage.onClose}
-                              colorScheme="red"
-                            >
-                              Cancel
-                            </Button>
+                            <ButtonGroup>
+                              <Button
+                                onClick={modalImage.onClose}
+                                colorScheme="red"
+                                cursor={"pointer"}
+                              >
+                                Cancel
+                              </Button>
 
-                            <Button colorScheme={"blue"} onClick={reload}>
-                              Save
-                            </Button>
+                              <Button
+                                colorScheme={"blue"}
+                                onClick={reload}
+                                cursor={"pointer"}
+                              >
+                                Save
+                              </Button>
+                            </ButtonGroup>
                           </ModalFooter>
                         </ModalContent>
                       </Modal>

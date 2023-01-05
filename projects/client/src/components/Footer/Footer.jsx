@@ -24,7 +24,7 @@ const Footer = () => {
       role="contentinfo"
       backgroundColor={"whiteAlpha.700"}
       width="100vw"
-      padding="10px"
+      padding="20px"
       bgColor={"blackAlpha.100"}
     >
       <Stack

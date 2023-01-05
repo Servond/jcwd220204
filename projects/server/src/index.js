@@ -55,7 +55,7 @@ app.use("/calendar", calendarRoute)
 app.use("/transaction", transactionRoute)
 app.use("/review", reviewRoute)
 
-app.use("/property", verifyToken, propertiesRoute)
+app.use("/property", propertiesRoute)
 app.use("/room", roomRoute)
 app.use("/tenant", tenantRoute)
 app.use("/cities", citiesRoute)

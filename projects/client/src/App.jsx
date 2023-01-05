@@ -32,35 +32,15 @@ import UserPage from "./components/user/User"
 import DetailProperty from "./components/user/DetailProperty"
 import LoginUserTenant from "./components/home/LoginUserTenant"
 
-// import Sidebar from "./components/sidebar/Sidebar"
-// import { useDispatch } from "react-redux"
-// import {
-//   onAuthStateChangedListener,
-//   createUserDocumentFromAuth,
-// } from "./utils/firebase/firebase.utils"
-
 import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 import Footer from "./components/Footer/Footer"
 import UserOrderList from "./pages/UserOrderList"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
-  // console.log(authSelector, "test")
+
   const [message, setMessage] = useState("")
   const location = useLocation()
-
-  console.log(location, "test2")
-
-  // const renderTenaantRoutes = () => {
-  //   if (authSelector.role === "tenant") {
-  //     return (
-  //       <>
-  //         <Route path="/tenant" element={<Tenant />} />
-  //       </>
-  //     )
-  //   }
-  //   return null
-  // }
 
   const [authCheck, setAuthCheck] = useState(false)
   const dispatch = useDispatch()
@@ -78,7 +58,6 @@ function App() {
           authorization: `Bearer ${auth_token}`,
         },
       })
-      console.log(response)
 
       dispatch(login(response.data.data))
       localStorage.setItem("auth_token", response.data.token)
