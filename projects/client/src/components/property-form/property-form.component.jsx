@@ -9,6 +9,8 @@ import {
   Center,
   CloseButton,
   Flex,
+  FormControl,
+  FormErrorMessage,
   HStack,
   Image,
   Input,
@@ -23,8 +25,9 @@ import { useState } from "react"
 import { useRef } from "react"
 import { BsUpload } from "react-icons/bs"
 import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Form, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
+import * as Yup from "yup"
 
 const PropertyForm = () => {
   const toast = useToast()
@@ -89,11 +92,12 @@ const PropertyForm = () => {
 
         if (response.name === "AxiosError") {
           throw new Error(
-            response.message,
-            toast({
-              title: "Failed create new property",
-              status: "error",
-            })
+            response.message
+            // toast({
+            //   title: "Failed create new property",
+            //   description: "please check again your file type and size",
+            //   status: "error",
+            // })
           )
         }
         console.log(response)
@@ -107,12 +111,20 @@ const PropertyForm = () => {
         console.log(err)
 
         toast({
-          title: "Added new property failed",
-          // description: err.response.message,
+          title: "Failed create new property",
+          description: "please check again your file type and size",
           status: "error",
         })
       }
     },
+    validationSchema: Yup.object({
+      name: Yup.string().required("You must fill this form"),
+      address: Yup.string().required("You must fill this form"),
+      rules: Yup.string().required("You must fill this form"),
+      description: Yup.string().required("You must fill this form"),
+      image_url: Yup.mixed().required("Select at least 1 file"),
+    }),
+    validateOnChange: false,
   })
 
   const formChangeHandler = ({ target }) => {
@@ -145,54 +157,61 @@ const PropertyForm = () => {
     <div className="property-form-container">
       <h1>Register Your Property Here</h1>
       <form onSubmit={formik.handleSubmit}>
-        <FormInput
-          label="Property Name"
-          type="text"
-          required
-          onChange={formChangeHandler}
-          name="name"
-          value={formik.values.name}
-        />
-        <FormInput
-          label="Address"
-          type="text"
-          required
-          onChange={formChangeHandler}
-          name="address"
-          value={formik.values.address}
-        />
+        <FormControl isInvalid={formik.errors.name}>
+          <FormInput
+            label="Property Name"
+            type="text"
+            onChange={formChangeHandler}
+            name="name"
+            value={formik.values.name}
+          />
+          <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={formik.errors.address}>
+          <FormInput
+            label="Address"
+            type="text"
+            onChange={formChangeHandler}
+            name="address"
+            value={formik.values.address}
+          />
+          <FormErrorMessage>{formik.errors.address}</FormErrorMessage>
+        </FormControl>
         <Text>Rules</Text>
         <br />
-        <Textarea
-          // width={{ base: "45vh", sm: "85vh" }}
-          display="block"
-          width="90%"
-          height="20vh"
-          label="rules"
-          type="text"
-          required
-          onChange={formChangeHandler}
-          name="rules"
-          value={formik.values.rules}
-          borderColor="grey"
-        />
+        <FormControl isInvalid={formik.errors.rules}>
+          <Textarea
+            // width={{ base: "45vh", sm: "85vh" }}
+            display="block"
+            width="90%"
+            height="20vh"
+            label="rules"
+            type="text"
+            onChange={formChangeHandler}
+            name="rules"
+            value={formik.values.rules}
+            borderColor="grey"
+          />
+          <FormErrorMessage>{formik.errors.rules}</FormErrorMessage>
+        </FormControl>
 
         <Text mt="40px">Description</Text>
         <br />
-        <Textarea
-          display="block"
-          // width={{ base: "45vh", sm: "85vh" }}
-          width="90%"
-          height="20vh"
-          label="Description"
-          type="text"
-          required
-          onChange={formChangeHandler}
-          name="description"
-          value={formik.values.description}
-          borderColor="grey"
-        />
-
+        <FormControl isInvalid={formik.errors.description}>
+          <Textarea
+            display="block"
+            // width={{ base: "45vh", sm: "85vh" }}
+            width="90%"
+            height="20vh"
+            label="Description"
+            type="text"
+            onChange={formChangeHandler}
+            name="description"
+            value={formik.values.description}
+            borderColor="grey"
+          />
+          <FormErrorMessage>{formik.errors.description}</FormErrorMessage>
+        </FormControl>
         <HStack mt="5">
           {/* ================================ Category =================================== */}
 
@@ -201,10 +220,10 @@ const PropertyForm = () => {
             <HStack width="100%">
               <Select
                 type="text"
-                required
                 onChange={formChangeHandler}
                 name="categoryId"
                 value={formik.values.categoryId}
+                required
               >
                 <option>-- Select Category --</option>
                 {category.map((val) => (
@@ -221,10 +240,10 @@ const PropertyForm = () => {
               <Select
                 label="cityId"
                 type="text"
-                required
                 onChange={formChangeHandler}
                 name="cityId"
                 value={formik.values.cityId}
+                required
               >
                 <option value={0}> -- Select City --</option>
                 {cities.map((val) => (
@@ -235,6 +254,7 @@ const PropertyForm = () => {
           </Stack>
         </HStack>
         <Box width="90%" mt="40px">
+          {/* <FormControl isInvalid={formik.errors.image_url}> */}
           <Input
             label="Image"
             multiple={true}
@@ -247,31 +267,32 @@ const PropertyForm = () => {
             }}
             display="none"
             ref={inputFileRef}
+            required
           />
-          {/* <Center> */}
-          <Box
-            width="max-content"
-            gap="2"
-            margin="auto"
-            // ml={{ base: "-10px", md: "30vh" }}
-          >
+          <Box width="max-content" gap="2" margin="auto">
             <Text
               fontWeight="bold"
               fontSize="20px"
               textAlign="center"
-              mb="15px"
+              mb="10px"
             >
               Upload Your Image
             </Text>
+            <Text textAlign="center" fontSize="15px" color="red" mb="20px">
+              Max file size is 3Mb and only accept JPG, JPEG and PNG
+            </Text>
+            {/* <Center mb="20px">
+                <FormErrorMessage>{formik.errors.image_url}</FormErrorMessage>
+              </Center> */}
             <Button
               display="flex"
               alignItems="center"
-              backgroundColor="blue.500"
+              backgroundColor="linkedin.500"
               width="fit-content"
               minWidth="350px"
               mb="10px"
               color="white"
-              _hover={{ backgroundColor: "blue.400" }}
+              _hover={{ backgroundColor: "linkedin.400" }}
               onClick={() => inputFileRef.current.click()}
             >
               <Flex gap="10px">
@@ -282,23 +303,20 @@ const PropertyForm = () => {
               </Flex>
             </Button>
             <Button
+              cursor={"pointer"}
               type="submit"
               width="fit-content"
               minWidth="350px"
-              backgroundColor="green.500"
+              backgroundColor="whatsapp.500"
               color="white"
-              _hover={{ backgroundColor: "green.400" }}
+              _hover={{ backgroundColor: "whatsapp.400" }}
             >
               Submit
             </Button>
-            {/* </Center> */}
           </Box>
+          {/* </FormControl> */}
 
           <br />
-          {/* ===================================================================================== */}
-
-          {/* <div className="images"> */}
-          {/* <Center> */}
           <Box
             position="relative"
             display="grid"
@@ -310,10 +328,7 @@ const PropertyForm = () => {
             {selectedImages &&
               selectedImages.map((image, index) => {
                 return (
-                  // <div className="image-container">
                   <Box
-                    // maxW="fit-content"
-                    // minW="100%"
                     w="100%"
                     borderWidth="1px"
                     rounded="lg"
@@ -342,17 +357,11 @@ const PropertyForm = () => {
                       src={image}
                       alt="upload"
                     />
-                    {/* </div> */}
                   </Box>
                 )
               })}
           </Box>
-
-          {/* </div> */}
-          {/* </Center> */}
         </Box>
-
-        {/* ================================================================================================ */}
       </form>
     </div>
   )

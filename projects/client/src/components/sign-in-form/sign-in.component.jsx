@@ -154,7 +154,7 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center>
+    <Center mb="100px" mt="30px">
       <Box
         display="flex"
         flexDir="column"
@@ -216,8 +216,8 @@ const SignIn = () => {
                 width="fit-content"
                 minW="330px"
                 color="white"
-                backgroundColor="blue.500"
-                _hover={{ backgroundColor: "blue.400" }}
+                backgroundColor="linkedin.500"
+                _hover={{ backgroundColor: "linkedin.400" }}
                 h="45px"
               >
                 Sign In

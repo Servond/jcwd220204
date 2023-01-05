@@ -1,6 +1,7 @@
 const express = require("express")
 const propertiesController = require("../controllers/propertiesController")
 const { upload } = require("../lib/uploader")
+const { verifyToken } = require("../middlewares/authMiddleware")
 
 const router = express.Router()
 
@@ -11,7 +12,7 @@ router.get("/city/:id", propertiesController.getCityId)
 
 router.post(
   "/create",
-  //   verifyToken,
+  verifyToken,
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "property_img",
@@ -20,15 +21,19 @@ router.post(
   propertiesController.propertyPost
 )
 
-router.patch("/edit/:id", propertiesController.propertyUpdate)
+router.patch("/edit/:id", verifyToken, propertiesController.propertyUpdate)
 
-router.delete("/delete/:id", propertiesController.propertyDelete)
+router.delete("/delete/:id", verifyToken, propertiesController.propertyDelete)
 
-router.delete("/delete/image/:id", propertiesController.propertyImageDelete)
+router.delete(
+  "/delete/image/:id",
+  verifyToken,
+  propertiesController.propertyImageDelete
+)
 
 router.post(
   "/image/:id",
-  // verifyToken,
+  verifyToken,
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "property_img",

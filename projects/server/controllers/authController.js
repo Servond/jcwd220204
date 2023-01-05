@@ -106,6 +106,38 @@ const authController = {
       const token = signToken({
         id: user.id,
       })
+      if (user.role !== "user") {
+        throw new Error("user not found")
+      }
+
+      return res.status(201).json({
+        message: "User logged in",
+        data: user,
+        token,
+      })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Server error",
+      })
+    }
+  },
+  loginTenant: async (req, res) => {
+    try {
+      const { googleToken } = req.body
+
+      const { email } = await verifyGoogleToken(googleToken)
+      // console.log(googleToken)
+      const [user] = await User.findOrCreate({
+        where: { email },
+      })
+
+      const token = signToken({
+        id: user.id,
+      })
+      if (user.role !== "tenant") {
+        throw new Error("tenant not found")
+      }
 
       return res.status(201).json({
         message: "User logged in",

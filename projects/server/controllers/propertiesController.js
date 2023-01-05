@@ -259,12 +259,10 @@ module.exports = {
       })
 
       const newImgProp = await db.PropertyImage.create({
-        // image_url: `public/propImg/${req.file.filename}`,
         image_url: req.file.filename,
         PropertyId: req.params.id,
       })
 
-      console.log(req.file.filename)
       return res.status(201).json({
         message: "Post new Image Property",
         data: newImgProp,

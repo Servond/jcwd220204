@@ -10,7 +10,7 @@ router.patch(
   upload({
     acceptedFileTypes: ["jpg", "png", "jpeg"],
     filePrefix: "payment_proof",
-    maxSize: 1 * 1000000,
+    maxSize: 1 * 1024 * 1024,
   }).single("payment_proof"),
   transactionController.paymentProof
 )
@@ -22,5 +22,8 @@ router.patch("/reject/:id", transactionController.transactionReject)
 router.patch("/canceled/:id", transactionController.transactionCanceled)
 router.get("/data/:id", transactionController.getDataTransaction)
 router.get("/user-data/:id", transactionController.getDataTransactionApproval)
+//============
+router.get("/:id", transactionController.getTransaction)
+router.get("/user/:id", transactionController.getUserTransaction)
 
 module.exports = router

@@ -1,79 +1,136 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import "./Footer.scss"
 import { FaFacebook } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+
+import {
+  Button as Button2,
+  ButtonGroup,
+  Center,
+  Container,
+  IconButton,
+  Stack,
+  Text,
+  Input,
+  Divider,
+  Box,
+} from "@chakra-ui/react"
+import { Button } from "antd"
 
 const Footer = () => {
   return (
-    <div className="footer-container">
-      <section className="footer-subscription">
-        <p className="footer-subscription-heading">
-          Are you looking for new experience of stay ?
-        </p>
-        {/* <div className="input-areas">
-          <form>
-            <input
-              className="footer-input"
-              name="email"
-              type={"email"}
-              placeholder="your email"
-            />
-            <button className="footer-btn">save</button>
-          </form>
-        </div> */}
-      </section>
-
-      <div className="footer-links">
-        <div className="footer-link-wrapper">
-          <div className="footer-link-items">
-            <h2>Social Media</h2>
-            <Link to="/">Instagram</Link>
-            <Link to="/">LinkedIn</Link>
-            <Link to="/">Youtube</Link>
-            <Link to="/">Twitter</Link>
-          </div>
-        </div>
-        <div className="footer-link-wrapper">
-          {/* <div className="footer-link-items">
-            <h2>About Us</h2>
-            <Link to="/">How it works</Link>
-            <Link to="/">Testimonials</Link>
-            <Link to="/">Careers</Link>
-            <Link to="/">Investor</Link>
-            <Link to="/">Terms of services</Link>
-          </div> */}
-          <div className="footer-link-items">
-            <h2>Contact us</h2>
-            <Link to="/">Contact</Link>
-            <Link to="/">Support</Link>
-            <Link to="/">Destinations</Link>
-            <Link to="/">Sponsorships</Link>
-          </div>
-        </div>
-      </div>
-
-      <section className="social-media">
-        <div className="social-media-wrap">
-          <div className="footer-logo">
-            <Link to="/" className="social-logo">
-              Nginep.com &nbsp;
-              <i className="fas fa-route"></i>
-            </Link>
-          </div>
-          {/* <small className="website-rights">Nginep ® com</small> */}
-          <div className="social-icons">
-            <Link
-              className="social-icon-link fascebook"
-              to={"/"}
-              target="_blank"
-              aria-label="Facebook"
+    <Box
+      as="footer"
+      role="contentinfo"
+      backgroundColor={"whiteAlpha.700"}
+      width="100vw"
+      padding="10px"
+      bgColor={"blackAlpha.100"}
+    >
+      <Stack
+        spacing="8"
+        direction={{
+          base: "column",
+          md: "row",
+        }}
+        justify="space-between"
+        py={{
+          base: "12",
+          md: "16",
+        }}
+      >
+        <Stack
+          direction={{
+            base: "column-reverse",
+            md: "column",
+            lg: "row",
+          }}
+          spacing={{
+            base: "12",
+            md: "8",
+          }}
+        >
+          <Stack direction="row" spacing="8">
+            <Stack spacing="4" minW="36" flex="1">
+              <Text fontSize="sm" fontWeight="semibold" color="subtle">
+                Product
+              </Text>
+              <Stack spacing="3" shouldWrapChildren>
+                <Text variant="link">How it works</Text>
+                <Text variant="link">Pricing</Text>
+                <Text variant="link">Use Cases</Text>
+              </Stack>
+            </Stack>
+            <Stack spacing="4" minW="36" flex="1">
+              <Text fontSize="sm" fontWeight="semibold" color="subtle">
+                Legal
+              </Text>
+              <Stack spacing="3" shouldWrapChildren>
+                <Text variant="link">Privacy</Text>
+                <Text variant="link">Terms</Text>
+                <Text variant="link">License</Text>
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack spacing="4">
+            <Text fontSize="sm" fontWeight="semibold" color="subtle">
+              Stay up to date
+            </Text>
+            <Stack
+              spacing="4"
+              direction={{
+                base: "column",
+                sm: "row",
+              }}
+              maxW={{
+                lg: "360px",
+              }}
             >
-              <i class="fab fa-facebook-f" />
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
+              <Input placeholder="Enter your email" type="email" required />
+              <Button2 variant="primary" type="submit" flexShrink={0}>
+                Subscribe
+              </Button2>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Stack
+        pt="8"
+        pb="12"
+        justify="space-between"
+        direction={{
+          base: "column-reverse",
+          md: "row",
+        }}
+        align="center"
+      >
+        <Text fontSize="sm" color="subtle">
+          &copy; {new Date().getFullYear()} Chakra UI Pro, Inc. All rights
+          reserved.
+        </Text>
+        <ButtonGroup variant="ghost">
+          <IconButton
+            as="a"
+            href="#"
+            aria-label="LinkedIn"
+            icon={<FaLinkedin fontSize="2.25rem" />}
+          />
+          <IconButton
+            as="a"
+            href="#"
+            aria-label="GitHub"
+            icon={<FaGithub fontSize="2.25rem" />}
+          />
+          <IconButton
+            as="a"
+            href="#"
+            aria-label="Twitter"
+            icon={<FaTwitter fontSize="2.25rem" />}
+          />
+        </ButtonGroup>
+      </Stack>
+    </Box>
   )
 }
 

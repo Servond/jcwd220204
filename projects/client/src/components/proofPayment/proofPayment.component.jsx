@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Center,
+  Flex,
   Image,
   Input,
   Text,
@@ -14,6 +15,7 @@ import {
 } from "@chakra-ui/react"
 import { useRef, useState } from "react"
 import { useEffect } from "react"
+import { BsUpload } from "react-icons/bs"
 import { useNavigate, useParams } from "react-router-dom"
 import { axiosInstance } from "../../api"
 
@@ -65,8 +67,8 @@ const PaymentProof = () => {
       console.log(err)
       toast({
         status: "error",
-        description: "Your payment is expired",
-        title: "Expired",
+        description: "File size and Type is not valid",
+        title: "Failed to post payment proof",
       })
     }
   }
@@ -84,7 +86,7 @@ const PaymentProof = () => {
   }, [])
 
   return (
-    <Box mt="150px">
+    <Box mt="150px" mb="100px">
       <Text fontSize="40px" fontWeight="bold" textAlign="center">
         Complete your payment
       </Text>
@@ -239,8 +241,11 @@ const PaymentProof = () => {
               <Text fontSize="20px" fontWeight="bold">
                 After finish your payment
               </Text>
-              <Text fontSize="20px" fontWeight="bold" mb="30px">
+              <Text fontSize="20px" fontWeight="bold" mb="10px">
                 Please upload your payment proof
+              </Text>
+              <Text color="red" fontSize="12px" mb="30px">
+                Maximum size is 1MB and file type jpeg and png
               </Text>
               {image.preview && (
                 <Image src={image.preview} h="100%" width="100%" mb="10px" />
@@ -259,8 +264,12 @@ const PaymentProof = () => {
                 onClick={() => {
                   inputFileRef.current.click()
                 }}
+                mr="10px"
               >
-                Choose File
+                <Flex gap="10px">
+                  <BsUpload />
+                  Choose File
+                </Flex>
               </Button>
               <Button
                 w="150px"

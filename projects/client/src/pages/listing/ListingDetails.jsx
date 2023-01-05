@@ -187,7 +187,7 @@ const ListingDetails = () => {
   }, [])
 
   return (
-    <Container mt={"75px"} maxWidth="4xl">
+    <Container maxWidth="4xl" mt="100px">
       <HStack p="3" pl="1" pr="1" justifyContent={"space-between"}>
         <Link to={`/tenant/${authSelector.id}`}>
           <GrLinkPrevious size={"25px"} />

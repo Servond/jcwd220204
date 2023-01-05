@@ -8,7 +8,7 @@ import Popular from "../popular/Popular"
 import { useDispatch, useSelector } from "react-redux"
 import SignIn from "../sign-in-form/sign-in.component"
 import { logout } from "../../redux/features/authSlice"
-import { Text } from "@chakra-ui/react"
+import { Text, useToast } from "@chakra-ui/react"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [active, setActive] = useState("navBar")
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const toast = useToast()
 
   const showNav = () => {
     setActive("navBar activeNavbar")
@@ -38,6 +39,10 @@ const Navbar = () => {
   const logoutBtnHandler = () => {
     localStorage.removeItem("auth_token")
     dispatch(logout())
+    toast({
+      status: "error",
+      title: "User logout",
+    })
     navigate("/")
   }
   return (
@@ -70,7 +75,7 @@ const Navbar = () => {
                   Tenant Page
                 </a>
               ) : (
-                <a href={`/user/${authSelector.id}`} className="navLink">
+                <a href={`/userpage/${authSelector.id}`} className="navLink">
                   User Page
                 </a>
               )}
@@ -80,23 +85,24 @@ const Navbar = () => {
                 My Profile
               </a>
             </li>
-            <li className="navItem">
-              <Text onClick={logoutBtnHandler} color="white" cursor="pointer">
-                Logout
-              </Text>
-            </li>
+
             <div className="headerBtns flex">
-              {/* <Link className="btn loginBtn" to="/login">
-                Login/Signup
-              </Link> */}
-              <button className="btn loginBtn">
-                <Link to="/login">
-                  <a href="/login">Login</a>
-                </Link>
-              </button>
-              <button className="btn">
+              {authSelector.id === 0 ? (
+                <button className="btn loginBtn">
+                  <Link to="/login">
+                    <a href="/login">Login</a>
+                  </Link>
+                </button>
+              ) : (
+                <button className="btn loginBtn" onClick={logoutBtnHandler}>
+                  <Link to="/login">
+                    <a href="/login">Logout</a>
+                  </Link>
+                </button>
+              )}
+              {/* <button className="btn">
                 <a href="/register">Sign Up</a>
-              </button>
+              </button> */}
             </div>
           </ul>
 

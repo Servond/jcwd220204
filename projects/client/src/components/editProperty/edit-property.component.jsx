@@ -87,7 +87,7 @@ const EditProperty = () => {
     getProperty()
   }, [])
   return (
-    <Center mt={{ md: "50vh", base: "65vh" }}>
+    <Center mt={{ md: "50vh", base: "65vh" }} mb="500px">
       <Box
         // mt="100px"
         // ml="5px"
@@ -124,6 +124,7 @@ const EditProperty = () => {
                 required
                 onChange={formChangeHandler}
                 name="name"
+                color="black"
               />
             </Box>
             <Box mb="20px" maxW="70vh" minW="20vh" mr="20px">
@@ -137,6 +138,7 @@ const EditProperty = () => {
                 defaultValue={listing.address}
                 onChange={formChangeHandler}
                 name="address"
+                color="black"
               />
             </Box>
             <Box mb="20px" maxW="70vh" minW="20vh" mr="20px">
@@ -173,8 +175,8 @@ const EditProperty = () => {
                 width="fit-content"
                 minWidth={{ md: "70vh", base: "50vh" }}
                 color="white"
-                backgroundColor="blue.500"
-                _hover={{ backgroundColor: "blue.400" }}
+                backgroundColor="linkedin.500"
+                _hover={{ backgroundColor: "linkedin.400" }}
                 mb="10px"
               >
                 Submit

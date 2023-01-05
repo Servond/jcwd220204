@@ -1,19 +1,4 @@
-:root {
-  --PrimaryColor: hsl(46, 100%, 56%);
-  --HoverColor: hsl(46, 65%, 64%);
-  --WhiteColor: hsl(0, 0%, 100%);
-  --BlackColor: hsl(0, 0%, 5%);
-  // --TextColor: hsl(273, 100%, 65%);
-  --TextColor: hsl(273, 100%, 0%);
-  --WhiteColorDeam: hsl(0, 0%, 90%);
-  --GreyBg: hsl(0, 0%, 95%);
-  --GreyText: rgb(190, 190, 190);
-  --InputColor: hsl(330, 12%, 97%);
-}
-
 .navBarSection {
-  // height: 95vh;
-  border: 1px solid black;
   margin-right: 90%;
   justify-content: center;
   align-items: "right";
@@ -21,20 +6,20 @@
   display: flex;
 
   .header {
-    // border: 1px solid red;
     display: flex;
     justify-content: space-between;
     background: transparent;
-    width: 105%;
-    padding: 1rem;
-    z-index: 2;
+    width: 100%;
+    padding: 0.5rem;
+    z-index: 20;
     position: fixed;
     top: 0;
     background: hsl(201, 92%, 63%);
     box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
-    // border: 1px solid yellow;
 
     .logoDiv {
+      padding-left: 1rem;
+
       .logo {
         color: var(--WhiteColor);
 
@@ -45,16 +30,16 @@
 
         .icon {
           color: white;
-          font-size: 25px;
+          font-size: 30px;
         }
       }
     }
     @media screen and (max-width: 768px) {
       .navBar {
         background: var(--GreyBg);
-        position: fixed;
+        position: absolute;
         height: max-content;
-        padding: 1rem;
+        padding: 0.5rem;
         width: fit-content;
         top: 0;
         left: -500%;
@@ -65,9 +50,12 @@
         box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334);
 
         .navLists {
+          flex-direction: column;
           justify-content: center;
-          width: 360px;
+          width: 100%;
           margin: auto;
+          text-align: left;
+          padding: 10px;
 
           .navItem {
             padding: 1rem 0;
@@ -76,20 +64,18 @@
               color: var(--TextColor);
               font-size: 0.9rem;
               font-weight: 600;
-              cursor: pointer;
               &:hover {
                 color: var(--HoverColor);
               }
             }
           }
           .headerBtns {
-            // flex-direction: column;
+            flex-direction: column;
             .btn {
               margin-top: 1rem;
 
               a {
                 font-weight: 600;
-                cursor: pointer;
 
                 &:hover {
                   color: var(--WhiteColor);
@@ -99,6 +85,7 @@
             .loginBtn {
               background: none;
               border: 1px solid var(--PrimaryColor);
+              width: max-content;
 
               a {
                 color: var(--PrimaryColor);
@@ -126,6 +113,7 @@
 
       .activeNavbar {
         left: 0;
+        width: 100%;
       }
     }
 
@@ -147,50 +135,61 @@
 }
 
 @media screen and (min-width: 769px) {
-  .toggleNavBar,
-  .closeNavbar {
-    display: none;
-  }
-  .header {
-    padding: 1.5rem 2rem;
-    .navBar {
-      .navLists {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
+  .navBarSection {
+    display: flex;
+    .logoDiv {
+      align-items: center;
+      justify-content: center;
+    }
+    .toggleNavbar,
+    .closeNavbar {
+      display: none;
+    }
+    .header {
+      padding: 1.5rem 3rem;
+      height: 100px;
 
-        .navItem {
-          .navLink {
-            color: var(--WhiteColor);
-            padding: 0 0.45rem;
-            font-size: 0.9rem;
-            font-weight: 400;
-          }
-        }
-
-        .headerBtns {
-          .btn {
-            margin-top: 1rem;
-            margin-left: 1rem;
-
-            a {
-              font-weight: 600;
-
-              &:hover {
-                color: var(--WhiteColor);
-              }
+      .navBar {
+        .navLists {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: row;
+          margin-top: -10px;
+          .navItem {
+            .navLink {
+              color: var(--WhiteColor);
+              padding: 0 0.45rem;
+              font-size: 0.9rem;
+              font-weight: bolder;
             }
           }
-          .loginBtn {
-            background: none;
-            border: 1px solid var(--WhiteColor);
 
-            &:hover {
-              background: var(--HoverColor);
+          .headerBtns {
+            .btn {
+              margin-top: 1rem;
+              margin-left: 1rem;
+
               a {
-                color: var(--WhiteColor);
+                font-weight: 600;
+                color: white;
+
+                &:hover {
+                  color: var(--WhiteColor);
+                }
               }
+            }
+            .loginBtn {
+              // background: none;
+              border: 1px solid var(--WhiteColor);
+              width: max-content;
+
+              // &:hover {
+              //   background: var(--HoverColor);
+              //   a {
+              //     color: var(--WhiteColor);
+              //   }
+              // }
             }
           }
         }
@@ -198,6 +197,13 @@
     }
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding: 1 8.5rem !important;
+  }
+}
+
 .option-navbar {
   display: none;
 }

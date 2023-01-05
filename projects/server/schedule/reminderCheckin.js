@@ -15,7 +15,7 @@ const dummy = {
 const sendAutoEmail = async (objectTransaction) => {
   const getStartDate = objectTransaction.start_date
   // const reminder = moment(getStartDate).subtract(1, "days")
-  const reminder = moment().add(20, "seconds")
+  const reminder = moment().add(1, "minutes")
   schedule.scheduleJob(new Date(reminder), async () => {
     try {
       const transactionData = await db.Transaction.findByPk(

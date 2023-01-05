@@ -3,24 +3,21 @@ import styled from "styled-components"
 import "./EditProfile.scss"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuGroup,
-  MenuItem,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-  Select,
+  Button,
+  HStack,
+  Input,
+  Select as Select2,
+  Stack,
   useToast,
 } from "@chakra-ui/react"
-import { useFormik } from "formik"
-import { useParams, Link, Navigate, useNavigate } from "react-router-dom"
+import { useFormik, useField } from "formik"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import { axiosInstance } from "../../api/index"
 import { login } from "../../redux/features/authSlice"
-import { useEffect, useState } from "react"
-import Dropdown from "react-bootstrap/Dropdown"
-import DropdownButton from "react-bootstrap/DropdownButton"
+import { useState } from "react"
+// import Select from "react-select"
+import { PlusOutlined } from "@ant-design/icons"
+import { Form, Upload } from "antd"
 
 const EditProfile = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -89,6 +86,28 @@ const EditProfile = () => {
     formik.setFieldValue(name, value)
   }
 
+  //====================
+  const options = [
+    { value: "female", label: "female" },
+    { value: "male", label: "male" },
+  ]
+  const optionSelect = options.map((val) => {
+    return { value: val.value, label: val.label }
+  })
+
+  const [selected, setSelected] = useState(options[0].value)
+
+  const handleChange = (values) => {
+    console.log(`selected ${values}`)
+
+    const { name, value } = values
+    formik.setFieldValue(name, value)
+  }
+  //==================
+  const [componentDisabled, setComponentDisabled] = useState(true)
+  const onFormLayoutChange = ({ disabled }) => {
+    setComponentDisabled(disabled)
+  }
   return (
     <div>
       <div className="profile-container">
@@ -145,41 +164,28 @@ const EditProfile = () => {
                 <label for="birthdate">Birthdate</label>
                 <br />
                 <input
-                  type={"date"}
+                  type="date"
                   id="birthdate"
-                  className="form-control"
                   name="birthdate"
                   onChange={formChangeHandler}
+                  defaultValue={authSelector.birthdate}
                   style={{
                     height: "30px",
                     fontSizeAdjust: "initial",
                   }}
-
-                  // style={{
-                  //   height: "40px",
-                  //   fontStyle: "normal",
-                  // }}
                 />
+                {/* <DatePicker
+                  onChange={formChangeHandler}
+                  name="birthdate"
+                  id="birthdate"
+                  // className="form-control"
+                /> */}
               </div>
               <div className="form-group">
                 <label for="gender">Gender</label>
                 <br />
                 <div>
-                  {/* <select
-                    name="gender"
-                    required
-                    onChange={formChangeHandler}
-                    defaultValue={authSelector.gender}
-                    style={{
-                      fontSize: "15px",
-                      borderRadius: "10px",
-                    }}
-                    class="dropdown"
-                  >
-                    <option value={"female"}>Female</option>
-                    <option value={"male"}>Male</option>
-                  </select> */}
-                  <Select
+                  <Select2
                     size={"sm"}
                     borderRadius="5px"
                     color={"blue.400"}
@@ -192,23 +198,19 @@ const EditProfile = () => {
                   >
                     <option value={"female"}>Female</option>
                     <option value={"male"}>Male</option>
-                  </Select>
+                  </Select2>
                 </div>
               </div>
               <div className="form-group">
                 <label for="avatar_upload"></label>
                 <div className="d-flex align-items-center">
                   <div className="avatar">
-                    <div className="custom-file">
-                      <input
-                        style={{
-                          fontSize: "12px",
-                          color: "red",
-                          marginLeft: "50px",
-                          marginTop: "20px",
-                        }}
+                    {/* <div className="custom-file">
+                      <Input
+                        width={"15rem"}
+                        border="none"
+                        mt={"20px"}
                         type="file"
-                        className="custom-file-input"
                         name="profile_picture"
                         id="customFile"
                         accept="image/*"
@@ -219,11 +221,8 @@ const EditProfile = () => {
                           )
                         }
                       />
-                      {/* <label className="custom-file-label" for="customFile">
-                        Image Url
-                      </label> */}
-                    </div>
-                    <img
+                    </div> */}
+                    {/* <img
                       className="rounded-circle"
                       alt="Avatar Preview"
                       name={authSelector.username}
@@ -236,24 +235,77 @@ const EditProfile = () => {
                         marginLeft: "50px",
                         marginTop: "20px",
                       }}
-                    />
+                    /> */}
+
+                    <Form.Item
+                      label="Upload"
+                      valuePropName="fileList"
+                      src={
+                        formik.values.profile_picture
+                          ? URL.createObjectURL(formik.values.profile_picture)
+                          : authSelector.profile_picture
+                      }
+                      name="profile_picture"
+                      id="customFile"
+                      accept="image/*"
+                      onChange={(event) =>
+                        formik.setFieldValue(
+                          "profile_picture",
+                          event.target.files[0]
+                        )
+                      }
+                      style={{
+                        marginTop: 20,
+                      }}
+                    >
+                      <Upload action="/upload.do" listType="picture-card">
+                        <div>
+                          <PlusOutlined />
+                          <div
+                            style={{
+                              marginTop: 20,
+                            }}
+                          >
+                            Upload
+                          </div>
+                        </div>
+                      </Upload>
+                    </Form.Item>
+                    <Stack
+                      width={"100%"}
+                      mt={"2rem"}
+                      direction={"row"}
+                      padding={2}
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
+                      <Button
+                        type="button"
+                        onClick={formik.handleSubmit}
+                        boxShadow={
+                          "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                        }
+                        colorScheme="whatsapp"
+                        cursor={"pointer"}
+                      >
+                        Update
+                      </Button>
+                      <Link to={"/myprofile"}>
+                        <Button
+                          type="button"
+                          boxShadow={
+                            "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                          }
+                          colorScheme="red"
+                          cursor={"pointer"}
+                        >
+                          Cancel
+                        </Button>
+                      </Link>
+                    </Stack>
                   </div>
                 </div>
               </div>
-              {/* <Link to={"/myprofile"}> */}
-              {/* {formik.handleSubmit ? ( */}
-              <button
-                className="btn update-btn btn-block mt-4 mb-3"
-                type="button"
-                onClick={formik.handleSubmit}
-                style={{
-                  marginLeft: "50px",
-                  marginTop: "20px",
-                }}
-              >
-                Update
-              </button>
-              {/* // ) : null} */}
             </form>
           </div>
         </div>

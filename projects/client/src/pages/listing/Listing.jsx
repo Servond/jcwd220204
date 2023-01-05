@@ -7,6 +7,8 @@ import {
   ButtonGroup,
   Center,
   Flex,
+  Grid,
+  Heading,
   HStack,
   Menu,
   MenuButton,
@@ -28,7 +30,6 @@ const Listing = () => {
       const response = await axiosInstance.get(`/tenant/${params.id}`)
 
       setListing(response.data.data.Properties)
-      console.log(response)
     } catch (error) {
       console.log(error)
     }
@@ -54,65 +55,92 @@ const Listing = () => {
   }, [])
 
   return (
-    <Center marginTop={"100px"}>
-      <VStack>
-        <Box height={"50px"} maxW="400px">
-          <HStack spacing={"2"} as="nav">
-            <ButtonGroup variant={"link"}>
-              <Link to="/">
-                <Button
-                  color={"white"}
-                  cursor="pointer"
-                  backgroundColor={"green.500"}
-                  fontSize={"15px"}
-                >
-                  Properties
-                </Button>
+    <Center>
+      <Box
+        mt={{ base: "100px", md: "200px" }}
+        border="2px solid black"
+        boxShadow={
+          "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+        }
+        padding={"10px"}
+        maxW={{ base: "350px", md: "900px" }}
+        backgroundColor={"whiteAlpha.900"}
+        // ml={{ base: "5vw", md: "10vw" }}
+        mb="10vh"
+      >
+        <VStack>
+          <Box
+            maxW="350px"
+            borderRadius={"15px"}
+            mb={"20px"}
+            mt={{ base: "5px", md: "0px" }}
+            padding="10px"
+          >
+            <Center>
+              <HStack spacing={"-5"} as="nav" cursor={"pointer"} gap="2rem">
+                <Link to="/">
+                  <Button
+                    color={"white"}
+                    cursor="pointer"
+                    backgroundColor={"orange.400"}
+                    fontSize={"15px"}
+                  >
+                    Properties
+                  </Button>
+                </Link>
+                <Link to={`/orderlist?id=${authSelector.id}`}>
+                  <Button
+                    color={"white"}
+                    cursor="pointer"
+                    backgroundColor={"orange.400"}
+                    fontSize={"15px"}
+                  >
+                    Order List
+                  </Button>
+                </Link>
+                <Link to="/">
+                  <Button
+                    color={"white"}
+                    cursor="pointer"
+                    backgroundColor={"orange.400"}
+                    fontSize={"15px"}
+                  >
+                    Finances
+                  </Button>
+                </Link>
+              </HStack>
+            </Center>
+          </Box>
+          <Box>
+            <Center>
+              <Heading
+                fontFamily={"sans-serif"}
+                fontWeight="bold"
+                fontSize={"2xl"}
+                position="absolute"
+              >
+                Your List of Properties
+              </Heading>
+            </Center>
+            <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
+              <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
+              <Link to="/property-form">
+                <GrAdd size={"25px"} />
               </Link>
-              <Link to={`/orderlist?id=${authSelector.id}`}>
-                <Button
-                  color={"white"}
-                  cursor="pointer"
-                  backgroundColor={"green.500"}
-                  fontSize={"15px"}
-                >
-                  Order List
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button
-                  color={"white"}
-                  cursor="pointer"
-                  backgroundColor={"green.500"}
-                  fontSize={"15px"}
-                >
-                  Finances
-                </Button>
-              </Link>
-            </ButtonGroup>
-          </HStack>
-        </Box>
-        <Box>
-          <Center>
-            <Text
-              fontFamily={"sans-serif"}
-              fontWeight="bold"
-              fontSize={"2xl"}
-              position="absolute"
+            </HStack>
+            <Grid
+              templateColumns={{
+                base: "repeat(1, 1fr)",
+                md: "repeat(4, 2fr)",
+              }}
+              padding="5px"
+              gap={{ base: "0", md: "10px" }}
             >
-              Your List of Properties
-            </Text>
-          </Center>
-          <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
-            <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
-            <Link to="/property-form">
-              <GrAdd size={"25px"} />
-            </Link>
-          </HStack>
-
-          {renderListingRow()}
-        </Box>
-      </VStack>
+              {renderListingRow()}
+            </Grid>
+          </Box>
+        </VStack>
+      </Box>
     </Center>
   )
 }

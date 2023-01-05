@@ -15,7 +15,7 @@ import SimpleImageSlider from "react-simple-image-slider"
 const Popular = ({ id, name, city, properties_image }) => {
   const [images, setImages] = useState([])
   const getImages = properties_image.map((val) => val.image_url)
-  console.log(getImages)
+
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -29,19 +29,6 @@ const Popular = ({ id, name, city, properties_image }) => {
     <div className="popularMain">
       <section className="popular section container" id="popular">
         <div className="secContainer">
-          {/* <div className="secheader flex">
-            <div className="textDiv">
-              <h2 className="secTitle">Popular Place to Stay</h2>
-              <p>
-                Don't worry about your place to stay for an incredible holiday.
-              </p>
-            </div>
-            <div className="iconsDiv flex">
-              <HiArrowNarrowLeft className="icon leftIcon" />
-              <HiArrowNarrowRight className="icon rightIcon" />
-            </div>
-          </div> */}
-          {/* <Link to={`/listing/details/${id}`}> */}
           <div
             style={{
               marginTop: "5rem",
@@ -49,32 +36,29 @@ const Popular = ({ id, name, city, properties_image }) => {
           >
             <div className="mainContent">
               <div className="singleDestination">
-                <div className="destImage">
-                  {/* <Slider {...settings}>
-                    <img src={getImages?.image_url} alt="" />
-                  </Slider> */}
-                  {/* <Slider {...settings}> */}
+                <Link to={`/roomdetail/${id}`}>
+                  <div className="destImage">
+                    {properties_image.map((val) => (
+                      <img
+                        src={`http://localhost:8000/public/${val.image_url}`}
+                      />
+                    ))}
 
-                  {properties_image.map((val) => (
-                    <img src={val.image_url} />
-                  ))}
+                    <div className="overlayInfo">
+                      <h3>{name}</h3>
 
-                  {/* </Slider> */}
-                  <div className="overlayInfo">
-                    <h3>{name}</h3>
-
-                    <BsArrowRightShort className="icon" />
+                      <BsArrowRightShort className="icon" />
+                    </div>
                   </div>
-                </div>
-                <div className="destFooter">
-                  <div className="destText flex">
-                    <h6>{city?.cities_name}</h6>
+                  <div className="destFooter">
+                    <div className="destText flex">
+                      <h6>{city?.cities_name}</h6>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </div>
       </section>
     </div>
