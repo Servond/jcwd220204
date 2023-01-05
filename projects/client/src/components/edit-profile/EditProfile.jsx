@@ -191,6 +191,12 @@ const EditProfile = () => {
                     fontSizeAdjust: "initial",
                   }}
                 />
+                {/* <DatePicker
+                  onChange={formChangeHandler}
+                  name="birthdate"
+                  id="birthdate"
+                  // className="form-control"
+                /> */}
               </div>
               <div className="form-group">
                 <label for="gender">Gender</label>
@@ -256,13 +262,7 @@ const EditProfile = () => {
                       </Upload>
                     </Form.Item>
                     <ButtonGroup
-                      width={"100%"}
-                      mt={"2rem"}
-                      direction={"row"}
-                      padding={2}
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                    >
+          
                       <Button
                         type="button"
                         onClick={formik.handleSubmit}
@@ -287,6 +287,7 @@ const EditProfile = () => {
                         </Button>
                       </Link>
                     </ButtonGroup>
+               
                   </div>
                 </div>
               </div>

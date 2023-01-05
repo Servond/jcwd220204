@@ -128,6 +128,8 @@ function App() {
         />
         <Route path="/startpage" element={<LoginUserTenant />} />
         <Route path="/notfoundpage" element={<NotFoundPage />} />
+        <Route path="/roomdetail/:id" element={<DetailProperty />} />
+        <Route path="/userpage/:id" element={<UserOrderList />} />
       </Routes>
       <Footer />
     </main>
