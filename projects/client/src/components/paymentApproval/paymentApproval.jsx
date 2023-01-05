@@ -193,6 +193,10 @@ const PaymentApproval = () => {
             w={{ md: "120px", base: "80px" }}
             h={{ base: "30px", md: "35px" }}
             border="none"
+            cursor={"pointer"}
+            boxShadow={
+              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+            }
           >
             Accept
           </Button>
@@ -212,6 +216,10 @@ const PaymentApproval = () => {
             w={{ md: "120px", base: "80px" }}
             h={{ base: "30px", md: "35px" }}
             border="none"
+            boxShadow={
+              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+            }
+            cursor="pointer"
           >
             Reject
           </Button>
@@ -232,6 +240,10 @@ const PaymentApproval = () => {
             w={{ md: "120px", base: "80px" }}
             h={{ base: "30px", md: "35px" }}
             border="none"
+            boxShadow={
+              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+            }
+            cursor="pointer"
           >
             Cancel
           </Button>

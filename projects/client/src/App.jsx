@@ -30,6 +30,7 @@ import PaymentProof from "./components/proofPayment/proofPayment.component"
 import PaymentApproval from "./components/paymentApproval/paymentApproval"
 import UserPage from "./components/user/User"
 import DetailProperty from "./components/user/DetailProperty"
+import LoginUserTenant from "./components/home/LoginUserTenant"
 
 import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 import Footer from "./components/Footer/Footer"
@@ -56,7 +57,6 @@ function App() {
           authorization: `Bearer ${auth_token}`,
         },
       })
-      // console.log(response)
 
       dispatch(login(response.data.data))
       localStorage.setItem("auth_token", response.data.token)
@@ -90,7 +90,7 @@ function App() {
         <Route path="/register" element={<SignUpForm />} />
         <Route
           path="/myprofile"
-          element={authSelector.id === 0 ? <SignIn /> : <MyProfile />}
+          element={authSelector.id === 0 ? <LoginUserTenant /> : <MyProfile />}
         />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route
@@ -113,12 +113,20 @@ function App() {
         <Route path="/payment-approval/:id" element={<PaymentApproval />} />
         <Route path="/dummy-transaction/" element={<DummyTransaction />} />
         <Route path="/listing/details/:id" element={<ListingDetails />} />
+        {/* <Route path="/user/:id" element={<UserPage />} /> */}
+        <Route path="/roomdetail/:id" element={<DetailProperty />} />
         <Route
-          path="/user/:id"
+          path="/userpage/:id"
           element={
-            authSelector.role === "user" ? <UserPage /> : <NotFoundPage />
+            authSelector.role === "user" || authSelector.id !== 0 ? (
+              <UserOrderList />
+            ) : (
+              <NotFoundPage />
+            )
           }
         />
+        <Route path="/startpage" element={<LoginUserTenant />} />
+        <Route path="/notfoundpage" element={<NotFoundPage />} />
         <Route path="/roomdetail/:id" element={<DetailProperty />} />
         <Route path="/userpage/:id" element={<UserOrderList />} />
       </Routes>

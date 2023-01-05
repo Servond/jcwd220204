@@ -119,7 +119,7 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
         position={{ base: "sticky", md: "sticky" }}
         color="red"
         cursor={"pointer"}
-        width={{ md: "300px", base: "340px" }}
+        width={{ base: "340px", md: "300px" }}
       >
         <TfiTrash />
       </IconButton>
@@ -134,20 +134,17 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
           <ModalFooter>
             <Button
               variant={"solid"}
+              backgroundColor="red.500"
+              _hover={{ backgroundColor: "red.400" }}
+              color="white"
               mr={3}
               cursor={"pointer"}
               onClick={() => {
                 deleteProperty(id)
               }}
-              color="white"
-              backgroundColor="red.500"
-              _hover={{ backgroundColor: "red.400" }}
             >
               Delete
             </Button>
-            {/* <Button variant="ghost" onClick={onClose} cursor={"pointer"}>
-              Cancel
-            </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

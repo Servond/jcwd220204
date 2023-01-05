@@ -8,6 +8,7 @@ import {
   Avatar,
   Badge,
   Button,
+  ButtonGroup,
   Center,
   Flex,
   Heading,
@@ -19,6 +20,7 @@ import {
   useToast,
 } from "@chakra-ui/react"
 import ReAuth from "../reAuthUser/reAuth.component"
+import moment from "moment"
 
 const MyProfile = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -94,11 +96,11 @@ const MyProfile = () => {
                 bg={useColorModeValue("gray.50", "gray.800")}
                 fontWeight={"400"}
               >
-                #{authSelector.birthdate}
+                #{moment(authSelector.birthdate).format("LL")}
               </Badge>
             </Stack>
 
-            <Stack
+            <ButtonGroup
               width={"100%"}
               mt={"2rem"}
               direction={"row"}
@@ -135,13 +137,12 @@ const MyProfile = () => {
                 _focus={{
                   bg: "blue.500",
                 }}
-                width="-webkit-max-content"
                 cursor={"pointer"}
                 onClick={onOpen}
               >
                 Change Password
               </Button>
-            </Stack>
+            </ButtonGroup>
           </Stack>
         </Stack>
         <ReAuth isOpen={isOpen} onClose={onClose} />

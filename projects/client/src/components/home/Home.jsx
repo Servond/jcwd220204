@@ -13,6 +13,7 @@ import {
   AlertTitle,
   Box,
   Button,
+  Center,
   Flex,
   Grid,
   GridItem,
@@ -51,6 +52,7 @@ const Home = () => {
           cities_name: searchInput,
         },
       })
+
       setProperty(response.data.data)
       setTotalCount(response.data.dataCount)
 
@@ -105,7 +107,10 @@ const Home = () => {
         <div>
           <div>
             <section className="home" id="home">
-              <div className="secContainer container">
+              <div
+                className="secContainer container"
+                style={{ padding: "20px" }}
+              >
                 <Slide bottom>
                   <div className="homeText">
                     <h1 className="title">Stay Cheapest Full Happiness</h1>
@@ -148,6 +153,7 @@ const Home = () => {
                     style={{
                       marginLeft: "1.5px",
                       cursor: "pointer",
+                      marginTop: "15px",
                     }}
                     className="btn"
                     onClick={fetchProperties}
@@ -159,40 +165,47 @@ const Home = () => {
               </div>
             </section>
           </div>
-          <Box display={"block"} paddingLeft="10px" paddingRight={"10px"}>
-            <HStack gap="2px" marginTop={{ base: "200px", md: "100px" }}>
-              {!property.length ? (
-                <Alert
-                  status="error"
-                  textAlign="center"
-                  justifyContent={"center"}
-                  alignContent="center"
-                  flexDir="column"
-                  borderRadius={"10px"}
-                  // h="200px"
-                  width="350px"
-                  mt={"-50px"}
-                  mr="20px"
-                >
-                  <AlertIcon boxSize="40px" mr="0" />
-                  <AlertTitle>No Property on your location filter!</AlertTitle>
-                  <Button boxSize={"-webkit-max-content"}>
-                    <a href="#search">Change keyword</a>
-                  </Button>
-                </Alert>
-              ) : null}
-              {page === 1 ? null : (
-                <FaArrowLeft onClick={previousPage} cursor="pointer" />
-              )}
-              <Text fontWeight="semibold" fontSize="20px">
-                Page: {page}
-              </Text>
-              {page >= maxPage ? null : (
-                <FaArrowRight onClick={nextPage} cursor="pointer" />
-              )}
-            </HStack>
-            <Grid>{renderProperty()}</Grid>
-          </Box>
+          <Center>
+            <VStack>
+              <Box display={"block"} ml="-70vw">
+                <HStack gap="2px" marginTop={{ base: "200px", md: "150px" }}>
+                  {!property.length ? (
+                    <Center>
+                      <Alert
+                        status="error"
+                        textAlign="center"
+                        justifyContent={"center"}
+                        alignContent="center"
+                        flexDir="column"
+                        borderRadius={"10px"}
+                        // h="200px"
+                        width="350px"
+                        mt={"-50px"}
+                      >
+                        <AlertIcon boxSize="40px" mr="0" />
+                        <AlertTitle>
+                          No Property on your location filter!
+                        </AlertTitle>
+                        <Button boxSize={"-webkit-max-content"}>
+                          <a href="#search">Change keyword</a>
+                        </Button>
+                      </Alert>
+                    </Center>
+                  ) : null}
+                  {page === 1 ? null : (
+                    <FaArrowLeft onClick={previousPage} cursor="pointer" />
+                  )}
+                  <Text fontWeight="semibold" fontSize="20px">
+                    Page: {page}
+                  </Text>
+                  {page >= maxPage ? null : (
+                    <FaArrowRight onClick={nextPage} cursor="pointer" />
+                  )}
+                </HStack>
+              </Box>
+              <Grid>{renderProperty()}</Grid>
+            </VStack>
+          </Center>
         </div>
       )}
     </>

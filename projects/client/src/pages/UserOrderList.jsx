@@ -48,20 +48,24 @@ const UserOrderList = () => {
 
   return (
     <Center>
-      <Container
+      <Box
         width={"-moz-max-content"}
         height="auto"
         mt={{ base: "75px", md: "100px" }}
         maxWidth={{ base: "400px", md: "3xl" }}
       >
         <Box>
-          <Link to={`/`}>
-            <GrLinkPrevious size={"25px"} />
-          </Link>
-          <Heading size={"lg"}>Here your order list</Heading>
+          <Heading size={"lg"}>
+            <Box>
+              <Link to={`/`}>
+                <GrLinkPrevious size={"25px"} />
+              </Link>
+            </Box>
+            Here your order list
+          </Heading>
           {renderUserTransaction()}
         </Box>
-      </Container>
+      </Box>
     </Center>
   )
 }

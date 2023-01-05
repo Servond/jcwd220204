@@ -24,7 +24,7 @@ const Footer = () => {
       role="contentinfo"
       backgroundColor={"whiteAlpha.700"}
       width="100vw"
-      padding="10px"
+      padding="20px"
       bgColor={"blackAlpha.100"}
     >
       <Stack
@@ -56,9 +56,15 @@ const Footer = () => {
                 Product
               </Text>
               <Stack spacing="3" shouldWrapChildren>
-                <Text variant="link">How it works</Text>
-                <Text variant="link">Pricing</Text>
-                <Text variant="link">Use Cases</Text>
+                <Text variant="link" cursor={"pointer"}>
+                  How it works
+                </Text>
+                <Text variant="link" cursor={"pointer"}>
+                  Pricing
+                </Text>
+                <Text variant="link" cursor={"pointer"}>
+                  Use Cases
+                </Text>
               </Stack>
             </Stack>
             <Stack spacing="4" minW="36" flex="1">
@@ -66,9 +72,15 @@ const Footer = () => {
                 Legal
               </Text>
               <Stack spacing="3" shouldWrapChildren>
-                <Text variant="link">Privacy</Text>
-                <Text variant="link">Terms</Text>
-                <Text variant="link">License</Text>
+                <Text variant="link" cursor={"pointer"}>
+                  Privacy
+                </Text>
+                <Text variant="link" cursor={"pointer"}>
+                  Terms
+                </Text>
+                <Text variant="link" cursor={"pointer"}>
+                  License
+                </Text>
               </Stack>
             </Stack>
           </Stack>
@@ -87,7 +99,12 @@ const Footer = () => {
               }}
             >
               <Input placeholder="Enter your email" type="email" required />
-              <Button2 variant="primary" type="submit" flexShrink={0}>
+              <Button2
+                variant="primary"
+                type="submit"
+                flexShrink={0}
+                cursor={"pointer"}
+              >
                 Subscribe
               </Button2>
             </Stack>

@@ -15,6 +15,8 @@ import {
   useDisclosure,
   Textarea,
   HStack,
+  InputGroup,
+  InputRightAddon,
 } from "@chakra-ui/react"
 import { useFormik } from "formik"
 import { BsUpload } from "react-icons/bs"
@@ -125,11 +127,17 @@ const AddRoom = () => {
 
   return (
     <>
-      <Flex zIndex="0" minH="100vh" align="center" justify="center" mt={"50px"}>
+      <Flex
+        zIndex="0"
+        minH="100vh"
+        align="center"
+        justify="center"
+        mt={{ base: "50px", md: "100px" }}
+      >
         <Stack
           spacing="4"
-          w="350px"
-          maxW="md"
+          w={{ base: "350px", md: "700px" }}
+          // maxW="md"
           rounded="xl"
           boxShadow="lg"
           bg="white"
@@ -144,6 +152,7 @@ const AddRoom = () => {
             bgColor="red"
             borderRadius={"5px"}
             maxWidth={"-webkit-max-content"}
+            cursor="pointer"
           >
             <MdOutlineKeyboardBackspace color="white" />
             <Text>Back</Text>
@@ -176,31 +185,34 @@ const AddRoom = () => {
             </FormControl>
             <FormControl isRequired>
               <FormLabel>Capacity</FormLabel>
-              <Textarea
-                placeholder="type here"
-                type="number"
-                onChange={formChangeHandler}
-                name="capacity"
-                value={formik.values.capacity}
-              />
+              <InputGroup>
+                <Input
+                  placeholder="type here"
+                  type="number"
+                  onChange={formChangeHandler}
+                  name="capacity"
+                  value={formik.values.capacity}
+                />
+                <InputRightAddon children="person" />
+              </InputGroup>
             </FormControl>
             <FormControl isRequired>
               <FormLabel>Price</FormLabel>
-              <Input
-                placeholder="type here"
-                type="number"
-                name="price"
-                onChange={formChangeHandler}
-                value={formik.values.price}
-              />
+              <InputGroup>
+                <Input
+                  placeholder="enter amount"
+                  type="number"
+                  name="price"
+                  onChange={formChangeHandler}
+                  value={formik.values.price}
+                />
+                <InputRightAddon children="¥/ night" />
+              </InputGroup>
             </FormControl>
             <Stack spacing="6">
               <Box>
                 <FormControl isRequired>
-                  {/* <FormLabel>Upload Picture</FormLabel> */}
                   <Input
-                    // placeholder="type here"
-
                     multiple={true}
                     type="file"
                     accept="image/*"
@@ -228,6 +240,7 @@ const AddRoom = () => {
                         backgroundColor={"yellow.400"}
                         width="30px"
                         borderRadius="5px"
+                        cursor={"pointer"}
                       >
                         <BsUpload color="white " />
                       </Center>
@@ -291,6 +304,7 @@ const AddRoom = () => {
               color="white"
               _hover={{ bg: "blue.500" }}
               type="submit"
+              cursor={"pointer"}
             >
               Submit
             </Button>

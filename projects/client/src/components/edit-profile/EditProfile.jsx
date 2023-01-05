@@ -4,6 +4,7 @@ import "./EditProfile.scss"
 import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
+  ButtonGroup,
   HStack,
   Input,
   Select as Select2,
@@ -17,7 +18,7 @@ import { login } from "../../redux/features/authSlice"
 import { useState } from "react"
 // import Select from "react-select"
 import { PlusOutlined } from "@ant-design/icons"
-import { Form, Upload } from "antd"
+import { Form, Upload, message } from "antd"
 
 const EditProfile = () => {
   const authSelector = useSelector((state) => state.auth)
@@ -66,6 +67,7 @@ const EditProfile = () => {
           userData.append("profile_picture", profile_picture)
         }
         const userResponse = await axiosInstance.patch("/auth/me", userData)
+        console.log(userResponse, "coba")
 
         dispatch(login(userResponse.data.data))
         // setEdit(false)
@@ -81,6 +83,21 @@ const EditProfile = () => {
       }
     },
   })
+  const beforeUpload = (file) => {
+    const isJpgOrPng =
+      file.type === "image/jpeg" ||
+      (file.type === "image/png") |
+        (file.type === "image/jpeg") |
+        (file.type === "image/gif")
+    if (!isJpgOrPng) {
+      message.error("You can only upload JPG/PNG file!")
+    }
+    const isLt2M = file.size / 1024 / 1024 < 1
+    if (!isLt2M) {
+      message.error("Image must smaller than 1MB!")
+    }
+    return isJpgOrPng && isLt2M
+  }
   const formChangeHandler = ({ target }) => {
     const { name, value } = target
     formik.setFieldValue(name, value)
@@ -205,38 +222,6 @@ const EditProfile = () => {
                 <label for="avatar_upload"></label>
                 <div className="d-flex align-items-center">
                   <div className="avatar">
-                    {/* <div className="custom-file">
-                      <Input
-                        width={"15rem"}
-                        border="none"
-                        mt={"20px"}
-                        type="file"
-                        name="profile_picture"
-                        id="customFile"
-                        accept="image/*"
-                        onChange={(event) =>
-                          formik.setFieldValue(
-                            "profile_picture",
-                            event.target.files[0]
-                          )
-                        }
-                      />
-                    </div> */}
-                    {/* <img
-                      className="rounded-circle"
-                      alt="Avatar Preview"
-                      name={authSelector.username}
-                      src={
-                        formik.values.profile_picture
-                          ? URL.createObjectURL(formik.values.profile_picture)
-                          : authSelector.profile_picture
-                      }
-                      style={{
-                        marginLeft: "50px",
-                        marginTop: "20px",
-                      }}
-                    /> */}
-
                     <Form.Item
                       label="Upload"
                       valuePropName="fileList"
@@ -258,7 +243,12 @@ const EditProfile = () => {
                         marginTop: 20,
                       }}
                     >
-                      <Upload action="/upload.do" listType="picture-card">
+                      <Upload
+                        maxCount={1}
+                        action="/upload.do"
+                        listType="picture-card"
+                        beforeUpload={beforeUpload}
+                      >
                         <div>
                           <PlusOutlined />
                           <div
@@ -271,14 +261,8 @@ const EditProfile = () => {
                         </div>
                       </Upload>
                     </Form.Item>
-                    <Stack
-                      width={"100%"}
-                      mt={"2rem"}
-                      direction={"row"}
-                      padding={2}
-                      justifyContent={"space-between"}
-                      alignItems={"center"}
-                    >
+                    <ButtonGroup
+          
                       <Button
                         type="button"
                         onClick={formik.handleSubmit}
@@ -302,7 +286,8 @@ const EditProfile = () => {
                           Cancel
                         </Button>
                       </Link>
-                    </Stack>
+                    </ButtonGroup>
+               
                   </div>
                 </div>
               </div>

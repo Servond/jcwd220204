@@ -156,6 +156,7 @@ const ListingDetails = () => {
           images={val.Images}
           onDelete={() => deleteRoom(val.id)}
           calendars={val.Calendars}
+          fetchListingDetails={fetchRoom}
         />
       )
     })
