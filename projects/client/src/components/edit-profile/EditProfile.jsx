@@ -4,6 +4,7 @@ import "./EditProfile.scss"
 import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
+  ButtonGroup,
   HStack,
   Input,
   Select as Select2,
@@ -174,12 +175,6 @@ const EditProfile = () => {
                     fontSizeAdjust: "initial",
                   }}
                 />
-                {/* <DatePicker
-                  onChange={formChangeHandler}
-                  name="birthdate"
-                  id="birthdate"
-                  // className="form-control"
-                /> */}
               </div>
               <div className="form-group">
                 <label for="gender">Gender</label>
@@ -205,38 +200,6 @@ const EditProfile = () => {
                 <label for="avatar_upload"></label>
                 <div className="d-flex align-items-center">
                   <div className="avatar">
-                    {/* <div className="custom-file">
-                      <Input
-                        width={"15rem"}
-                        border="none"
-                        mt={"20px"}
-                        type="file"
-                        name="profile_picture"
-                        id="customFile"
-                        accept="image/*"
-                        onChange={(event) =>
-                          formik.setFieldValue(
-                            "profile_picture",
-                            event.target.files[0]
-                          )
-                        }
-                      />
-                    </div> */}
-                    {/* <img
-                      className="rounded-circle"
-                      alt="Avatar Preview"
-                      name={authSelector.username}
-                      src={
-                        formik.values.profile_picture
-                          ? URL.createObjectURL(formik.values.profile_picture)
-                          : authSelector.profile_picture
-                      }
-                      style={{
-                        marginLeft: "50px",
-                        marginTop: "20px",
-                      }}
-                    /> */}
-
                     <Form.Item
                       label="Upload"
                       valuePropName="fileList"
@@ -271,12 +234,12 @@ const EditProfile = () => {
                         </div>
                       </Upload>
                     </Form.Item>
-                    <Stack
+                    <ButtonGroup
                       width={"100%"}
                       mt={"2rem"}
                       direction={"row"}
                       padding={2}
-                      justifyContent={"space-between"}
+                      justifyContent={"center"}
                       alignItems={"center"}
                     >
                       <Button
@@ -302,7 +265,7 @@ const EditProfile = () => {
                           Cancel
                         </Button>
                       </Link>
-                    </Stack>
+                    </ButtonGroup>
                   </div>
                 </div>
               </div>

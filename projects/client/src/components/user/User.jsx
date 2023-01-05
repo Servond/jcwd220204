@@ -150,6 +150,16 @@ const UserPage = ({
                 {status === "need accepted" && (
                   <Progress percent={50} status="active" />
                 )}
+                {status === "in progress" && (
+                  <Progress
+                    percent={80}
+                    status="active"
+                    strokeColor={{
+                      "0%": "#108ee9",
+                      "100%": "#87d068",
+                    }}
+                  />
+                )}
                 {status === "accepted" && <Progress percent={100} />}
                 {status === "cancelled" && (
                   <Progress percent={100} status="exception" />

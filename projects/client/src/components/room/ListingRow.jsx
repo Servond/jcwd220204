@@ -97,6 +97,8 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
         position={{ base: "sticky", md: "sticky" }}
         color="red"
         cursor={"pointer"}
+        width="10px"
+        backgroundColor={"white"}
       >
         <TfiTrash />
       </IconButton>

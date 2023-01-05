@@ -95,7 +95,7 @@ const DetailProperty = () => {
   }, [])
   return (
     <Center>
-      <Container width={"-moz-max-content"} height="auto" mt={"75px"}>
+      <Container width={"-moz-max-content"} height="auto" mt={"100px"}>
         <Link to={`/`}>
           <GrLinkPrevious size={"25px"} />
         </Link>
@@ -116,11 +116,7 @@ const DetailProperty = () => {
         </Carousel>
 
         <br />
-        <Grid
-          templateColumns={"repeat(2, 2fr)"}
-          gap="10"
-          // border={"2px solid red"}
-        >
+        <Grid templateColumns={"repeat(2, 2fr)"} gap="10">
           <GridItem>
             <Text>{property.name}</Text>
             <Badge colorScheme={"linkedin"}>
@@ -133,24 +129,19 @@ const DetailProperty = () => {
             <Text fontFamily={"sans-serif"} fontSize={"13.5px"}>
               {property?.description}
             </Text>
-            {/* <Box color={"blue"} textAlign="center">
-                <Calendar
-                  // dateCellRender={DateCellRender}
-                  // onChange={findDate}
-                  style={{ textTransform: "uppercase", fontSize: "0.7rem" }}
-                />
-              </Box> */}
             <Button
               colorScheme={"orange"}
               ml="0"
               width={"100%"}
               color="white"
               onClick={reserveModal.onOpen}
+              cursor="pointer"
             >
               Reserve
               <GrFormNext size={"25px"} />
             </Button>
-            <Box color={"blue"} textAlign="center">
+            <Box color={"blue"} textAlign="center" mt={"50px"}>
+              <Text>Full booked day information</Text>
               <Calendar
                 // dateCellRender={DateCellRender}
                 // onChange={findDate}
@@ -165,7 +156,7 @@ const DetailProperty = () => {
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>Reservation Form</ModalHeader>
-                <ModalCloseButton color={"red"} />
+                <ModalCloseButton color={"red"} cursor="pointer" />
                 <ModalBody>
                   <FormControl>
                     <FormLabel>Select Room</FormLabel>
@@ -199,10 +190,17 @@ const DetailProperty = () => {
                     mr={3}
                     onClick={reserveModal.onClose}
                     size="sm"
+                    cursor={"pointer"}
                   >
                     Close
                   </Button>
-                  <Button variant="ghost" color={"white"} size="sm">
+                  <Button
+                    // variant="ghost"
+                    color={"white"}
+                    colorScheme="whatsapp"
+                    size="sm"
+                    cursor={"pointer"}
+                  >
                     Checkout
                   </Button>
                 </ModalFooter>
@@ -216,31 +214,32 @@ const DetailProperty = () => {
                 border={"2px solid"}
                 w="200px"
                 rounded={"md"}
-                // mb={"10px"}
+                mb={"10px"}
                 borderColor="teal.300"
-                // height={"200px"}
                 backgroundColor="linkedin.400"
                 color={"white"}
                 fontWeight="extrabold"
               >
-                <Carousel
-                  autoplay
-                  effect="fade"
-                  dotPosition="left"
-                  dots={false}
-                  easing="linear"
-                  // style={contentStyle}
-                >
-                  {val.Images.map((value) => (
-                    <Image
-                      src={`http://localhost:8000/public/${value.picture_url}`}
-                      rounded={"md"}
-                      fit={"cover"}
-                      align={"center"}
-                      maxW={"100%"}
-                    />
-                  ))}
-                </Carousel>
+                <Box backgroundColor={"white"}>
+                  <Carousel
+                    autoplay
+                    effect="fade"
+                    dotPosition="left"
+                    dots={false}
+                    easing="linear"
+                    // style={contentStyle}
+                  >
+                    {val.Images.map((value) => (
+                      <Image
+                        src={`http://localhost:8000/public/${value.picture_url}`}
+                        rounded={"md"}
+                        fit={"cover"}
+                        align={"center"}
+                        maxW={"100%"}
+                      />
+                    ))}
+                  </Carousel>
+                </Box>
 
                 <Text fontFamily={"sans-serif"} fontSize="13.5px">
                   Room: {val.item_name} type

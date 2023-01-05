@@ -51,6 +51,7 @@ const Home = () => {
           cities_name: searchInput,
         },
       })
+      console.log(response, "coba")
       setProperty(response.data.data)
       setTotalCount(response.data.dataCount)
 
@@ -160,7 +161,10 @@ const Home = () => {
             </section>
           </div>
           <Box display={"block"} paddingLeft="10px" paddingRight={"10px"}>
-            <HStack gap="2px" marginTop={{ base: "200px", md: "100px" }}>
+            <HStack
+              gap="2px"
+              marginTop={{ base: "200px", md: "100px", lg: "200px" }}
+            >
               {!property.length ? (
                 <Alert
                   status="error"

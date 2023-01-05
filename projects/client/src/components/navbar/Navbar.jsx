@@ -84,8 +84,8 @@ const Navbar = () => {
             <div className="headerBtns flex">
               {authSelector.id === 0 ? (
                 <button className="btn loginBtn">
-                  <Link to="/login">
-                    <a href="/login">Login</a>
+                  <Link to="/startpage">
+                    <a href="/startpage">Login</a>
                   </Link>
                 </button>
               ) : (

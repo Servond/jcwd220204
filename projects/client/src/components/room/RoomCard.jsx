@@ -36,6 +36,10 @@ import {
   Flex,
   CloseButton,
   AlertDialogContent,
+  Textarea,
+  InputRightAddon,
+  InputGroup,
+  ButtonGroup,
 } from "@chakra-ui/react"
 import { BsThreeDotsVertical, BsUpload } from "react-icons/bs"
 import { axiosInstance } from "../../api"
@@ -256,9 +260,11 @@ const RoomCard = ({
               <Popover>
                 <PopoverTrigger>
                   <IconButton
-                    background={"blue.500"}
+                    background={"linkedin.500"}
                     _hover="none"
                     width={"30px"}
+                    cursor="pointer"
+                    marginBottom={"10px"}
                   >
                     <BsThreeDotsVertical color="white" size={"20px"} />
                   </IconButton>
@@ -281,6 +287,7 @@ const RoomCard = ({
                         fontSize="sm"
                         // onClick={() => setOpenModalEdit(true)}
                         onClick={modalEditInfo.onOpen}
+                        cursor="pointer"
                       >
                         Edit Room Info
                       </Button>
@@ -296,7 +303,7 @@ const RoomCard = ({
                           <ModalBody>
                             <FormControl isRequired>
                               <FormLabel>Room type</FormLabel>
-                              <Input
+                              <Textarea
                                 placeholder="type here"
                                 type="text"
                                 name="item_name"
@@ -306,7 +313,7 @@ const RoomCard = ({
                             </FormControl>
                             <FormControl isRequired>
                               <FormLabel>Description</FormLabel>
-                              <Input
+                              <Textarea
                                 placeholder="type here"
                                 textAlign={"left"}
                                 verticalAlign="top"
@@ -320,42 +327,52 @@ const RoomCard = ({
                             </FormControl>
                             <FormControl isRequired>
                               <FormLabel>Capacity</FormLabel>
-                              <Input
-                                placeholder="type here"
-                                type="number"
-                                name="capacity"
-                                defaultValue={capacity}
-                                onChange={formChangeHandler}
-                              />
+                              <InputGroup>
+                                <Input
+                                  placeholder="type here"
+                                  type="number"
+                                  name="capacity"
+                                  defaultValue={capacity}
+                                  onChange={formChangeHandler}
+                                />
+                                <InputRightAddon children="person" />
+                              </InputGroup>
                             </FormControl>
                             <FormControl isRequired>
                               <FormLabel>Price</FormLabel>
-                              <Input
-                                placeholder="type here"
-                                type="number"
-                                name="price"
-                                defaultValue={price}
-                                onChange={formChangeHandler}
-                              />
+                              <InputGroup>
+                                <Input
+                                  placeholder="type here"
+                                  type="number"
+                                  name="price"
+                                  defaultValue={price}
+                                  onChange={formChangeHandler}
+                                />
+                                <InputRightAddon children="¥/ night" />
+                              </InputGroup>
                             </FormControl>
                           </ModalBody>
                           <ModalFooter>
-                            <Button
-                              colorScheme={"red"}
-                              onClick={modalEditInfo.onClose}
-                              // onClose={closeModalEdit}
-                              // isOpen={() => setCloseModalEdit(false)}
-                            >
-                              Close
-                            </Button>
+                            <ButtonGroup>
+                              <Button
+                                colorScheme={"red"}
+                                onClick={modalEditInfo.onClose}
+                                cursor="pointer"
+                                // onClose={closeModalEdit}
+                                // isOpen={() => setCloseModalEdit(false)}
+                              >
+                                Close
+                              </Button>
 
-                            <Button
-                              colorScheme={"blue"}
-                              type="submit"
-                              onClick={formik.handleSubmit}
-                            >
-                              Save
-                            </Button>
+                              <Button
+                                colorScheme={"blue"}
+                                type="submit"
+                                onClick={formik.handleSubmit}
+                                cursor="pointer"
+                              >
+                                Save
+                              </Button>
+                            </ButtonGroup>
                           </ModalFooter>
                         </ModalContent>
                       </Modal>
@@ -368,6 +385,7 @@ const RoomCard = ({
                         fontWeight="normal"
                         fontSize="sm"
                         onClick={modalImage.onOpen}
+                        cursor="pointer"
                       >
                         Edit Room Images
                       </Button>
@@ -412,6 +430,7 @@ const RoomCard = ({
                                       borderRadius="5px"
                                       boxShadow={"lg"}
                                       boxSize="-webkit-max-content"
+                                      cursor={"pointer"}
                                     >
                                       <Center width="30px" borderRadius="5px">
                                         <BiUpload
@@ -480,28 +499,31 @@ const RoomCard = ({
                                       Are you sure to delete this image room ?
                                     </AlertDialogBody>
                                     <AlertDialogFooter>
-                                      <Button
-                                        ref={cancelRef}
-                                        // onClick={onClose}
-                                        onClick={modalImageAsk.onClose}
-                                        colorScheme="gray"
-                                        color={"black"}
-                                      >
-                                        Cancel
-                                      </Button>
+                                      <ButtonGroup>
+                                        <Button
+                                          ref={cancelRef}
+                                          // onClick={onClose}
+                                          onClick={modalImageAsk.onClose}
+                                          colorScheme="gray"
+                                          color={"black"}
+                                          cursor="pointer"
+                                        >
+                                          Cancel
+                                        </Button>
 
-                                      <Button
-                                        colorScheme={"red"}
-                                        onClick={() => {
-                                          deleteRoomImg(val.id)
+                                        <Button
+                                          colorScheme={"red"}
+                                          onClick={() => {
+                                            deleteRoomImg(val.id)
 
-                                          // console.log(fetchRoom)
-                                        }}
-
-                                        // ref={deleteRef}
-                                      >
-                                        Delete
-                                      </Button>
+                                            // console.log(fetchRoom)
+                                          }}
+                                          // ref={deleteRef}
+                                          cursor="pointer"
+                                        >
+                                          Delete
+                                        </Button>
+                                      </ButtonGroup>
                                     </AlertDialogFooter>
                                   </AlertDialogContent>
                                   {/* </AlertDialogOverlay> */}
@@ -535,8 +557,9 @@ const RoomCard = ({
                         // onClick={onOpen}
                         onClick={modalDelete.onOpen}
                         position="relative"
+                        cursor={"pointer"}
                       >
-                        Delete
+                        Delete Room
                       </Button>
 
                       <AlertDialog
@@ -555,21 +578,25 @@ const RoomCard = ({
                             Are you sure to delete this room ?
                           </AlertDialogBody>
                           <AlertDialogFooter>
-                            <Button
-                              ref={cancelRef}
-                              // onClick={onClose}
-                              onClick={modalDelete.onClose}
-                              colorScheme="gray"
-                              color={"black"}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              colorScheme={"red"}
-                              onClick={confirmDeleteBtnHandler}
-                            >
-                              Delete
-                            </Button>
+                            <ButtonGroup>
+                              <Button
+                                ref={cancelRef}
+                                // onClick={onClose}
+                                onClick={modalDelete.onClose}
+                                colorScheme="gray"
+                                color={"black"}
+                                cursor="pointer"
+                              >
+                                Cancel
+                              </Button>
+                              <Button
+                                colorScheme={"red"}
+                                onClick={confirmDeleteBtnHandler}
+                                cursor="pointer"
+                              >
+                                Delete
+                              </Button>
+                            </ButtonGroup>
                           </AlertDialogFooter>
                         </AlertDialogContent>
                         {/* </AlertDialogOverlay> */}

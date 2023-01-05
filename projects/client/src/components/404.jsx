@@ -9,14 +9,18 @@ const NotFoundPage = () => {
       <Box textAlign="center" mt={"100px"}>
         {/* <Image src={Error} alt="" /> */}
         <Text color="gray.500" mb="6">
-          Please register to use this feature
+          Please login/register to use this feature
         </Text>
-        <Link to="/register">
+        <Link to="/startpage">
           <Result
             status="500"
             title="500"
             subTitle="Sorry, something went wrong."
-            extra={<Button type="primary">Register</Button>}
+            extra={
+              <Button type="primary" size="large" style={{ width: "170px" }}>
+                Login/Register
+              </Button>
+            }
           />
         </Link>
       </Box>

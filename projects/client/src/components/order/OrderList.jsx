@@ -57,7 +57,6 @@ const OrderList = () => {
         boxShadow={
           "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
         }
-        border="2px solid black"
         backgroundColor={"whiteAlpha.900"}
         mb="10vh"
         // ml={{ base: "2vw", md: "10vw" }}
@@ -128,6 +127,9 @@ const OrderList = () => {
                         )}
                         {val.status === "accepted" && (
                           <Badge colorScheme={"linkedin"}> Accepted</Badge>
+                        )}
+                        {val.status === "in progress" && (
+                          <Badge colorScheme={"linkedin"}> In progress</Badge>
                         )}
                         {val.status === "cancelled" && (
                           <Badge colorScheme={"red"}> Cancelled</Badge>
