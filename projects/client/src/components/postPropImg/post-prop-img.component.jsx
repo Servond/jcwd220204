@@ -92,7 +92,6 @@ const PostPropImg = () => {
         title: "Failed to added new image",
         description: "Size or type file is invalid",
         status: "error",
-        // duration: "100000",
       })
     }
   }
@@ -170,7 +169,6 @@ const PostPropImg = () => {
               borderWidth="1px"
               rounded="lg"
               shadow="370px"
-              display="flex"
               p="4px"
               mb="24px"
               boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 20px"}
@@ -179,10 +177,9 @@ const PostPropImg = () => {
             >
               <CloseButton
                 position="absolute"
-                // MEDIA SCREEN ASU
-                // VIEW PORT
-                ml={{ base: "140px", md: "40.5vh" }}
-                mt={{ base: "2px", sm: "8px" }}
+                right={{ md: "5", base: "3" }}
+                top={{ md: "3", base: "1" }}
+                display=""
                 border="none"
                 color="white"
                 colors
@@ -190,7 +187,7 @@ const PostPropImg = () => {
                   setOpenId(val)
                   onOpen()
                 }}
-                size={{ base: "sm", sm: "sm" }}
+                size={{ base: "sm", md: "sm" }}
                 cursor="pointer"
               />
 
@@ -199,7 +196,6 @@ const PostPropImg = () => {
                 width="100%"
                 h="100%"
                 objectFit="cover"
-                // src={val.image_url}
                 src={`http://localhost:8000/public/${val.image_url}`}
               />
               <Modal isCentered isOpen={isOpen} onClose={onClose}>

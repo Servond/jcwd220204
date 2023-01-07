@@ -45,7 +45,6 @@ const PaymentApproval = () => {
         `/transaction/user-data/${params.id}`
       )
 
-      console.log(responseDataTransaction)
       setPaymentProof(responseDataTransaction.data.data.payment_proof)
       setPrice(responseDataTransaction.data.data.price)
       setGetStartDate(responseDataTransaction.data.data.start_date)
@@ -57,7 +56,6 @@ const PaymentApproval = () => {
       console.log(err)
     }
   }
-  // console.log(paymentProof)
 
   // ========================= Approve Payment ============================
   const acceptPayment = async () => {
@@ -68,7 +66,6 @@ const PaymentApproval = () => {
         status: "success",
         title: "Accept payment",
       })
-      // onClose(modalApprove.onClose)
     } catch (err) {
       console.log(err)
     }
@@ -108,7 +105,6 @@ const PaymentApproval = () => {
     <Center>
       <Box
         mt="100px"
-        // border="1px solid black"
         padding="25px"
         textAlign="center"
         w={{ base: "380px", md: "fit-content" }}
@@ -251,13 +247,12 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalApprove.onClose}
           isOpen={modalApprove.isOpen}
           isCentered
         >
           <AlertDialogOverlay>
-            <AlertDialogContent h={{ md: "18vh", base: "30vh" }}>
+            <AlertDialogContent h="fit-content">
               <AlertDialogHeader
                 fontSize="30px"
                 fontWeight="bold"
@@ -297,14 +292,13 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalReject.onClose}
           isOpen={modalReject.isOpen}
           isCentered
         >
           <AlertDialogOverlay />
 
-          <AlertDialogContent h={{ md: "18vh", base: "30vh" }}>
+          <AlertDialogContent h="fit-content">
             <AlertDialogHeader
               fontSize="30px"
               borderRadius="10px"
@@ -343,14 +337,13 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalCanceled.onClose}
           isOpen={modalCanceled.isOpen}
           isCentered
         >
           <AlertDialogOverlay />
 
-          <AlertDialogContent h={{ md: "18vh", base: "30vh" }}>
+          <AlertDialogContent h="fit-content">
             <AlertDialogHeader
               fontSize="30px"
               borderRadius="10px"

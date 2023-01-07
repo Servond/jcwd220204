@@ -101,7 +101,7 @@ const SignIn = () => {
         })
         localStorage.setItem("auth_token", response.data.token)
 
-        console.log(response)
+        // console.log(response)
         if (response.name === "AxiosError") {
           throw new Error(
             response.message,
@@ -171,7 +171,7 @@ const SignIn = () => {
         <Box margin="auto">
           <VStack>
             <Text fontSize="3xl" fontWeight="bold">
-              LOGIN{" "}
+              LOGIN USER
             </Text>
             <Text fontSize="xl" fontWeight="bold" mb="10px">
               Already have an account?

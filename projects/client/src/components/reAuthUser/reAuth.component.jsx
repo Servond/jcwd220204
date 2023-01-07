@@ -26,7 +26,6 @@ import ChangePass from "../changePassword/changePassword.component"
 const ReAuth = ({ isOpen, onOpen, onClose }) => {
   const toast = useToast()
   const authSelector = useSelector((state) => state.auth)
-  const passwordRef = useRef()
   const focusRef = useRef()
   const auth = getAuth()
   const user = auth.currentUser
@@ -34,12 +33,13 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
   const [openModal, setOpenModal] = useState(false)
   const [closeModal, setCloseModal] = useState(true)
   const [modalClose, setModalClose] = useState()
+  const [rePassword, setRePassword] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const credential = EmailAuthProvider.credential(
       authSelector?.email,
-      passwordRef.current.value
+      rePassword
     )
 
     try {
@@ -79,7 +79,7 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent height="300px" borderRadius="10px" width="350px">
+        <ModalContent height="fit-content" borderRadius="10px" width="350px">
           <ModalHeader borderRadius="10px">
             <Text>Re Enter Your Password</Text>
           </ModalHeader>
@@ -90,7 +90,12 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
               <FormLabel>Email</FormLabel>
               <FormLabel>{authSelector.email}</FormLabel>
               <FormLabel>Enter your password</FormLabel>
-              <Input ref={passwordRef} {...{ passwordRef }} type="password" />
+              <Input
+                ref={focusRef}
+                value={rePassword}
+                onChange={(e) => setRePassword(e.target.value)}
+                type="password"
+              />
               <Button
                 mt="20px"
                 type="submit"

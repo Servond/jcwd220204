@@ -93,8 +93,8 @@ const transactionController = {
         start_date: start,
         end_date: end,
         price: 30000,
-        PropertyItemId: 2,
-        PropertyId: 5,
+        PropertyItemId: 3,
+        PropertyId: 8,
 
         // UserId: 60,
         UserId: foundUserById.id,
@@ -140,7 +140,6 @@ const transactionController = {
           { model: db.User },
         ],
       })
-
       const findPropImg = await db.Property.findByPk(
         findTransactionData.Property.id,
         {
@@ -155,29 +154,19 @@ const transactionController = {
         }
       )
 
-      const getStatus = Object.values(findTransactionData.dataValues)[5]
+      const getStatus = findTransactionData.status
 
-      const getUserEmail = Object.values(findTransactionData.User.dataValues)[2]
+      const getUserEmail = findTransactionData.User.email
 
-      const getPropName = Object.values(
-        findTransactionData.Property.dataValues
-      )[1]
+      const getPropName = findTransactionData.Property.name
 
-      const getPropAddress = Object.values(
-        findTransactionData.Property.dataValues
-      )[2]
+      const getPropAddress = findTransactionData.Property.address
 
-      const getPropRules = Object.values(
-        findTransactionData.Property.dataValues
-      )[4]
+      const getPropRules = findTransactionData.Property.rules
 
-      const getRoomType = Object.values(
-        findTransactionData.PropertyItem.dataValues
-      )[1]
+      const getRoomType = findTransactionData.PropertyItem.item_name
 
-      const getRoomCapacity = Object.values(
-        findTransactionData.PropertyItem.dataValues
-      )[3]
+      const getRoomCapacity = findTransactionData.PropertyItem.capacity
 
       const getStartDate = moment(findTransactionData.start_date).format(
         "DD-mm-YYYY"

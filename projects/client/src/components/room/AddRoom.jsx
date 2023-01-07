@@ -275,9 +275,11 @@ const AddRoom = () => {
                       mb="24px"
                       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 20px"}
                       borderRadius="8px"
+                      position="relative"
                     >
                       <CloseButton
-                        ml={{ base: "110px", md: "38vh" }}
+                        // ml={{ base: "110px", md: "38vh" }}
+                        right={{ md: "3", base: "2" }}
                         mt="5px"
                         position="absolute"
                         border="none"

@@ -145,10 +145,10 @@ const RoomCard = ({
 
   const deleteRoomImg = async (id) => {
     try {
-      await axiosInstance.delete(`/room/deleteimage/${id}`)
+      await axiosInstance.delete(`/room/deleteimage/${openImageId.id}`)
+      setOpenImageId(null)
       fetchListingDetails()
       getImages()
-      // setOpenImageId(null)
       // fetchRoom()
 
       toast({

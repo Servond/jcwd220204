@@ -36,7 +36,7 @@ const PaymentProof = () => {
     setExpired_date(response.data.dateNow)
     setStatus(response.data.get.status)
     setPrice(response.data.price)
-    console.log(response)
+    // console.log(response)
   }
 
   // console.log(status)

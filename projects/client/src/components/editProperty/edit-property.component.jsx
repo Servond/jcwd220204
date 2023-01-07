@@ -31,14 +31,10 @@ const EditProperty = () => {
     try {
       const responseProp = await axiosInstance.get(`property/${params.id}`)
       setListing(responseProp.data.data)
-      // setPropertyImage(responseProp.data.data.PropertyImages)
-      // console.log(responseProp.data.data)
     } catch (error) {
       console.log(error)
     }
   }
-
-  // console.log(propertyImage)
 
   // =============================== Edit Prop =========================================
 
@@ -76,8 +72,6 @@ const EditProperty = () => {
     },
   })
 
-  // console.log(prop.data)
-
   const formChangeHandler = ({ target }) => {
     const { name, value } = target
     formik.setFieldValue(name, value)
@@ -89,10 +83,6 @@ const EditProperty = () => {
   return (
     <Center mt={{ md: "50vh", base: "65vh" }} mb="500px">
       <Box
-        // mt="100px"
-        // ml="5px"
-        // right="50%"
-        // left={{ base: "0", sm: "10%" }}
         maxW="71vh"
         minW="20vh"
         w={{ base: "55vh", sm: "71vh" }}
@@ -104,10 +94,8 @@ const EditProperty = () => {
           Edit Property Form
         </Text>
         <Box
-          // borderRadius="8px"
           alignContent="center"
           justifyContent="center"
-          // border="1px solid black"
           mt="20px"
           mr="-10px"
           height={{ base: "80vh", sm: "58vh" }}
@@ -192,14 +180,6 @@ const EditProperty = () => {
                 Cancel
               </Button>
             </Center>
-
-            <Grid
-              templateColumns="repeat(2,1fr)"
-              display="flex"
-              flexWrap="wrap"
-              gap="10px"
-              spacing="10"
-            ></Grid>
           </form>
         </Box>
       </Box>

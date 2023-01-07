@@ -1,9 +1,7 @@
 import { axiosInstance } from "../../api/index"
 // import * as Yup from "yup"
-import "./property-form.styles.css"
 import { useFormik } from "formik"
 import {
-  Alert,
   Box,
   Button,
   Center,
@@ -91,16 +89,8 @@ const PropertyForm = () => {
         )
 
         if (response.name === "AxiosError") {
-          throw new Error(
-            response.message
-            // toast({
-            //   title: "Failed create new property",
-            //   description: "please check again your file type and size",
-            //   status: "error",
-            // })
-          )
+          throw new Error(response.message)
         }
-        console.log(response)
         navigate(`/tenant/${authSelector.id}`)
         toast({
           title: "Property successful added",
@@ -154,7 +144,7 @@ const PropertyForm = () => {
   }, [])
 
   return (
-    <div className="property-form-container">
+    <Box mt="150px" ml="20px">
       <h1>Register Your Property Here</h1>
       <form onSubmit={formik.handleSubmit}>
         <FormControl isInvalid={formik.errors.name}>
@@ -338,14 +328,15 @@ const PropertyForm = () => {
                     mb="24px"
                     boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 20px"}
                     borderRadius="8px"
+                    position="relative"
                   >
                     <CloseButton
-                      ml={{ base: "129px", md: "38vh" }}
-                      mt="8px"
+                      // ml={{ base: "129px", md: "38vh" }}
+                      top={{ md: "3", base: "1" }}
+                      right={{ base: "3", md: "5" }}
                       position="absolute"
                       border="none"
                       color="white"
-                      className="delete-btn"
                       cursor="pointer"
                       size="sm"
                       onClick={() => deleteHandler(image)}
@@ -363,7 +354,7 @@ const PropertyForm = () => {
           </Box>
         </Box>
       </form>
-    </div>
+    </Box>
   )
 }
 

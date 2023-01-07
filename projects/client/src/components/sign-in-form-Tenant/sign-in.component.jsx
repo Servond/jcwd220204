@@ -46,7 +46,7 @@ const SignInTenant = () => {
         const response = await axiosInstance.post("/auth/login-tenant", {
           googleToken: idToken,
         })
-        console.log(response)
+        // console.log(response)
         if (response.name === "AxiosError") {
           throw new Error(
             response.message,
@@ -116,7 +116,7 @@ const SignInTenant = () => {
         <Box margin="auto">
           <VStack>
             <Text fontSize="3xl" fontWeight="bold">
-              LOGIN{" "}
+              LOGIN TENANT
             </Text>
             <Text fontSize="xl" fontWeight="bold" mb="10px">
               Already have an account?

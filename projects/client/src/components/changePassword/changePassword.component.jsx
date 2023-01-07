@@ -28,6 +28,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
   const focusRef = useRef(null)
   const toast = useToast()
   const [closeModal, setCloseModal] = useState(true)
+
   const formik = useFormik({
     initialValues: {
       password: "",
@@ -36,6 +37,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
       try {
         await updatePassword(user, formik.values.password)
         setOpenModal(false)
+
         onClose(closeModal)
         toast({
           title: "Password has been change",
@@ -76,7 +78,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
       initialFocusRef={focusRef}
     >
       <ModalOverlay />
-      <ModalContent height={{ base: "69vh", md: "40vh" }}>
+      <ModalContent height={{ base: "fit-content", md: "fit-content" }}>
         <ModalHeader borderRadius="10px">
           <Text>Enter your new password</Text>
         </ModalHeader>
@@ -119,7 +121,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
               </FormErrorMessage>
             </FormControl>
             <Button
-              mt="40px"
+              mt="20px"
               type="submit"
               bg="linkedin.500"
               color="white"

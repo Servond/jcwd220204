@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   Button,
   ButtonGroup,
+  Center,
   HStack,
   Input,
   Select as Select2,
@@ -261,33 +262,33 @@ const EditProfile = () => {
                         </div>
                       </Upload>
                     </Form.Item>
-                    <ButtonGroup
-          
-                      <Button
-                        type="button"
-                        onClick={formik.handleSubmit}
-                        boxShadow={
-                          "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                        }
-                        colorScheme="whatsapp"
-                        cursor={"pointer"}
-                      >
-                        Update
-                      </Button>
-                      <Link to={"/myprofile"}>
+                    <Center>
+                      <ButtonGroup mb="15px">
                         <Button
                           type="button"
+                          onClick={formik.handleSubmit}
                           boxShadow={
                             "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
                           }
-                          colorScheme="red"
+                          colorScheme="whatsapp"
                           cursor={"pointer"}
                         >
-                          Cancel
+                          Update
                         </Button>
-                      </Link>
-                    </ButtonGroup>
-               
+                        <Link to={"/myprofile"}>
+                          <Button
+                            type="button"
+                            boxShadow={
+                              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                            }
+                            colorScheme="red"
+                            cursor={"pointer"}
+                          >
+                            Cancel
+                          </Button>
+                        </Link>
+                      </ButtonGroup>
+                    </Center>
                   </div>
                 </div>
               </div>
