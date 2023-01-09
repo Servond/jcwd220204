@@ -46,17 +46,6 @@ const SignInTenant = () => {
         const response = await axiosInstance.post("/auth/login-tenant", {
           googleToken: idToken,
         })
-        // console.log(response)
-        if (response.name === "AxiosError") {
-          throw new Error(
-            response.message,
-            toast({
-              title: "Login failed",
-              description: "Tenant not Found",
-              status: "error",
-            })
-          )
-        }
 
         localStorage.setItem("auth_token", response.data.token)
         dispatch(
@@ -70,14 +59,13 @@ const SignInTenant = () => {
 
         toast({
           title: "Login success",
-          description: response.data.message,
+          description: "Tenant login",
           status: "success",
         })
       } catch (err) {
         console.log(err)
         toast({
           title: "Login Failed",
-          description: err.response.data.message,
           status: "error",
         })
       }
@@ -99,7 +87,7 @@ const SignInTenant = () => {
   }
 
   return (
-    <Center mb="100px" mt="30px">
+    <Center mb="25vh" mt="30px">
       <Box
         display="flex"
         flexDir="column"
@@ -167,7 +155,7 @@ const SignInTenant = () => {
               <br />
               <br />
               <Text fontSize="20px" mr="20px">
-                Not a tenant? <Link to="/register">Sign Up</Link>
+                Not a tenant? <Link to="/register-tenant">Sign Up</Link>
               </Text>
             </form>
           </VStack>

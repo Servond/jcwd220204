@@ -37,6 +37,7 @@ import Footer from "./components/Footer/Footer"
 import UserOrderList from "./pages/UserOrderList"
 import Finances from "./components/finances/Finances"
 import { Spacer } from "@chakra-ui/react"
+import RegisterTenant from "./components/sign-up-form-tenant/sign-up-form-tenant.component"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
@@ -90,6 +91,8 @@ function App() {
         <Route path="/login" element={<SignIn />} />
         <Route path="login/tenant" element={<SignInTenant />} />
         <Route path="/register" element={<SignUpForm />} />
+        <Route path="/register-tenant" element={<RegisterTenant />} />
+
         <Route
           path="/myprofile"
           element={authSelector.id === 0 ? <LoginUserTenant /> : <MyProfile />}

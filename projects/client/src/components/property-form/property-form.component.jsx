@@ -173,7 +173,7 @@ const PropertyForm = () => {
           <Textarea
             // width={{ base: "45vh", sm: "85vh" }}
             display="block"
-            width="90%"
+            width="93%"
             height="20vh"
             label="rules"
             type="text"
@@ -191,7 +191,7 @@ const PropertyForm = () => {
           <Textarea
             display="block"
             // width={{ base: "45vh", sm: "85vh" }}
-            width="90%"
+            width="93%"
             height="20vh"
             label="Description"
             type="text"
@@ -268,7 +268,7 @@ const PropertyForm = () => {
             >
               Upload Your Image
             </Text>
-            <Text textAlign="center" fontSize="15px" color="red" mb="20px">
+            <Text textAlign="center" fontSize="12px" color="red" mb="20px">
               Max file size is 3Mb and only accept JPG, JPEG and PNG
             </Text>
             {/* <Center mb="20px">
@@ -331,12 +331,11 @@ const PropertyForm = () => {
                     position="relative"
                   >
                     <CloseButton
-                      // ml={{ base: "129px", md: "38vh" }}
                       top={{ md: "3", base: "1" }}
                       right={{ base: "3", md: "5" }}
                       position="absolute"
                       border="none"
-                      color="white"
+                      color="red.400"
                       cursor="pointer"
                       size="sm"
                       onClick={() => deleteHandler(image)}

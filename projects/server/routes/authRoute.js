@@ -5,7 +5,16 @@ const { upload } = require("../lib/uploader")
 const router = express.Router()
 const maxSize = 1 * 1024 * 1024
 
-router.post("/register", authController.registerUser)
+router.post("/register-user", authController.registerUser)
+router.post(
+  "/register-tenant",
+  upload({
+    acceptedFileTypes: ["png", "jpeg", "jpg"],
+    filePrefix: "KTP",
+  }).single("ktp"),
+  authController.registerTenant
+)
+
 router.get("/refresh-token", verifyToken, authController.refreshToken)
 router.post("/login-user", authController.loginUser)
 router.post("/login-tenant", authController.loginTenant)

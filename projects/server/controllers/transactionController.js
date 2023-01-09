@@ -293,7 +293,7 @@ const transactionController = {
           model: db.Property,
         },
       })
-      console.log(user)
+      // console.log(user)
       if (user.Properties.length === 0) {
         throw new error()
       }

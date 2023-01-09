@@ -133,7 +133,6 @@ const DetailProperty = () => {
       )
     }
   }
-
   //=============================
   // const getUserReview = property?.Reviews
 

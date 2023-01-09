@@ -83,6 +83,7 @@ const Listing = () => {
                     color={"white"}
                     cursor="pointer"
                     backgroundColor={"orange.400"}
+                    _hover={{ backgroundColor: "orange.300" }}
                     fontSize={"15px"}
                   >
                     Properties
@@ -92,6 +93,7 @@ const Listing = () => {
                   <Button
                     color={"white"}
                     cursor="pointer"
+                    _hover={{ backgroundColor: "orange.300" }}
                     backgroundColor={"orange.400"}
                     fontSize={"15px"}
                   >
@@ -103,6 +105,7 @@ const Listing = () => {
                   <Button
                     color={"white"}
                     cursor="pointer"
+                    _hover={{ backgroundColor: "orange.300" }}
                     backgroundColor={"orange.400"}
                     fontSize={"15px"}
                   >

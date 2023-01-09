@@ -72,7 +72,6 @@ const ChangePass = ({ openModal, setOpenModal }) => {
   return (
     <Modal
       isOpen={openModal}
-      // onClose={modalClose}
       onClose={() => setOpenModal(false)}
       isCentered
       initialFocusRef={focusRef}
@@ -90,9 +89,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
             </Text>
             <FormControl isInvalid={formik.errors.password}>
               <Input
-                // value={password}
                 ref={focusRef}
-                width="30vh"
                 minW={"fit-content"}
                 onChange={formChangeHandler}
                 name="password"
@@ -109,8 +106,6 @@ const ChangePass = ({ openModal, setOpenModal }) => {
             </Text>
             <FormControl isInvalid={formik.errors.confirmpassword}>
               <Input
-                width="30vh"
-                minW={"fit-content"}
                 onChange={formChangeHandler}
                 name="confirmpassword"
                 value={formik.values.confirmPassword}
@@ -127,6 +122,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
               color="white"
               _hover={{ bg: "linkedin.400" }}
               w="140px"
+              mb="20px"
             >
               Submit
             </Button>

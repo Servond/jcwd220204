@@ -87,8 +87,10 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
           <ModalCloseButton border="none" color="black" />
           <ModalBody mt="10px">
             <form onSubmit={handleSubmit}>
-              <FormLabel>Email</FormLabel>
-              <FormLabel>{authSelector.email}</FormLabel>
+              <FormLabel fontWeight="bold">Email :</FormLabel>
+              <FormLabel fontWeight="bold" mb="20px">
+                {authSelector.email}
+              </FormLabel>
               <FormLabel>Enter your password</FormLabel>
               <Input
                 ref={focusRef}
@@ -102,6 +104,7 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
                 bg="linkedin.500"
                 color="white"
                 _hover={{ bg: "linkedin.400" }}
+                mb="20px"
                 width="130px"
               >
                 Submit

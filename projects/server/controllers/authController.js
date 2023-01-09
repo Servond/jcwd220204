@@ -8,7 +8,7 @@ const { verifyGoogleToken } = require("../lib/firebase")
 const authController = {
   registerUser: async (req, res) => {
     try {
-      const { email, role } = req.body
+      const { email, username, phone_number, role, loginWith } = req.body
 
       const findUserByEmail = await User.findOne({
         where: { email },
@@ -22,9 +22,50 @@ const authController = {
 
       await User.create({
         email,
+        username,
+        phone_number,
+        role,
+        loginWith,
       })
 
-      return res.status(201).json({
+      return res.status(200).json({
+        message: "User registered",
+      })
+    } catch (error) {
+      console.log(error)
+      return res.status(500).json({
+        message: "Server error",
+      })
+    }
+  },
+  registerTenant: async (req, res) => {
+    try {
+      const { email, username, phone_number, role, loginWith } = req.body
+
+      if (req.file) {
+        req.body.ktp = req.file.filename
+      }
+
+      const findUserByEmail = await User.findOne({
+        where: { email },
+      })
+
+      if (findUserByEmail) {
+        return res.status(400).json({
+          message: "Another account is using the same email",
+        })
+      }
+
+      await User.create({
+        email,
+        username,
+        phone_number,
+        role,
+        ktp: req.body.ktp,
+        loginWith,
+      })
+
+      return res.status(200).json({
         message: "User registered",
       })
     } catch (error) {

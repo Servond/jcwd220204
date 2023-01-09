@@ -259,7 +259,8 @@ const PaymentProof = () => {
               />
               <Button
                 w="150px"
-                backgroundColor="blue.500"
+                backgroundColor="linkedin.500"
+                _hover={{ backgroundColor: "linkedin.400" }}
                 color="white"
                 onClick={() => {
                   inputFileRef.current.click()
@@ -274,7 +275,8 @@ const PaymentProof = () => {
               <Button
                 w="150px"
                 type="submit"
-                backgroundColor="blue.500"
+                backgroundColor="linkedin.500"
+                _hover={{ backgroundColor: "linkedin.400" }}
                 color="white"
               >
                 Submit
