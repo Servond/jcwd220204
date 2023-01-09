@@ -19,6 +19,7 @@ const UserOrderList = () => {
       console.log(err)
     }
   }
+  console.log(getUserTransaction, "coba")
 
   useEffect(() => {
     fetchUserTransaction()
@@ -29,18 +30,19 @@ const UserOrderList = () => {
       return (
         <UserPage
           key={val.id.toString()}
-          property_name={val.Property.name}
-          address={val.Property.address}
-          cities_name={val.Property.City.cities_name}
+          property_name={val.Property?.name}
+          address={val.Property?.address}
+          cities_name={val.Property?.City?.cities_name}
           start_date={val.start_date}
           end_date={val.end_date}
           status={val.status}
-          property_image={val.Property.PropertyImages}
-          room_name={val.PropertyItem.item_name}
-          capacity={val.PropertyItem.capacity}
-          room_image={val.PropertyItem.Images}
+          property_image={val.Property?.PropertyImages}
+          room_name={val.PropertyItem?.item_name}
+          capacity={val.PropertyItem?.capacity}
+          room_image={val.PropertyItem?.Images}
           property_id={val.PropertyId}
           transaction_id={val.id}
+          review={val.Review}
         />
       )
     })

@@ -338,6 +338,7 @@ const transactionController = {
       const user_name = await User.findByPk(req.params.id, {
         include: {
           model: Transaction,
+          include: { model: db.Review },
         },
       })
 
@@ -350,6 +351,7 @@ const transactionController = {
           id: arrTransaction,
         },
         include: [
+          { model: db.Review },
           {
             model: db.Property,
             include: [{ model: db.PropertyImage }, { model: db.Cities }],

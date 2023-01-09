@@ -97,7 +97,8 @@ const Listing = () => {
                     Order List
                   </Button>
                 </Link>
-                <Link to="/">
+                {/* <Link to={`/finances/${params.id}`}> */}
+                <Link to={`/`}>
                   <Button
                     color={"white"}
                     cursor="pointer"

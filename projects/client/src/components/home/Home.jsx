@@ -26,6 +26,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import TenantHome from "./TenantHome"
 import Slide from "react-reveal/Slide"
+import { Badge } from "antd"
 
 var data = require("../../db/cities_name_data.json")
 
@@ -79,10 +80,13 @@ const Home = () => {
           name={val.name}
           city={val.City}
           properties_image={val.PropertyImages}
+          category={val.Category.category_name}
+          property_item={val.PropertyItems}
         />
       )
     })
   }
+  console.log(property, "coba")
 
   const setMoreBtnHandler = () => {
     setPage(page + 1)
@@ -168,7 +172,7 @@ const Home = () => {
           <Center>
             <VStack>
               <Box display={"block"} ml="-70vw">
-                <HStack gap="2px" marginTop={{ base: "200px", md: "150px" }}>
+                <HStack gap="2px" marginTop={{ base: "23vh", md: "25vh" }}>
                   {!property.length ? (
                     <Center>
                       <Alert
@@ -203,7 +207,13 @@ const Home = () => {
                   )}
                 </HStack>
               </Box>
-              <Grid>{renderProperty()}</Grid>
+              <Grid
+                templateColumns={{ md: "repeat(3,1fr)" }}
+                gap="20px"
+                padding={"20px"}
+              >
+                {renderProperty()}
+              </Grid>
             </VStack>
           </Center>
         </div>

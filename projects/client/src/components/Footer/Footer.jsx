@@ -26,8 +26,9 @@ const Footer = () => {
       width="100vw"
       padding="20px"
       bgColor={"blackAlpha.100"}
+      mt="7vw"
     >
-      <Stack
+      {/* <Stack
         spacing="8"
         direction={{
           base: "column",
@@ -38,8 +39,8 @@ const Footer = () => {
           base: "12",
           md: "16",
         }}
-      >
-        <Stack
+      > */}
+      {/* <Stack
           direction={{
             base: "column-reverse",
             md: "column",
@@ -110,11 +111,11 @@ const Footer = () => {
             </Stack>
           </Stack>
         </Stack>
-      </Stack>
+      </Stack> */}
       <Divider />
       <Stack
-        pt="8"
-        pb="12"
+        pt="5"
+        pb="8"
         justify="space-between"
         direction={{
           base: "column-reverse",
@@ -123,7 +124,7 @@ const Footer = () => {
         align="center"
       >
         <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} Chakra UI Pro, Inc. All rights
+          &copy; {new Date().getFullYear()} Nginep.com, Inc. All rights
           reserved.
         </Text>
         <ButtonGroup variant="ghost">

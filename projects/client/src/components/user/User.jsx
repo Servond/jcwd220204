@@ -1,4 +1,7 @@
 import {
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Box,
   Button,
   Center,
@@ -11,6 +14,7 @@ import {
   Textarea,
   useToast,
   VStack,
+  Alert,
 } from "@chakra-ui/react"
 import React, { useEffect, useState } from "react"
 import { Link, useParams, useLocation } from "react-router-dom"
@@ -38,6 +42,7 @@ const UserPage = ({
   property_id,
   key,
   transaction_id,
+  review,
 }) => {
   const [getUserTransaction, setGetUserTransaction] = useState([])
   const params = useParams()
@@ -62,6 +67,7 @@ const UserPage = ({
           UserId: authSelector.id,
           PropertyId: property_id,
           TransactionId: transaction_id,
+          ReviewId: values.review,
         }
 
         const response = await axiosInstance.post(
@@ -105,6 +111,7 @@ const UserPage = ({
         boxShadow={
           "0px 1px 25px -5px rgb(66 153 225 / 28%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
         }
+        width={{ base: "450px", md: "3xl" }}
       >
         <Grid templateColumns={"repeat(2, 1fr)"} gap="10px">
           <GridItem>
@@ -116,7 +123,7 @@ const UserPage = ({
               autoPlay={true}
               stopOnHover={true}
             >
-              {property_image.map((value) => (
+              {property_image?.map((value) => (
                 <Image
                   src={`http://localhost:8000/public/${value.image_url}`}
                   rounded={"md"}
@@ -147,6 +154,19 @@ const UserPage = ({
                 Order status: {status}
                 <br />
                 {status === "waiting for payment" && <Progress percent={30} />}
+                {status === "waiting for payment" && (
+                  <Link to={`/payment-proof/${params.id}`}>
+                    <Button
+                      cursor={"pointer"}
+                      size="sm"
+                      bg="red.500"
+                      _hover={{ bg: "red.400" }}
+                      color="white"
+                    >
+                      Complete your payment
+                    </Button>
+                  </Link>
+                )}
                 {status === "need accepted" && (
                   <Progress percent={50} status="active" />
                 )}
@@ -159,6 +179,9 @@ const UserPage = ({
                       "100%": "#87d068",
                     }}
                   />
+                )}
+                {status === "in progress" && (
+                  <Text color={"red"}>Don't forget your CheckIn date</Text>
                 )}
                 {status === "accepted" && <Progress percent={100} />}
                 {status === "cancelled" && (
@@ -193,31 +216,43 @@ const UserPage = ({
             </Box>
           </GridItem>
         </Grid>
-
-        {moment(end_date).utc().format("YYYY-MM-DD") <= today &&
-        status === "accepted" ? (
-          <form onSubmit={formik.handleSubmit}>
-            <Textarea
-              placeholder="write your review here"
-              fontSize={"13px"}
-              fontStyle="italic"
-              color={"gray.400"}
-              onChange={formChangeHandler}
-              name="review"
-              value={formik.values.review}
-            />
-            <Button
-              colorScheme={"blue"}
-              type="submit"
-              boxShadow={
-                "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-              }
-              cursor={"pointer"}
-            >
-              Submit
-            </Button>
-          </form>
-        ) : null}
+        {review === null ? (
+          moment(end_date).utc().format("YYYY-MM-DD") <= today &&
+          status === "accepted" ? (
+            <form onSubmit={formik.handleSubmit}>
+              <Textarea
+                placeholder="write your review here"
+                fontSize={"13px"}
+                fontStyle="italic"
+                color={"gray.400"}
+                onChange={formChangeHandler}
+                name="review"
+                value={formik.values.review}
+              />
+              <Button
+                colorScheme={"blue"}
+                type="submit"
+                boxShadow={
+                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                }
+                cursor={"pointer"}
+                mt="10px"
+              >
+                Submit
+              </Button>
+            </form>
+          ) : null
+        ) : (
+          <Alert
+            flexDirection="column"
+            status="success"
+            maxWidth={{ base: "400px", md: "3xl" }}
+          >
+            <AlertIcon />
+            Review submitted!
+            <AlertDescription>Thank you for your feedback</AlertDescription>
+          </Alert>
+        )}
       </Box>
     </Center>
   )

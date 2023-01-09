@@ -65,19 +65,6 @@ module.exports = {
       })
 
       await db.Images.bulkCreate(newRoomImg)
-      // if (req.file == undefined) {
-      //   return res.send(`You must select a file.`)
-      // }
-
-      // Images.create({
-      //   type: req.file.mimetype,
-      //   name: req.file.originalname,
-      //   data: fs.readFileSync(__basedir + "/public" + req.file.filename),
-      // }).then((image) => {
-      //   fs.writeFileSync(__basedir + "/public" + image.name, image.data)
-
-      //   return res.send(`File has been uploaded.`)
-      // })
 
       //================================
 

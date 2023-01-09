@@ -20,10 +20,39 @@ router.patch(
     acceptedFileTypes: ["png", "jpeg", "jpg", "gif"],
     filePrefix: "PICT",
     limits: {
-      fileSize: maxSize,
+      maxSize: 1 * 1024 * 1024,
     },
   }).single("profile_picture"),
-  authController.editUserProfile
+  authController.editUserProfile,
+  (error, req, res, next) => {
+    // Check if an error occurred while uploading the file
+    if (error) {
+      // An error occurred, so check the error code to determine the reason
+      switch (error.code) {
+        case "LIMIT_FILE_SIZE":
+          // File is too large
+          return res.status(400).send({
+            success: false,
+            message: "File size must be less than 1 megabyte",
+          })
+        case "LIMIT_UNEXPECTED_FILE":
+          // Unexpected field
+          return res.status(400).send({
+            success: false,
+            message: "Unexpected field",
+          })
+        default:
+          // Unknown error
+          return res.status(500).send({
+            success: false,
+            message: "An error occurred while uploading the file",
+          })
+      }
+    } else {
+      // No error occurred, so continue processing the request
+      next()
+    }
+  }
 )
 
 module.exports = router
