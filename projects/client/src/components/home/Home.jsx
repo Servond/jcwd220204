@@ -170,8 +170,8 @@ const Home = () => {
           </div>
           <Center>
             <VStack>
-              <Box display={"block"} ml="-70vw">
-                <HStack gap="2px" marginTop={{ base: "23vh", md: "25vh" }}>
+              <Box ml="-70vw">
+                <HStack gap="2px" marginTop={{ base: "23vh", md: "20vh" }}>
                   {!property.length ? (
                     <Center>
                       <Alert

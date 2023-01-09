@@ -6,7 +6,11 @@ import { Button, Result } from "antd"
 const NotFoundPage = () => {
   return (
     <>
-      <Box textAlign="center" mt={"100px"}>
+      <Box
+        textAlign="center"
+        mt={{ base: "100px", md: "500px" }}
+        height="100vh"
+      >
         {/* <Image src={Error} alt="" /> */}
         <Text color="gray.500" mb="6">
           Please login/register to use this feature

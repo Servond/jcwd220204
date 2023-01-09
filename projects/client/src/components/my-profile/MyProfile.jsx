@@ -32,7 +32,12 @@ const MyProfile = () => {
 
   return (
     <>
-      <Center padding="25px" mt={{ base: "75px", md: "200px" }} mb="17vh">
+      <Center
+        padding="25px"
+        // mt={{ base: "75px", md: "200px" }}
+        mb="17vh"
+        height="100vh"
+      >
         <Stack
           borderWidth="1px"
           borderRadius="lg"

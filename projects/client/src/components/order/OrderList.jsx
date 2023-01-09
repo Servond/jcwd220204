@@ -60,6 +60,7 @@ const OrderList = () => {
         backgroundColor={"whiteAlpha.900"}
         mb="10vh"
         // ml={{ base: "2vw", md: "10vw" }}
+        height="100vh"
       >
         <Link to={`/tenant/${findParams}`}>
           <GrLinkPrevious size={"25px"} />
