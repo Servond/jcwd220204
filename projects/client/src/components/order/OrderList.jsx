@@ -44,7 +44,7 @@ const OrderList = () => {
       console.log(err)
     }
   }
-  console.log(orderList, "cobas")
+
   useEffect(() => {
     fetchOrderList()
   }, [])
@@ -53,7 +53,7 @@ const OrderList = () => {
     <Center>
       <Box
         mt={{ base: "75px", md: "200px" }}
-        width={{ base: "350px", md: "3xl" }}
+        width={{ base: "350px", md: "5xl" }}
         boxShadow={
           "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
         }

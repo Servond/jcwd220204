@@ -7,19 +7,18 @@ import { Link, useParams } from "react-router-dom"
 
 const UserOrderList = () => {
   const [getUserTransaction, setGetUserTransaction] = useState([])
-  console.log(getUserTransaction, "coba")
+
   const params = useParams()
 
   const fetchUserTransaction = async () => {
     try {
       const response = await axiosInstance.get(`/transaction/user/${params.id}`)
-      console.log(response, "coba10")
+
       setGetUserTransaction(response.data.data)
     } catch (err) {
       console.log(err)
     }
   }
-  console.log(getUserTransaction, "coba")
 
   useEffect(() => {
     fetchUserTransaction()

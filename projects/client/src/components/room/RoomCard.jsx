@@ -197,7 +197,6 @@ const RoomCard = ({
   //================================SHOW DATA IN CALENDAR
 
   const getDate = calendars.map((val) => val.startDate)
-  console.log(getDate)
 
   useEffect(
     () => {

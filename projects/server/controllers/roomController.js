@@ -161,7 +161,7 @@ module.exports = {
         picture_url: req.file.filename,
         PropertyItemId: req.params.id,
       })
-      console.log(req.file.filename)
+
       return res.status(200).json({
         message: "Room images has been added",
         data: newImgRoom,

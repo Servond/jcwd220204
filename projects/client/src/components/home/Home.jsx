@@ -86,7 +86,6 @@ const Home = () => {
       )
     })
   }
-  console.log(property, "coba")
 
   const setMoreBtnHandler = () => {
     setPage(page + 1)

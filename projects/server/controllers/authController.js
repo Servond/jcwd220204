@@ -218,18 +218,8 @@ const authController = {
     }
   },
   editUserProfile: async (req, res) => {
-    // const path = "public/"
-
-    // const fileName = await User.findOne({
-    //   where: {
-    //     profile_picture: req.params.profile_picture,
-    //   },
-    // })
-    // console.log(fileName)
-
     try {
       if (req.file) {
-        // req.body.profile_picture = `http://localhost:8000/public/${req.file.filename}`
         req.body.profile_picture = req.file.filename
       }
 
