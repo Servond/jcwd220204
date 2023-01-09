@@ -72,7 +72,6 @@ const DetailProperty = () => {
       console.log(err)
     }
   }
-  console.log(property, "tryyy")
 
   //=============================
 
@@ -98,9 +97,9 @@ const DetailProperty = () => {
     return formattedNewDate
   })
 
-  const findDate = (value) => {
-    console.log(value.format("YYYYMMDD"), "format")
-  }
+  // const findDate = (value) => {
+  //   console.log(value.format("YYYYMMDD"), "format")
+  // }
 
   const DateCellRender = (date) => {
     const dateStr = date.format("YYYYMMDD")
@@ -124,7 +123,6 @@ const DetailProperty = () => {
       )
     }
   }
-  console.log(getDateRooms, "try")
   //=============================
   // const getUserReview = property?.Reviews
 
@@ -290,72 +288,70 @@ const DetailProperty = () => {
               </Alert>
             ) : (
               room.map((val) => (
-                <Center>
+                <Box
+                  border={"2px solid"}
+                  w={{ base: "200px", md: "300px" }}
+                  rounded={"md"}
+                  mb={"10px"}
+                  borderColor="teal.300"
+                  backgroundColor="linkedin.400"
+                  color={"white"}
+                  fontWeight="extrabold"
+                >
                   <Box
-                    border={"2px solid"}
-                    w={{ base: "200px", md: "300px" }}
-                    rounded={"md"}
-                    mb={"10px"}
-                    borderColor="teal.300"
-                    backgroundColor="linkedin.400"
-                    color={"white"}
-                    fontWeight="extrabold"
+                    backgroundColor={"white"}
+                    // border="2px solid red"
+                    maxHeight={{ base: "200px", md: "300px" }}
                   >
-                    <Box
-                      backgroundColor={"white"}
-                      // border="2px solid red"
-                      maxHeight={"200px"}
+                    <Carousel
+                      autoplay
+                      effect="fade"
+                      dotPosition="left"
+                      dots={false}
+                      easing="linear"
+                      // style={contentStyle}
                     >
-                      <Carousel
-                        autoplay
-                        effect="fade"
-                        dotPosition="left"
-                        dots={false}
-                        easing="linear"
-                        // style={contentStyle}
-                      >
-                        {val.Images.map((value) => (
-                          <Image
-                            src={`http://localhost:8000/public/${value.picture_url}`}
-                            rounded={"md"}
-                            fit={"cover"}
-                            align={"center"}
-                            maxW={"100%"}
-                          />
-                        ))}
-                      </Carousel>
-                    </Box>
-
-                    <Text
-                      fontFamily={"sans-serif"}
-                      fontSize={{ base: "13.5px", md: "20px" }}
-                    >
-                      Room: {val.item_name} type
-                    </Text>
-                    <Text
-                      color={"white"}
-                      fontSize={{ base: "x-small", md: "md" }}
-                    >
-                      {new Intl.NumberFormat("ja-JP", {
-                        style: "currency",
-                        currency: "JPY",
-                      }).format(val.price)}
-                      / room / night
-                    </Text>
-                    <Text
-                      color={"white"}
-                      fontSize={{ base: "x-small", md: "md" }}
-                    >
-                      Max. capacity: {val.capacity} People
-                    </Text>
-                    <Text
-                      color={"white"}
-                      ffontSize={{ base: "x-small", md: "md" }}
-                    >
-                      {val.description}
-                    </Text>
+                      {val.Images.map((value) => (
+                        <Image
+                          src={`http://localhost:8000/public/${value.picture_url}`}
+                          rounded={"md"}
+                          fit={"cover"}
+                          align={"center"}
+                          maxW={"100%"}
+                        />
+                      ))}
+                    </Carousel>
                   </Box>
-                </Center>
+
+                  <Text
+                    fontFamily={"sans-serif"}
+                    fontSize={{ base: "13.5px", md: "20px" }}
+                  >
+                    Room: {val.item_name} type
+                  </Text>
+                  <Text
+                    color={"white"}
+                    fontSize={{ base: "x-small", md: "md" }}
+                  >
+                    {new Intl.NumberFormat("ja-JP", {
+                      style: "currency",
+                      currency: "JPY",
+                    }).format(val.price)}
+                    / room / night
+                  </Text>
+                  <Text
+                    color={"white"}
+                    fontSize={{ base: "x-small", md: "md" }}
+                  >
+                    Max. capacity: {val.capacity} People
+                  </Text>
+                  <Text
+                    color={"white"}
+                    ffontSize={{ base: "x-small", md: "md" }}
+                  >
+                    {val.description}
+                  </Text>
+                </Box>
               ))
             )}
 

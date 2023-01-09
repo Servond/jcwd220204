@@ -3,8 +3,6 @@ import {
   Box,
   Button,
   Container,
-  Divider,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -17,15 +15,13 @@ import {
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { axiosInstance } from "../../api"
-import { GrLinkPrevious } from "react-icons/gr"
 
-//===================firebase=====================
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../config/firebase"
 import { Link, useNavigate } from "react-router-dom"
-//===================firebase=====================
+import { GrLinkPrevious } from "react-icons/gr"
 
-const RegisterUser = () => {
+const RegisterTenant = () => {
   const toast = useToast()
   const navigate = useNavigate()
 
@@ -34,40 +30,42 @@ const RegisterUser = () => {
       email: "",
       password: "",
       phone_number: "",
-      role: "user",
       username: "",
+      role: "tenant",
+      ktp: "",
       loginWith: "email",
     },
-    onSubmit: async ({
-      email,
-      password,
-      username,
-      phone_number,
-      role,
-      loginWith,
-    }) => {
+
+    onSubmit: async (values) => {
       try {
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, values.email, values.password)
           .then(async (userCredential) => {
             // Signed in
             const user = userCredential.user
             // console.log(user)
 
-            const response = await axiosInstance.post("/auth/register-user", {
-              email,
-              password,
-              username,
-              phone_number,
-              role,
-              loginWith,
-            })
+            let newAcc = new FormData()
+
+            newAcc.append("email", values.email)
+            newAcc.append("password", values.password)
+            newAcc.append("username", values.username)
+            newAcc.append("phone_number", values.phone_number)
+            newAcc.append("role", values.role)
+            newAcc.append("ktp", values.ktp)
+            newAcc.append("loginWith", values.loginWith)
+
+            const response = await axiosInstance.post(
+              "/auth/register-tenant",
+              newAcc
+            )
+
+            navigate("/login/tenant")
 
             toast({
               title: "Registration successful",
               description: response.data.message,
               status: "success",
             })
-            navigate("/login")
           })
           .catch((error) => {
             const errorCode = error.code
@@ -82,7 +80,7 @@ const RegisterUser = () => {
       } catch (err) {
         toast({
           title: "Registration failed",
-          description: err.response.data.message,
+          //   description: err.response.data.message,
           status: "error",
         })
         console.log(err)
@@ -92,6 +90,7 @@ const RegisterUser = () => {
       email: Yup.string().required("Please enter your email address").email(),
       username: Yup.string().required("Please enter your username"),
       phone_number: Yup.number().required("Please enter your phone number"),
+      ktp: Yup.mixed().required("Please upload your KTP"),
       password: Yup.string()
         .required("Please enter your new password")
         .matches(
@@ -108,7 +107,7 @@ const RegisterUser = () => {
   }
 
   return (
-    <Box h="fit-content" display={"flex"} mt="100px">
+    <Box h="100vh" display={"flex"} alignItems="center">
       <Container>
         <Box p="8">
           <HStack mb="8">
@@ -116,7 +115,7 @@ const RegisterUser = () => {
               <GrLinkPrevious size={"35px"} />
             </Link>
             <Text fontWeight="bold" fontSize="3xl" paddingLeft="10">
-              Create New User Account
+              Create New Tenant Account
             </Text>
           </HStack>
           <form onSubmit={formik.handleSubmit}>
@@ -162,11 +161,23 @@ const RegisterUser = () => {
                   name="password"
                   onChange={formChangeHandler}
                   type="password"
-                  marginBottom="20px"
                 />
                 <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
               </FormControl>
-              <Button type="submit" colorScheme="whatsapp" color="white">
+              <FormControl>
+                <FormLabel>KTP</FormLabel>
+                <Input
+                  borderColor={"blackAlpha.500"}
+                  name="ktp"
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    formik.setFieldValue("ktp", event.target.files[0])
+                  }}
+                  marginBottom="20px"
+                />
+              </FormControl>
+              <Button type="submit" colorScheme="whatsapp">
                 Sign up
               </Button>
             </Stack>
@@ -177,4 +188,4 @@ const RegisterUser = () => {
   )
 }
 
-export default RegisterUser
+export default RegisterTenant

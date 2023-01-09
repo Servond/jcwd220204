@@ -82,7 +82,7 @@ const EditProperty = () => {
     getProperty()
   }, [])
   return (
-    <Center mt={{ md: "41vh", base: "58vh" }} mb={{ md: "30vh", base: "43vh" }}>
+    <Center mt={{ md: "45vh", base: "58vh" }} mb={{ md: "40vh", base: "43vh" }}>
       <Box
         minW={{ md: "90vh", base: "fit-content" }}
         w="fit-content"

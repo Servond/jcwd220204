@@ -101,16 +101,6 @@ const SignIn = () => {
         })
         localStorage.setItem("auth_token", response.data.token)
 
-        // console.log(response)
-        if (response.name === "AxiosError") {
-          throw new Error(
-            response.message,
-            toast({
-              title: "Login failed",
-              status: "error",
-            })
-          )
-        }
         dispatch(
           login({
             id: response.data.data.id,
@@ -133,7 +123,6 @@ const SignIn = () => {
         console.log(err)
         toast({
           title: "Login Failed",
-          description: err.response.data.message,
           status: "error",
         })
       }
@@ -154,7 +143,7 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center mb="100px" mt="30px">
+    <Center mb="25vh" mt="30px">
       <Box
         display="flex"
         flexDir="column"
