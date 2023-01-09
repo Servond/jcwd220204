@@ -26,7 +26,7 @@ const DummyTransaction = () => {
 
       toast({
         status: "success",
-        title: "dummy transaction created",
+        title: "Dummy transaction created",
       })
     } catch (err) {
       console.log(err)

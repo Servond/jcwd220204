@@ -1,13 +1,9 @@
 import {
-  AvatarBadge,
   Box,
   Button,
   Center,
   CloseButton,
   Flex,
-  Grid,
-  GridItem,
-  IconButton,
   Image,
   Input,
   Modal,
@@ -15,13 +11,11 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  SimpleGrid,
   Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react"
 import { ArrowBackIcon } from "@chakra-ui/icons"
-import "./post-prop-img.styles.css"
 import { useEffect, useRef, useState } from "react"
 import { BsUpload } from "react-icons/bs"
 import { useNavigate, useParams } from "react-router-dom"
@@ -30,20 +24,17 @@ import { axiosInstance } from "../../api"
 const PostPropImg = () => {
   const toast = useToast()
   const inputFileRef = useRef()
-  const deleteRef = useRef()
   const params = useParams()
   const navigate = useNavigate()
   const [propertyImage, setPropertyImage] = useState([])
   const [openId, setOpenId] = useState(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [errorMsg, setErrorMsg] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
   // =============================== Get Prop Image ========================================
   const getProperty = async () => {
     try {
       const responseProp = await axiosInstance.get(`/property/${params.id}`)
-      console.log(responseProp.data)
+      // console.log(responseProp.data)
       setPropertyImage(responseProp.data.data.PropertyImages)
     } catch (err) {
       console.log(err)
@@ -56,8 +47,6 @@ const PostPropImg = () => {
       await axiosInstance.delete(`/property/delete/image/${openId.id}`)
       getProperty()
       setOpenId(null)
-      // window.location.reload(false)
-      // navigate(0)
       toast({ title: "Image deleted", status: "info" })
     } catch (err) {
       console.log(err)
@@ -101,10 +90,9 @@ const PostPropImg = () => {
     getProperty()
   }, [openId])
   return (
-    <Box mt="10vh" ml="7px" w={{ base: "54vh", md: "99vw" }} p="10px">
+    <Box mt="10vh" ml="7px" mr="7px">
       <ArrowBackIcon
-        mr="70vh"
-        mt="15px"
+        ml={{ md: "20px", base: 0 }}
         fontSize="25px"
         onClick={() => {
           navigate(-1)
@@ -119,7 +107,7 @@ const PostPropImg = () => {
           <br />
           <br />
 
-          <Text textAlign="center" fontSize="15px" color="red" mb="20px">
+          <Text textAlign="center" fontSize="13px" color="red" mb="20px">
             Max file size is 3Mb and only accept JPG, JPEG and PNG
           </Text>
           <Input
@@ -179,10 +167,8 @@ const PostPropImg = () => {
                 position="absolute"
                 right={{ md: "5", base: "3" }}
                 top={{ md: "3", base: "1" }}
-                display=""
                 border="none"
-                color="white"
-                colors
+                color="red.400"
                 onClick={() => {
                   setOpenId(val)
                   onOpen()

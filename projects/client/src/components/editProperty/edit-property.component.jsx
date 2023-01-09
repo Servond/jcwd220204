@@ -2,6 +2,7 @@ import { ArrowBackIcon } from "@chakra-ui/icons"
 import {
   Box,
   Button,
+  ButtonGroup,
   Center,
   Container,
   Flex,
@@ -81,27 +82,25 @@ const EditProperty = () => {
     getProperty()
   }, [])
   return (
-    <Center mt={{ md: "50vh", base: "65vh" }} mb="500px">
+    <Center mt={{ md: "41vh", base: "58vh" }} mb={{ md: "30vh", base: "43vh" }}>
       <Box
-        maxW="71vh"
-        minW="20vh"
-        w={{ base: "55vh", sm: "71vh" }}
+        minW={{ md: "90vh", base: "fit-content" }}
+        w="fit-content"
         position="absolute"
         ml="5px"
       >
-        <Text as="b" fontSize="xx-large" mb="50px">
+        <Text
+          as="b"
+          fontSize="xx-large"
+          mb="50px"
+          // textAlign={{ base: "center" }}
+        >
           {" "}
           Edit Property Form
         </Text>
-        <Box
-          alignContent="center"
-          justifyContent="center"
-          mt="20px"
-          mr="-10px"
-          height={{ base: "80vh", sm: "58vh" }}
-        >
+        <Box mt="20px" height={{ base: "80vh", sm: "58vh" }} w="100%">
           <form onSubmit={formik.handleSubmit}>
-            <Box mb="20px" mt="22px" maxW="70vh" minW="20vh" mr="20px">
+            <Box mb="20px" mt="22px" mr="20px">
               <Text as="b" fontSize="16px">
                 Property Name
               </Text>
@@ -115,7 +114,7 @@ const EditProperty = () => {
                 color="black"
               />
             </Box>
-            <Box mb="20px" maxW="70vh" minW="20vh" mr="20px">
+            <Box mb="20px" mr="20px">
               <Text as="b" fontSize="16px">
                 Address
               </Text>
@@ -129,7 +128,7 @@ const EditProperty = () => {
                 color="black"
               />
             </Box>
-            <Box mb="20px" maxW="70vh" minW="20vh" mr="20px">
+            <Box mb="20px" mr="20px">
               <Text as="b" fontSize="16px">
                 Rules
               </Text>
@@ -143,7 +142,7 @@ const EditProperty = () => {
                 name="rules"
               />
             </Box>
-            <Box mb="20px" maxW="70vh" minW="20vh" mr="20px">
+            <Box mb="20px" mr="20px">
               <Text as="b" fontSize="16px">
                 Description
               </Text>
@@ -157,28 +156,35 @@ const EditProperty = () => {
                 name="description"
               />
             </Box>
-            <Center mr="20px" display="block">
-              <Button
-                type="submit"
-                width="fit-content"
-                minWidth={{ md: "70vh", base: "50vh" }}
-                color="white"
-                backgroundColor="linkedin.500"
-                _hover={{ backgroundColor: "linkedin.400" }}
-                mb="10px"
-              >
-                Submit
-              </Button>
-              <Button
-                width="fit-content"
-                minWidth={{ md: "70vh", base: "50vh" }}
-                color="white"
-                backgroundColor="red.500"
-                _hover={{ backgroundColor: "red.400" }}
-                onClick={() => navigate(-1)}
-              >
-                Cancel
-              </Button>
+            <Center mr="20px" display="flex">
+              <ButtonGroup w="100%">
+                <Button
+                  type="submit"
+                  // width="fit-content"
+                  w={{ base: "100%", md: "50%" }}
+                  // minWidth={{ md: "70vh", base: "50vh" }}
+                  color="white"
+                  backgroundColor="linkedin.500"
+                  _hover={{ backgroundColor: "linkedin.400" }}
+                  mb="10px"
+                  // left="17%"
+                >
+                  Submit
+                </Button>
+                <Button
+                  // width="fit-content"
+                  // minWidth={{ md: "70vh", base: "50vh" }}
+                  w={{ base: "100%", md: "50%" }}
+                  // left="17%"
+                  // right="50"
+                  color="white"
+                  backgroundColor="red.500"
+                  _hover={{ backgroundColor: "red.400" }}
+                  onClick={() => navigate(-1)}
+                >
+                  Cancel
+                </Button>
+              </ButtonGroup>
             </Center>
           </form>
         </Box>
