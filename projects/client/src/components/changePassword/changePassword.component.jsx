@@ -28,16 +28,16 @@ const ChangePass = ({ openModal, setOpenModal }) => {
   const focusRef = useRef(null)
   const toast = useToast()
   const [closeModal, setCloseModal] = useState(true)
-  // console.log("HALO")
+
   const formik = useFormik({
     initialValues: {
       password: "",
-      // changepassword: "",
     },
     onSubmit: async () => {
       try {
         await updatePassword(user, formik.values.password)
         setOpenModal(false)
+
         onClose(closeModal)
         toast({
           title: "Password has been change",
@@ -50,7 +50,6 @@ const ChangePass = ({ openModal, setOpenModal }) => {
           status: "error",
         })
       }
-      console.log(openModal)
     },
     validationSchema: Yup.object({
       password: Yup.string()
@@ -63,7 +62,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
         .required("Re type your new password")
         .oneOf([Yup.ref("password"), null], "Password must match"),
     }),
-    validateOnChange: false,
+    validateOnChange: true,
   })
   const formChangeHandler = ({ target }) => {
     const { name, value } = target
@@ -79,7 +78,7 @@ const ChangePass = ({ openModal, setOpenModal }) => {
       initialFocusRef={focusRef}
     >
       <ModalOverlay />
-      <ModalContent height="80vh">
+      <ModalContent height={{ base: "fit-content", md: "fit-content" }}>
         <ModalHeader borderRadius="10px">
           <Text>Enter your new password</Text>
         </ModalHeader>
@@ -98,8 +97,8 @@ const ChangePass = ({ openModal, setOpenModal }) => {
                 onChange={formChangeHandler}
                 name="password"
                 value={formik.values.password}
-                // onChange={(e) => setPassword(e.target.value)}
                 mb="20px"
+                type="password"
               />
               <FormErrorMessage mb="20px" mt="-10px">
                 {formik.errors.password}
@@ -110,28 +109,23 @@ const ChangePass = ({ openModal, setOpenModal }) => {
             </Text>
             <FormControl isInvalid={formik.errors.confirmpassword}>
               <Input
-                // value={confirmPassword}
                 width="30vh"
                 minW={"fit-content"}
-                // onChange={(e) => setConfirmPassword(e.target.value)}
-                // {...{ setPassword: setConfirmPassword }}
                 onChange={formChangeHandler}
                 name="confirmpassword"
                 value={formik.values.confirmPassword}
-
-                // mb="30px"
-                //     onBlur={}
+                type="password"
               />
               <FormErrorMessage>
                 {formik.errors.confirmpassword}
               </FormErrorMessage>
             </FormControl>
             <Button
-              mt="40px"
+              mt="20px"
               type="submit"
-              bg="blue.500"
+              bg="linkedin.500"
               color="white"
-              _hover={{ bg: "blue.400" }}
+              _hover={{ bg: "linkedin.400" }}
               w="140px"
             >
               Submit

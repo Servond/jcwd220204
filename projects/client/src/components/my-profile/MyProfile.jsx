@@ -16,8 +16,10 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react"
+import ReAuth from "../reAuthUser/reAuth.component"
 import moment from "moment"
 
 const MyProfile = () => {
@@ -26,6 +28,7 @@ const MyProfile = () => {
   const [user, setUser] = useState({})
   const params = useParams()
   const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -119,28 +122,32 @@ const MyProfile = () => {
                   Edit Profile
                 </Button>
               </Link>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"lg"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
-                cursor={"pointer"}
-              >
-                Change Password
-              </Button>
+              {authSelector.loginWith === "email" ? (
+                <Button
+                  flex={1}
+                  fontSize={"sm"}
+                  rounded={"lg"}
+                  bg={"blue.400"}
+                  color={"white"}
+                  boxShadow={
+                    "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                  }
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                  _focus={{
+                    bg: "blue.500",
+                  }}
+                  cursor={"pointer"}
+                  onClick={onOpen}
+                >
+                  Change Password
+                </Button>
+              ) : null}
             </ButtonGroup>
           </Stack>
         </Stack>
+        <ReAuth isOpen={isOpen} onClose={onClose} />
       </Center>
     </>
   )

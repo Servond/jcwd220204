@@ -13,7 +13,7 @@ router.post(
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "picture_url",
-    // maxSize: 3 * 1024 * 1024,
+    maxSize: 1 * 1024 * 1024,
   }).array("picture_url", 6),
   roomController.createRoom
 )
@@ -22,7 +22,7 @@ router.post(
   upload({
     acceptedFileTypes: ["png", "jpeg", "jpg"],
     filePrefix: "picture_url",
-    // maxSize: 3 * 1024 * 1024,
+    maxSize: 1 * 1024 * 1024,
   }).single("picture_url"),
   roomController.postImageRoom
 )

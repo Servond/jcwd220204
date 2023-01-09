@@ -8,7 +8,7 @@ import Popular from "../popular/Popular"
 import { useDispatch, useSelector } from "react-redux"
 import SignIn from "../sign-in-form/sign-in.component"
 import { logout } from "../../redux/features/authSlice"
-import { Text } from "@chakra-ui/react"
+import { Text, useToast } from "@chakra-ui/react"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [active, setActive] = useState("navBar")
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const toast = useToast()
 
   const showNav = () => {
     setActive("navBar activeNavbar")
@@ -38,6 +39,10 @@ const Navbar = () => {
   const logoutBtnHandler = () => {
     localStorage.removeItem("auth_token")
     dispatch(logout())
+    toast({
+      status: "error",
+      title: "User logout",
+    })
     navigate("/")
   }
   return (

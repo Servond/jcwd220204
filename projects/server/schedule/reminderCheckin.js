@@ -1,12 +1,9 @@
 const schedule = require("node-schedule")
 const db = require("../models")
 const moment = require("moment")
-const { Op } = require("sequelize")
 const fs = require("fs")
 const emailer = require("../lib/emailer")
 const handlebars = require("handlebars")
-// findID yg baru di buat, lihat status ketika udh confirm dan status isChecked false
-// send email dan blm pernah di kirim email
 
 const dummy = {
   id: 19,
@@ -14,8 +11,8 @@ const dummy = {
 
 const sendAutoEmail = async (objectTransaction) => {
   const getStartDate = objectTransaction.start_date
-  // const reminder = moment(getStartDate).subtract(1, "days")
-  const reminder = moment().add(20, "seconds")
+  const reminder = moment(getStartDate).subtract(1, "days")
+  // const reminder = moment().add(1, "minutes")
   schedule.scheduleJob(new Date(reminder), async () => {
     try {
       const transactionData = await db.Transaction.findByPk(

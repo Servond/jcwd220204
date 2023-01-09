@@ -40,7 +40,6 @@ import { Spacer } from "@chakra-ui/react"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
-
   const [message, setMessage] = useState("")
   const location = useLocation()
 

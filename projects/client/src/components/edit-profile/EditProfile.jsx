@@ -251,7 +251,6 @@ const EditProfile = () => {
                         action="/upload.do"
                         listType="picture-card"
                         beforeUpload={beforeUpload}
-                        // showUploadList={false}
                       >
                         <div>
                           <PlusOutlined />
@@ -266,7 +265,7 @@ const EditProfile = () => {
                       </Upload>
                     </Form.Item>
                     <Center>
-                      <ButtonGroup mb={"15px"}>
+                      <ButtonGroup mb="15px">
                         <Button
                           type="button"
                           onClick={formik.handleSubmit}

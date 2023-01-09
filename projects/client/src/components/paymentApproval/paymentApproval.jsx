@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { axiosInstance } from "../../api"
 import Moment from "react-moment"
 
@@ -30,6 +30,7 @@ const PaymentApproval = () => {
   const [propertyName, setPropertyName] = useState("")
   const [roomType, setRoomType] = useState("")
   const [userEmail, setUserEmail] = useState("")
+  const navigate = useNavigate()
 
   const toast = useToast()
   const params = useParams()
@@ -44,7 +45,6 @@ const PaymentApproval = () => {
         `/transaction/user-data/${params.id}`
       )
 
-      console.log(responseDataTransaction)
       setPaymentProof(responseDataTransaction.data.data.payment_proof)
       setPrice(responseDataTransaction.data.data.price)
       setGetStartDate(responseDataTransaction.data.data.start_date)
@@ -56,17 +56,16 @@ const PaymentApproval = () => {
       console.log(err)
     }
   }
-  console.log(paymentProof)
 
   // ========================= Approve Payment ============================
   const acceptPayment = async () => {
     try {
       await axiosInstance.patch(`/transaction/approve/${params.id}`)
+      navigate(-1)
       toast({
         status: "success",
         title: "Accept payment",
       })
-      // onClose(modalApprove.onClose)
     } catch (err) {
       console.log(err)
     }
@@ -76,6 +75,7 @@ const PaymentApproval = () => {
   const rejectPayment = async () => {
     try {
       await axiosInstance.patch(`/transaction/reject/${params.id}`)
+      navigate(-1)
       toast({
         status: "success",
         title: "Reject payment",
@@ -88,6 +88,7 @@ const PaymentApproval = () => {
   const canceledPayment = async () => {
     try {
       await axiosInstance.patch(`/transaction/canceled/${params.id}`)
+      navigate(-1)
       toast({
         status: "success",
         title: "Cancel this payment",
@@ -104,7 +105,6 @@ const PaymentApproval = () => {
     <Center>
       <Box
         mt="100px"
-        // border="1px solid black"
         padding="25px"
         textAlign="center"
         w={{ base: "380px", md: "fit-content" }}
@@ -131,25 +131,28 @@ const PaymentApproval = () => {
           mb="15px"
         />
         <Flex mb="25px" borderBottom="1px solid black">
-          <Text fontSize="25px">Property Name : </Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>Property Name : </Text>
           <Spacer />
-          <Text fontSize="25px" textTransform="capitalize">
+          <Text
+            fontSize={{ md: "25px", base: "20px" }}
+            textTransform="capitalize"
+          >
             {" "}
             {propertyName}
           </Text>
         </Flex>
 
         <Flex mb="25px" borderBottom="1px solid black">
-          <Text fontSize="25px">Room Type : </Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>Room Type : </Text>
           <Spacer />
 
-          <Text fontSize="25px">{roomType}</Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>{roomType}</Text>
         </Flex>
 
         <Flex mb="25px" borderBottom="1px solid black">
-          <Text fontSize="25px">Check in time :</Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>Check in time :</Text>
           <Spacer />
-          <Text fontSize="25px">
+          <Text fontSize={{ md: "25px", base: "20px" }}>
             <Moment format="D MMM YYYY" add={{ hours: -7 }}>
               {getStartDate}
             </Moment>
@@ -157,9 +160,9 @@ const PaymentApproval = () => {
         </Flex>
 
         <Flex mb="25px" borderBottom="1px solid black">
-          <Text fontSize="25px">Check out time :</Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>Check out time :</Text>
           <Spacer />
-          <Text fontSize="25px">
+          <Text fontSize={{ md: "25px", base: "20px" }}>
             <Moment format="D MMM YYYY" add={{ hours: -7 }}>
               {getEndDate}
             </Moment>
@@ -167,9 +170,9 @@ const PaymentApproval = () => {
         </Flex>
 
         <Flex mb="40px" borderBottom="1px solid black">
-          <Text fontSize="25px">Total Price: </Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>Total Price :</Text>
           <Spacer />
-          <Text fontSize="25px">¥{price}</Text>
+          <Text fontSize={{ md: "25px", base: "20px" }}>{price}</Text>
         </Flex>
 
         <Flex mt={{ md: "100px", base: "50px" }}>
@@ -179,9 +182,9 @@ const PaymentApproval = () => {
           <Spacer />
           <Button
             onClick={modalApprove.onOpen}
-            backgroundColor="blue.600"
+            backgroundColor="linkedin.600"
             color="white"
-            _hover={{ backgroundColor: "blue.500" }}
+            _hover={{ backgroundColor: "linkedin.500" }}
             mr="10px"
             w={{ md: "120px", base: "80px" }}
             h={{ base: "30px", md: "35px" }}
@@ -244,13 +247,12 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalApprove.onClose}
           isOpen={modalApprove.isOpen}
           isCentered
         >
           <AlertDialogOverlay>
-            <AlertDialogContent h="200px">
+            <AlertDialogContent h="fit-content">
               <AlertDialogHeader
                 fontSize="30px"
                 fontWeight="bold"
@@ -259,15 +261,15 @@ const PaymentApproval = () => {
                 Accept Payment
               </AlertDialogHeader>
               <AlertDialogCloseButton border="none" />
-              <AlertDialogBody mt="85px" fontSize="18px">
+              <AlertDialogBody fontSize="18px">
                 Are you sure you want to accept this payment?
               </AlertDialogBody>
               <AlertDialogFooter gap="10px">
                 <Button
                   onClick={acceptPayment}
                   width="80px"
-                  backgroundColor="blue.600"
-                  _hover={{ backgroundColor: "blue.500" }}
+                  backgroundColor="linkedin.600"
+                  _hover={{ backgroundColor: "linkedin.500" }}
                   textColor="white"
                   border="none"
                 >
@@ -290,14 +292,13 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalReject.onClose}
           isOpen={modalReject.isOpen}
           isCentered
         >
           <AlertDialogOverlay />
 
-          <AlertDialogContent h="200px">
+          <AlertDialogContent h="fit-content">
             <AlertDialogHeader
               fontSize="30px"
               borderRadius="10px"
@@ -306,13 +307,13 @@ const PaymentApproval = () => {
               Reject Payment
             </AlertDialogHeader>
             <AlertDialogCloseButton border="none" />
-            <AlertDialogBody mt="85px" fontSize="18px">
+            <AlertDialogBody fontSize="18px">
               Are you sure you want to reject this payment?
             </AlertDialogBody>
             <AlertDialogFooter gap="10px">
               <Button
-                backgroundColor="blue.600"
-                _hover={{ backgroundColor: "blue.500" }}
+                backgroundColor="linkedin.600"
+                _hover={{ backgroundColor: "linkedin.500" }}
                 textColor="white"
                 onClick={rejectPayment}
                 width="80px"
@@ -336,14 +337,13 @@ const PaymentApproval = () => {
 
         <AlertDialog
           motionPreset="slideInBottom"
-          // leastDestructiveRef={cancelRef}
           onClose={modalCanceled.onClose}
           isOpen={modalCanceled.isOpen}
           isCentered
         >
           <AlertDialogOverlay />
 
-          <AlertDialogContent h="200px">
+          <AlertDialogContent h="fit-content">
             <AlertDialogHeader
               fontSize="30px"
               borderRadius="10px"
@@ -352,13 +352,13 @@ const PaymentApproval = () => {
               Cancel Payment
             </AlertDialogHeader>
             <AlertDialogCloseButton border="none" />
-            <AlertDialogBody mt="85px" fontSize="18px">
+            <AlertDialogBody fontSize="18px">
               Are you sure you want to cancel this payment?
             </AlertDialogBody>
             <AlertDialogFooter gap="10px">
               <Button
-                backgroundColor="blue.600"
-                _hover={{ backgroundColor: "blue.500" }}
+                backgroundColor="linkedin.600"
+                _hover={{ backgroundColor: "linkedin.500" }}
                 textColor="white"
                 onClick={canceledPayment}
                 width="80px"

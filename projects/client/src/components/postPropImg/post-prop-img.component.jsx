@@ -36,6 +36,9 @@ const PostPropImg = () => {
   const [propertyImage, setPropertyImage] = useState([])
   const [openId, setOpenId] = useState(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const [errorMsg, setErrorMsg] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
   // =============================== Get Prop Image ========================================
   const getProperty = async () => {
     try {
@@ -71,8 +74,13 @@ const PostPropImg = () => {
         `/property/image/${params.id}`,
         newImgProp
       )
-      window.location.reload(false)
-      // console.log(responseImg)
+
+      if (responseImg.name === "AxiosError") {
+        throw new Error("Wrong file type or size")
+      } else {
+        window.location.reload(false)
+      }
+
       toast({
         title: "Image succesfull added",
         description: responseImg.data.message,
@@ -82,7 +90,7 @@ const PostPropImg = () => {
       console.log(err)
       toast({
         title: "Failed to added new image",
-        // description: responseImg.data.message,
+        description: "Size or type file is invalid",
         status: "error",
       })
     }
@@ -93,14 +101,7 @@ const PostPropImg = () => {
     getProperty()
   }, [openId])
   return (
-    <Box
-      mt="100px"
-      ml="7px"
-      w={{ base: "54vh", md: "99vw" }}
-      p="10px"
-      // textAlign={{ base: "center", md: "center" }}
-      // border="1px solid black"
-    >
+    <Box mt="10vh" ml="7px" w={{ base: "54vh", md: "99vw" }} p="10px">
       <ArrowBackIcon
         mr="70vh"
         mt="15px"
@@ -110,15 +111,7 @@ const PostPropImg = () => {
         }}
       />
       <Center display="grid">
-        <Box
-          // mt="50px"
-          // mb="20px"
-          margin={{ base: "50px 10px 50px", md: "30px auto 70px" }}
-          width="35%"
-
-          // justifyContent="center"
-          // alignItems="center"
-        >
+        <Box margin={{ base: "50px 10px 50px", md: "30px auto 70px" }}>
           <Text as="b" fontSize="xx-large" position="absolute" ml="20px">
             Update Your Images
           </Text>
@@ -126,6 +119,9 @@ const PostPropImg = () => {
           <br />
           <br />
 
+          <Text textAlign="center" fontSize="15px" color="red" mb="20px">
+            Max file size is 3Mb and only accept JPG, JPEG and PNG
+          </Text>
           <Input
             label="Image"
             name="image_url"
@@ -137,11 +133,19 @@ const PostPropImg = () => {
             display="none"
             ref={inputFileRef}
           />
-          <button
-            className="btn-img-update"
+          <Button
             onClick={() => {
               inputFileRef.current.click()
             }}
+            backgroundColor="linkedin.500"
+            _hover={{ backgroundColor: "linkedin.400" }}
+            color="white"
+            minWidth="370px"
+            width="fit-content"
+            height="50px"
+            letter-spacing=" 0.5px"
+            line-height="50px"
+            padding="0 35px 0 35px"
           >
             <Flex gap="10px">
               <Center>
@@ -149,11 +153,8 @@ const PostPropImg = () => {
               </Center>
               <Text>Choose Images</Text>
             </Flex>
-          </button>
+          </Button>
         </Box>
-        {/* <Flex p={50} w="full" alignItems="center" justifyContent="center"> */}
-
-        {/* <SimpleGrid columns={2} spacingY="20px"> */}
         <Box
           position="relative"
           display="grid"
@@ -168,20 +169,17 @@ const PostPropImg = () => {
               borderWidth="1px"
               rounded="lg"
               shadow="370px"
-              display="flex"
               p="4px"
               mb="24px"
               boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 20px"}
               borderRadius="8px"
               position="relative"
-              // border="1px solid red"
             >
               <CloseButton
                 position="absolute"
-                // MEDIA SCREEN ASU
-                // VIEW PORT
-                ml={{ base: "140px", md: "40.5vh" }}
-                mt={{ base: "2px", sm: "8px" }}
+                right={{ md: "5", base: "3" }}
+                top={{ md: "3", base: "1" }}
+                display=""
                 border="none"
                 color="white"
                 colors
@@ -189,15 +187,8 @@ const PostPropImg = () => {
                   setOpenId(val)
                   onOpen()
                 }}
-                size={{ base: "sm", sm: "sm" }}
+                size={{ base: "sm", md: "sm" }}
                 cursor="pointer"
-              />
-              <Button
-                onClick={() => {
-                  DeleteImg(val.id)
-                }}
-                ref={deleteRef}
-                display="none"
               />
 
               <Image
@@ -205,7 +196,6 @@ const PostPropImg = () => {
                 width="100%"
                 h="100%"
                 objectFit="cover"
-                // src={val.image_url}
                 src={`http://localhost:8000/public/${val.image_url}`}
               />
               <Modal isCentered isOpen={isOpen} onClose={onClose}>
@@ -229,7 +219,6 @@ const PostPropImg = () => {
                         bgColor="red.500"
                         borderRadius="8px"
                         onClick={() => {
-                          // deleteRef.current.click()
                           DeleteImg(val.id)
 
                           onClose()
@@ -250,7 +239,6 @@ const PostPropImg = () => {
           ))}
         </Box>
       </Center>
-      {/* </SimpleGrid> */}
     </Box>
   )
 }

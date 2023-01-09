@@ -24,26 +24,22 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import ChangePass from "../changePassword/changePassword.component"
 const ReAuth = ({ isOpen, onOpen, onClose }) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure()
-  const navigate = useNavigate()
   const toast = useToast()
   const authSelector = useSelector((state) => state.auth)
-  const passwordRef = useRef()
   const focusRef = useRef()
   const auth = getAuth()
   const user = auth.currentUser
   const [reAuth, setReAuth] = useState("")
-  const [compareAuth, setCompareAuth] = useState("")
   const [openModal, setOpenModal] = useState(false)
   const [closeModal, setCloseModal] = useState(true)
   const [modalClose, setModalClose] = useState()
+  const [rePassword, setRePassword] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const credential = EmailAuthProvider.credential(
       authSelector?.email,
-      passwordRef.current.value
-      //   setPassword.current.value
+      rePassword
     )
 
     try {
@@ -52,25 +48,18 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
         credential
       )
       onClose(closeModal)
-      console.log(reAtuhResponse)
       setReAuth(reAtuhResponse.user)
       if (reAtuhResponse) {
-        // console.log("test")
         toast({
           title: "Success re enter your password",
           description: "Please enter your new password",
           status: "success",
         })
-        // return
-        // setCloseModal(false)
         setOpenModal(true)
         setModalClose(false)
       } else {
         throw e
       }
-
-      // console.log(reAuth)
-      // navigate("/changepassword")
     } catch (err) {
       console.log(err)
       toast({
@@ -80,7 +69,6 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
       })
     }
   }
-  console.log(reAuth)
 
   return (
     <>
@@ -91,7 +79,7 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent height="300px" borderRadius="10px" width="350px">
+        <ModalContent height="fit-content" borderRadius="10px" width="350px">
           <ModalHeader borderRadius="10px">
             <Text>Re Enter Your Password</Text>
           </ModalHeader>
@@ -102,13 +90,18 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
               <FormLabel>Email</FormLabel>
               <FormLabel>{authSelector.email}</FormLabel>
               <FormLabel>Enter your password</FormLabel>
-              <Input ref={passwordRef} {...{ passwordRef }} />
+              <Input
+                ref={focusRef}
+                value={rePassword}
+                onChange={(e) => setRePassword(e.target.value)}
+                type="password"
+              />
               <Button
                 mt="20px"
                 type="submit"
-                bg="blue.500"
+                bg="linkedin.500"
                 color="white"
-                _hover={{ bg: "blue.400" }}
+                _hover={{ bg: "linkedin.400" }}
                 width="130px"
               >
                 Submit
@@ -121,7 +114,6 @@ const ReAuth = ({ isOpen, onOpen, onClose }) => {
         openModal={openModal}
         setOpenModal={setOpenModal}
         closeModal={closeModal}
-        // onClose={onClose}
       />
     </>
   )

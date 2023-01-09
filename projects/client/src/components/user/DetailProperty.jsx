@@ -174,7 +174,6 @@ const DetailProperty = () => {
         <Divider color={"GrayText"} height="10px" />
 
         <br />
-
         <Grid templateColumns={"repeat(2, 2fr)"} gap="10">
           <GridItem>
             <HStack paddingBottom={"10px"}>

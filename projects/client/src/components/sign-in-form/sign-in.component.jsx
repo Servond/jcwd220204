@@ -101,7 +101,7 @@ const SignIn = () => {
         })
         localStorage.setItem("auth_token", response.data.token)
 
-        console.log(response)
+        // console.log(response)
         if (response.name === "AxiosError") {
           throw new Error(
             response.message,
@@ -154,7 +154,7 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center>
+    <Center mb="100px" mt="30px">
       <Box
         display="flex"
         flexDir="column"
@@ -171,7 +171,7 @@ const SignIn = () => {
         <Box margin="auto">
           <VStack>
             <Text fontSize="3xl" fontWeight="bold">
-              LOGIN{" "}
+              LOGIN USER
             </Text>
             <Text fontSize="xl" fontWeight="bold" mb="10px">
               Already have an account?
@@ -216,8 +216,8 @@ const SignIn = () => {
                 width="fit-content"
                 minW="330px"
                 color="white"
-                backgroundColor="blue.500"
-                _hover={{ backgroundColor: "blue.400" }}
+                backgroundColor="linkedin.500"
+                _hover={{ backgroundColor: "linkedin.400" }}
                 h="45px"
               >
                 Sign In

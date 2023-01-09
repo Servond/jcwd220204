@@ -21,14 +21,15 @@ import {
   useToast,
 } from "@chakra-ui/react"
 import { TfiTrash } from "react-icons/tfi"
-import { Link } from "react-router-dom"
 import { axiosInstance } from "../../api"
+import { Link, useParams } from "react-router-dom"
 
 const ListingRow = ({ name, image_url, id, properties, address, city }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const params = useParams()
+  const toast = useToast()
 
   const [images, setImages] = useState([])
-  const toast = useToast()
 
   const getImages = properties.map((val) => val.image_url)
   const deleteProperty = async () => {
@@ -41,6 +42,27 @@ const ListingRow = ({ name, image_url, id, properties, address, city }) => {
       })
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  const DeleteProperty = async () => {
+    try {
+      const deleted = await axiosInstance.delete(
+        `/property/delete/${params.id}`
+      )
+      console.log(deleted)
+      toast({
+        title: "Property Deleted",
+        description: "Success delete property",
+        status: "success",
+      })
+    } catch (err) {
+      console.log(err)
+      toast({
+        title: "Error deleted property",
+        description: "Error delete property",
+        status: "error",
+      })
     }
   }
 

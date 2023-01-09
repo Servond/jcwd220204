@@ -10,7 +10,7 @@ router.patch(
   upload({
     acceptedFileTypes: ["jpg", "png", "jpeg"],
     filePrefix: "payment_proof",
-    maxSize: 1 * 1000000,
+    maxSize: 1 * 1024 * 1024,
   }).single("payment_proof"),
   transactionController.paymentProof
 )
