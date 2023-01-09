@@ -190,11 +190,11 @@ const transactionController = {
         getRoomType,
         getRoomCapacity,
         getStatus,
-        getPropImg,
         getStartDate,
         getEndDate,
         getTotalPrice,
         getRoomPrice,
+        getPropImg,
         getRoomImg,
       })
 
@@ -203,8 +203,24 @@ const transactionController = {
         html: htmlresult,
         subect: "Your Booking Detail",
         text: "Hallo",
+        attachments: [
+          {
+            filename: getPropImg,
+            path: `${__dirname}/../public/${getPropImg}`,
+            cid: "getPropImg",
+          },
+          {
+            filename: getRoomImg,
+            path: `${__dirname}/../public/${getRoomImg}`,
+            cid: "getRoomImg",
+          },
+          {
+            filename: "Cart.gif",
+            path: `${__dirname}/../templates/mail-Image/Cart.gif`,
+            cid: "Cart",
+          },
+        ],
       })
-
       return res.status(200).json({
         message: "payment approved",
         data: findTransactionData,
