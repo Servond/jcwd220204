@@ -65,7 +65,8 @@ const Listing = () => {
         maxW={{ base: "350px", md: "900px" }}
         backgroundColor={"whiteAlpha.900"}
         // ml={{ base: "5vw", md: "10vw" }}
-        mb="10vh"
+        // mb="10vh"
+        height="100vh"
       >
         <VStack>
           <Box

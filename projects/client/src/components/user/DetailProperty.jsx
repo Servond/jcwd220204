@@ -28,7 +28,14 @@ import {
   Select,
   Stack,
   StackDivider,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   useDisclosure,
   VStack,
   WrapItem,
@@ -72,7 +79,6 @@ const DetailProperty = () => {
       console.log(err)
     }
   }
-  console.log(property, "tryyy")
 
   //=============================
 
@@ -84,8 +90,10 @@ const DetailProperty = () => {
       console.log(err)
     }
   }
+  // console.log(getDateRooms, "coba")
+
   const newFormatted = getDateRooms?.map((dateRoom) => {
-    const date = new Date(dateRoom.startDate)
+    const date = new Date(dateRoom?.startDate)
 
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -95,7 +103,8 @@ const DetailProperty = () => {
       .padStart(2, "0")}`
 
     dateRoom.formattedNewDate = formattedNewDate
-    return formattedNewDate
+    // console.log(formattedNewDate, "coba2")
+    return dateRoom
   })
 
   const findDate = (value) => {
@@ -124,7 +133,7 @@ const DetailProperty = () => {
       )
     }
   }
-  console.log(getDateRooms, "try")
+
   //=============================
   // const getUserReview = property?.Reviews
 
@@ -149,7 +158,7 @@ const DetailProperty = () => {
     <Center>
       <Container
         width={"-moz-max-content"}
-        height="auto"
+        height="-moz-max-content"
         mt={"100px"}
         maxW={{ base: "100vw", md: "60vw" }}
       >
@@ -206,14 +215,31 @@ const DetailProperty = () => {
               <GrFormNext size={"25px"} />
             </Button2>
 
-            <Box color={"blue"} textAlign="center" mt={"50px"}>
-              <Text>Full booked day information</Text>
-              <Calendar
-                // dateCellRender={DateCellRender}
-                // onChange={findDate}
-                style={{ textTransform: "uppercase", fontSize: "0.7rem" }}
-              />
-            </Box>
+            {room.length !== 0 ? (
+              <>
+                <Box color={"blue"} textAlign="center" mt={"50px"}>
+                  <Text>Full booked day information</Text>
+                </Box>
+
+                {getDateRooms?.length !== 0 ? (
+                  getDateRooms?.map((val) => (
+                    <>
+                      <Text>Room type: {val.PropertyItem?.item_name}</Text>
+                      <Text fontSize={{ base: "13px" }}>
+                        Date: {moment(val.startDate).format("LL")}
+                      </Text>
+                      <Divider color={"gray.400"} />
+                    </>
+                  ))
+                ) : (
+                  <Alert status="success">
+                    <AlertIcon />
+                    All room type is available now
+                  </Alert>
+                )}
+              </>
+            ) : null}
+
             <Modal
               isOpen={reserveModal.isOpen}
               onClose={reserveModal.onClose}
@@ -290,72 +316,71 @@ const DetailProperty = () => {
               </Alert>
             ) : (
               room.map((val) => (
-                <Center>
+                <Box
+                  border={"2px solid"}
+                  w={{ base: "200px", md: "300px" }}
+                  rounded={"md"}
+                  mb={"10px"}
+                  borderColor="teal.300"
+                  backgroundColor="linkedin.400"
+                  color={"white"}
+                  fontWeight="extrabold"
+                >
                   <Box
-                    border={"2px solid"}
-                    w={{ base: "200px", md: "300px" }}
-                    rounded={"md"}
-                    mb={"10px"}
-                    borderColor="teal.300"
-                    backgroundColor="linkedin.400"
-                    color={"white"}
-                    fontWeight="extrabold"
+                    backgroundColor={"white"}
+                    // border="2px solid red"
+                    maxHeight={{ base: "200px", md: "300px" }}
                   >
-                    <Box
-                      backgroundColor={"white"}
-                      // border="2px solid red"
-                      maxHeight={"200px"}
+                    <Carousel
+                      autoplay
+                      effect="fade"
+                      dotPosition="left"
+                      dots={false}
+                      easing="linear"
+                      // style={contentStyle}
                     >
-                      <Carousel
-                        autoplay
-                        effect="fade"
-                        dotPosition="left"
-                        dots={false}
-                        easing="linear"
-                        // style={contentStyle}
-                      >
-                        {val.Images.map((value) => (
-                          <Image
-                            src={`http://localhost:8000/public/${value.picture_url}`}
-                            rounded={"md"}
-                            fit={"cover"}
-                            align={"center"}
-                            maxW={"100%"}
-                          />
-                        ))}
-                      </Carousel>
-                    </Box>
-
-                    <Text
-                      fontFamily={"sans-serif"}
-                      fontSize={{ base: "13.5px", md: "20px" }}
-                    >
-                      Room: {val.item_name} type
-                    </Text>
-                    <Text
-                      color={"white"}
-                      fontSize={{ base: "x-small", md: "md" }}
-                    >
-                      {new Intl.NumberFormat("ja-JP", {
-                        style: "currency",
-                        currency: "JPY",
-                      }).format(val.price)}
-                      / room / night
-                    </Text>
-                    <Text
-                      color={"white"}
-                      fontSize={{ base: "x-small", md: "md" }}
-                    >
-                      Max. capacity: {val.capacity} People
-                    </Text>
-                    <Text
-                      color={"white"}
-                      ffontSize={{ base: "x-small", md: "md" }}
-                    >
-                      {val.description}
-                    </Text>
+                      {val.Images.map((value) => (
+                        <Image
+                          src={`http://localhost:8000/public/${value.picture_url}`}
+                          rounded={"md"}
+                          fit={"cover"}
+                          alignItems={"center"}
+                          justifyContent="center"
+                          maxW={"100%"}
+                        />
+                      ))}
+                    </Carousel>
                   </Box>
-                </Center>
+
+                  <Text
+                    fontFamily={"sans-serif"}
+                    fontSize={{ base: "13.5px", md: "20px" }}
+                  >
+                    Room: {val.item_name} type
+                  </Text>
+                  <Text
+                    color={"white"}
+                    fontSize={{ base: "x-small", md: "md" }}
+                  >
+                    {new Intl.NumberFormat("ja-JP", {
+                      style: "currency",
+                      currency: "JPY",
+                    }).format(val.price)}
+                    / room / night
+                  </Text>
+                  <Text
+                    color={"white"}
+                    fontSize={{ base: "x-small", md: "md" }}
+                  >
+                    Max. capacity: {val.capacity} People
+                  </Text>
+                  <Text
+                    color={"white"}
+                    fontSize={{ base: "x-small", md: "md" }}
+                  >
+                    {val.description}
+                  </Text>
+                </Box>
               ))
             )}
 

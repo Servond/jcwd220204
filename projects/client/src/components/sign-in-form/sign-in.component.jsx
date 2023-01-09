@@ -154,7 +154,7 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center mb="100px" mt="30px">
+    <Center mb="100px" mt="30px" height="100vh">
       <Box
         display="flex"
         flexDir="column"

@@ -27,6 +27,7 @@ const Footer = () => {
       padding="20px"
       bgColor={"blackAlpha.100"}
       mt="7vw"
+      // height={"100vh"}
     >
       {/* <Stack
         spacing="8"
