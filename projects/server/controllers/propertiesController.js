@@ -28,6 +28,7 @@ module.exports = {
           { model: db.PropertyImage },
           { model: db.User },
           { model: db.Categories },
+          { model: db.PropertyItem },
         ],
         limit: Number(_limit),
         offset: (_page - 1) * _limit,
@@ -46,6 +47,25 @@ module.exports = {
       })
     }
   },
+
+  //================
+
+  getPropertyByCity: async (req, res) => {
+    try {
+      const properties = await Property.findAll({
+        where: { cities_name: req.query.cities_name },
+      })
+      res.status(200).json({
+        message: "Find property by ID",
+        data: properties,
+      })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        message: err.message,
+      })
+    }
+  },
   getPropertyById: async (req, res) => {
     try {
       const findPropertyById = await Properties.findByPk(req.params.id, {
@@ -55,6 +75,7 @@ module.exports = {
           { model: db.PropertyImage },
           { model: db.Cities },
           { model: db.PropertyItem },
+          { model: db.Review, include: [{ model: db.User }] },
         ],
       })
 

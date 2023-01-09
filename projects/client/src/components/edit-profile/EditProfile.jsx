@@ -84,7 +84,7 @@ const EditProfile = () => {
       }
     },
   })
-  const beforeUpload = (file) => {
+  const beforeUpload = (file, profile_picture) => {
     const isJpgOrPng =
       file.type === "image/jpeg" ||
       (file.type === "image/png") |
@@ -92,10 +92,12 @@ const EditProfile = () => {
         (file.type === "image/gif")
     if (!isJpgOrPng) {
       message.error("You can only upload JPG/PNG file!")
+      return profile_picture
     }
     const isLt2M = file.size / 1024 / 1024 < 1
     if (!isLt2M) {
       message.error("Image must smaller than 1MB!")
+      return profile_picture
     }
     return isJpgOrPng && isLt2M
   }
@@ -127,7 +129,7 @@ const EditProfile = () => {
     setComponentDisabled(disabled)
   }
   return (
-    <div>
+    <Center>
       <div className="profile-container">
         <div className="row wrapper">
           <div className="col-10 col-lg-5">
@@ -296,7 +298,7 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Center>
   )
 }
 

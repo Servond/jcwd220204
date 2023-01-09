@@ -8,6 +8,9 @@ const User = db.User
 const reviewController = {
   createReview: async (req, res) => {
     try {
+      // const transaction = await db.Transaction.findOne({
+      //   where: { ReviewId: req.body.review },
+      // })
       const createUserReview = Review.create({
         review: req.body.review,
         UserId: req.body.UserId,
@@ -19,6 +22,27 @@ const reviewController = {
       return res.status(201).json({
         message: "Review created",
         data: createUserReview,
+        data: transaction,
+      })
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        message: err.message,
+      })
+    }
+  },
+  findReviewById: async (req, res) => {
+    try {
+      const review = await db.Transaction.findByPk(req.params.id, {
+        include: {
+          model: Review,
+        },
+      })
+      console.log(review)
+
+      res.status(200).json({
+        message: "Find review By Id",
+        data: review,
       })
     } catch (err) {
       console.log(err)

@@ -3,6 +3,7 @@ const roomController = require("../controllers/roomController")
 const { upload } = require("../lib/uploader")
 
 const router = express.Router()
+const maxSize = 3 * 1024 * 1024
 
 router.get("/", roomController.getAllRoom)
 

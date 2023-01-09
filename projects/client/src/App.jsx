@@ -35,6 +35,8 @@ import LoginUserTenant from "./components/home/LoginUserTenant"
 import DummyTransaction from "./components/dummyTransaction/dummyTransaction"
 import Footer from "./components/Footer/Footer"
 import UserOrderList from "./pages/UserOrderList"
+import Finances from "./components/finances/Finances"
+import { Spacer } from "@chakra-ui/react"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
@@ -129,7 +131,9 @@ function App() {
         <Route path="/notfoundpage" element={<NotFoundPage />} />
         <Route path="/roomdetail/:id" element={<DetailProperty />} />
         <Route path="/userpage/:id" element={<UserOrderList />} />
+        <Route path="/finances/:id" element={<Finances />} />
       </Routes>
+      <Spacer />
       <Footer />
     </main>
   )

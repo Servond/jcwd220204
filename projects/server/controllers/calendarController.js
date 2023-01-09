@@ -12,7 +12,7 @@ const calendarController = {
           model: db.PropertyItem,
         },
       })
-      console.log(property)
+
       if (property.PropertyItems.length === 0) {
         throw new error()
       }

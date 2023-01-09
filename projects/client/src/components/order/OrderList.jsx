@@ -44,7 +44,7 @@ const OrderList = () => {
       console.log(err)
     }
   }
-  console.log(orderList, "cobas")
+
   useEffect(() => {
     fetchOrderList()
   }, [])
@@ -53,7 +53,7 @@ const OrderList = () => {
     <Center>
       <Box
         mt={{ base: "75px", md: "200px" }}
-        width={{ base: "400px", md: "3xl" }}
+        width={{ base: "350px", md: "5xl" }}
         boxShadow={
           "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
         }
@@ -87,7 +87,8 @@ const OrderList = () => {
                       title={val.Property?.name}
                       extra={
                         val.status === "in progress" ||
-                        val.status === "cancelled" ? (
+                        val.status === "cancelled" ||
+                        val.status === "accepted" ? (
                           <HStack>
                             <HiBadgeCheck color="green" />
                             <Text fontSize={"12px"}>Done</Text>
@@ -106,7 +107,7 @@ const OrderList = () => {
                       type="inner"
                       bordered={true}
                       style={{
-                        width: 230,
+                        width: 300,
                         height: "auto",
                         boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
                         gap: "50px",
@@ -153,6 +154,12 @@ const OrderList = () => {
                         CheckOut:{" "}
                         {moment(val.end_date).utc().format("YYYY-MM-DD")}
                       </Text>
+
+                      {val.Review !== null ? (
+                        <Text>Review: {val.Review.review} </Text>
+                      ) : (
+                        <Text>Review: - </Text>
+                      )}
                     </Card>
                   </Col>
                 </Row>

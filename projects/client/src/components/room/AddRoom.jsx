@@ -31,6 +31,8 @@ import {
   useSearchParams,
 } from "react-router-dom"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
+import { Upload, message } from "antd"
+import { PlusOutlined } from "@ant-design/icons"
 
 const AddRoom = () => {
   const toast = useToast()
@@ -44,6 +46,22 @@ const AddRoom = () => {
   // const [queryParameters] = useSearchParams()
   const search = useLocation().search
   const name = new URLSearchParams(search).get("id")
+
+  const beforeUpload = (file) => {
+    const isJpgOrPng =
+      file.type === "image/jpeg" ||
+      (file.type === "image/png") |
+        (file.type === "image/jpeg") |
+        (file.type === "image/gif")
+    if (!isJpgOrPng) {
+      message.error("You can only upload JPG/PNG file!")
+    }
+    const isLt2M = file.size / 1024 / 1024 < 3
+    if (!isLt2M) {
+      message.error("Image must smaller than 3MB!")
+    }
+    return isJpgOrPng && isLt2M
+  }
 
   //==========================GET ROOM
   // const getPropertyId = async () => {
@@ -118,13 +136,18 @@ const AddRoom = () => {
     const imageArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file)
     })
+
     setSelectedImages((previousImage) => previousImage.concat(imageArray))
   }
+
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter((e) => e != image))
     URL.revokeObjectURL(image)
   }
 
+  useEffect(() => {
+    // beforeUpload()
+  })
   return (
     <>
       <Flex
@@ -225,6 +248,25 @@ const AddRoom = () => {
                     display="none"
                     ref={inputFileRef}
                   />
+                  {/* <Upload
+                  multiple={true}
+                    maxCount={1}
+                    action="/upload.do"
+                    listType="picture-card"
+                    beforeUpload={beforeUpload}
+                    showUploadList={false}
+                  > */}
+                  {/* <div>
+                      <PlusOutlined />
+                      <div
+                        style={{
+                          marginTop: 20,
+                        }}
+                      >
+                        Upload
+                      </div>
+                    </div>
+                  </Upload> */}
                 </FormControl>
                 <Box mt={"30px"}>
                   <Text>Upload your image</Text>
@@ -246,6 +288,24 @@ const AddRoom = () => {
                       </Center>
                       <Text>Choose Images</Text>
                     </Flex>
+                    {/* <Upload
+                      maxCount={1}
+                      action="/upload.do"
+                      listType="picture-card"
+                      beforeUpload={beforeUpload}
+                      showUploadList={false}
+                    >
+                      <div>
+                        <PlusOutlined />
+                        <div
+                          style={{
+                            marginTop: 20,
+                          }}
+                        >
+                          Upload
+                        </div>
+                      </div>
+                    </Upload> */}
                   </label>
                 </Box>
               </Box>

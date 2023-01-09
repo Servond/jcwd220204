@@ -65,7 +65,6 @@ const ListingDetails = () => {
       console.log(err)
     }
   }
-  console.log(images)
 
   //=======================GET ROOM
   const fetchRoom = async () => {
@@ -73,7 +72,6 @@ const ListingDetails = () => {
       const response = await axiosInstance.get(`/room/${params.id}`)
 
       setRoom(response.data.data.PropertyItems)
-      console.log(response, "coba")
     } catch (err) {
       console.log(err)
     }
@@ -118,10 +116,6 @@ const ListingDetails = () => {
 
   //=============FIND DATE IN CALENDAR
 
-  const findDate = (value) => {
-    console.log(value.format("YYYYMMDD"), "format")
-  }
-
   const DateCellRender = (date) => {
     const dateStr = date.format("YYYYMMDD")
 
@@ -162,8 +156,6 @@ const ListingDetails = () => {
     })
   }
 
-  console.log(room)
-
   const [index, setIndex] = useState(0)
 
   const handleSelect = (selectedIndex, e) => {
@@ -193,10 +185,6 @@ const ListingDetails = () => {
         <Link to={`/tenant/${authSelector.id}`}>
           <GrLinkPrevious size={"25px"} />
         </Link>
-        {/* ======================================= */}
-        {/* <Link to={`/property/edit/${params.id}`}>
-          <BiEditAlt size={"25px"} />
-        </Link> */}
         <Menu>
           <MenuButton
             as={IconButton}
@@ -290,7 +278,6 @@ const ListingDetails = () => {
           <Text>This is a day information from your full booked room </Text>
           <Calendar
             dateCellRender={DateCellRender}
-            onChange={findDate}
             style={{ textTransform: "uppercase", fontSize: "0.7rem" }}
           />
         </Box>
