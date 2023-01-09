@@ -60,7 +60,6 @@ const SignIn = () => {
       )
     }
 
-    console.log(response)
     localStorage.setItem("auth_token", response.data.token)
     dispatch(
       login({
@@ -143,7 +142,7 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center mb="25vh" mt="30px">
+    <Center mb={{ md: "33vh", base: "17vh" }} mt="30px">
       <Box
         display="flex"
         flexDir="column"

@@ -41,7 +41,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react"
 import React, { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import { GrLinkPrevious, GrAdd } from "react-icons/gr"
 import { axiosInstance } from "../../api"
 import { async } from "@firebase/util"
@@ -51,11 +51,12 @@ import { Calendar, Avatar, List, message, Button, Result } from "antd"
 import moment from "moment"
 
 const DetailProperty = () => {
-  const reserveModal = useDisclosure()
+  // const reserveModal = useDisclosure()
   const [room, setRoom] = useState([])
   const [property, setProperty] = useState([])
   const [images, setImages] = useState([])
   const [getDateRooms, setGetDateRooms] = useState()
+  const navigate = useNavigate()
 
   const params = useParams()
 
@@ -202,17 +203,19 @@ const DetailProperty = () => {
             <Text fontFamily={"sans-serif"} fontSize={"13.5px"}>
               {property?.description}
             </Text>
-            <Button2
-              colorScheme={"orange"}
-              ml="0"
-              width={"100%"}
-              color="white"
-              onClick={reserveModal.onOpen}
-              cursor="pointer"
-            >
-              Reserve
-              <GrFormNext size={"25px"} />
-            </Button2>
+            <Link to="/dummy-transaction">
+              <Button2
+                colorScheme={"orange"}
+                ml="0"
+                width={"100%"}
+                color="white"
+                // onClick={reserveModal.onOpen}
+                cursor="pointer"
+              >
+                Reserve
+                <GrFormNext size={"25px"} />
+              </Button2>
+            </Link>
 
             {room.length !== 0 ? (
               <>
@@ -239,7 +242,7 @@ const DetailProperty = () => {
               </>
             ) : null}
 
-            <Modal
+            {/* <Modal
               isOpen={reserveModal.isOpen}
               onClose={reserveModal.onClose}
               size="sm"
@@ -304,7 +307,7 @@ const DetailProperty = () => {
                   </Button2>
                 </ModalFooter>
               </ModalContent>
-            </Modal>
+            </Modal> */}
           </GridItem>
           <GridItem>
             <Text>Available rooms:</Text>

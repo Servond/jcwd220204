@@ -40,7 +40,7 @@ const DummyTransaction = () => {
   //   console.log(getTransactionId)
 
   return (
-    <Box mt="30vh" mb="30vh">
+    <Box mt="30vh" h="53vh">
       <Center display="block" textAlign="center">
         <Text fontSize="30px" fontWeight="bold" mb="30px">
           Ceritanaya ini dummy checkout, hehe {":))"}

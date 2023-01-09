@@ -88,7 +88,7 @@ const OrderList = () => {
                       title={val.Property?.name}
                       extra={
                         val.status === "in progress" ||
-                        val.status === "cancelled" ||
+                        val.status === "canceled" ||
                         val.status === "accepted" ? (
                           <HStack>
                             <HiBadgeCheck color="green" />

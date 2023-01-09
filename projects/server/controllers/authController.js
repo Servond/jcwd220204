@@ -147,9 +147,6 @@ const authController = {
       const token = signToken({
         id: user.id,
       })
-      if (user.role !== "user") {
-        throw new Error("user not found")
-      }
 
       return res.status(201).json({
         message: "User logged in",

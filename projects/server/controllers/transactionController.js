@@ -202,7 +202,7 @@ const transactionController = {
         to: getUserEmail,
         html: htmlresult,
         subect: "Your Booking Detail",
-        text: "Hallo",
+        text: "Your Booking Detail",
         attachments: [
           {
             filename: getPropImg,

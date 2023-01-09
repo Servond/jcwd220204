@@ -87,7 +87,7 @@ const SignInTenant = () => {
   }
 
   return (
-    <Center mb="25vh" mt="30px">
+    <Center mb={{ md: "33vh", base: "17vh" }} mt="30px">
       <Box
         display="flex"
         flexDir="column"
