@@ -139,7 +139,7 @@ const RoomCard = ({
     }
   }
   const getImagesNew = room.map(
-    (val) => `http://localhost:8000/public/${val.picture_url}`
+    (val) => `${process.env.REACT_APP_IMG}${val.picture_url}`
   )
   // console.log(getImagesNew)
 
@@ -465,7 +465,7 @@ const RoomCard = ({
                                   borderRadius="8px"
                                   boxSize="100%"
                                   objectFit="cover"
-                                  src={`http://localhost:8000/public/${val.picture_url}`}
+                                  src={`${process.env.REACT_APP_IMG}${val.picture_url}`}
                                   alt="upload"
                                 />
 
@@ -620,7 +620,7 @@ const RoomCard = ({
                   <Image
                     border={"5px solid white"}
                     // src={val.picture_url}
-                    src={`http://localhost:8000/public/${val.picture_url}`}
+                    src={`${process.env.REACT_APP_IMG}${val.picture_url}`}
                     maxHeight="250px"
                     borderRadius={"15px"}
                   />

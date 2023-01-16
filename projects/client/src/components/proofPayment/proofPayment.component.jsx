@@ -33,10 +33,9 @@ const PaymentProof = () => {
   // ======================== GET EXP DATE =================================
   const paymentExpDate = async () => {
     const response = await axiosInstance.get(`/transaction/data/${params.id}`)
-    setExpired_date(response.data.dateNow)
-    setStatus(response.data.get.status)
-    setPrice(response.data.price)
-    // console.log(response)
+    setExpired_date(response.data.expDate)
+    setStatus(response.data.getTransactionData.status)
+    setPrice(response.data.getPrice)
   }
 
   // console.log(status)

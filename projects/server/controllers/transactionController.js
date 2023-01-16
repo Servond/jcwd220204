@@ -53,24 +53,22 @@ const transactionController = {
   },
   getDataTransaction: async (req, res) => {
     try {
-      const get = await db.Transaction.findOne({
+      const getTransactionData = await db.Transaction.findOne({
         where: {
           id: req.params.id,
         },
         attributes: ["exp_date", "price", "status"],
       })
 
-      const date = Object.values(get.dataValues)
-      const getPrice = Object.values(get.dataValues)
-
-      const price = getPrice[1]
-      const dateNow = moment(date[0]).add(-7, "hours").format("LLL")
+      const getExpDate = getTransactionData.exp_date
+      const getPrice = getTransactionData.price
+      const expDate = moment(getExpDate).format("LLL")
 
       return res.status(200).json({
         message: "Get countdown",
-        get,
-        dateNow,
-        price,
+        getTransactionData,
+        expDate,
+        getPrice,
       })
     } catch (err) {
       console.log(err)

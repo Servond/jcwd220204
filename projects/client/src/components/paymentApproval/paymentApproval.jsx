@@ -125,7 +125,7 @@ const PaymentApproval = () => {
           {userEmail}
         </Text>
         <Image
-          src={`http://localhost:8000/public/${paymentProof}`}
+          src={`${process.env.REACT_APP_IMG}${paymentProof}`}
           width="100%"
           height="100%"
           mb="15px"
