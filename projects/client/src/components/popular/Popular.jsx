@@ -36,54 +36,51 @@ const Popular = ({
   }
   const price = property_item.map((val) => val.price)
   const lowestPrice = Math.min(...price)
+  console.log(properties_image)
 
   return (
-    <div className="popularMain">
-      <section className="popular section container" id="popular">
-        <div className="secContainer">
-          <div
-            style={{
-              marginTop: "5rem",
-            }}
-          >
-            <Badge.Ribbon text={category}>
-              <div className="mainContent">
-                <div className="singleDestination">
-                  <Link to={`/roomdetail/${id}`}>
-                    <div className="destImage">
-                      {properties_image.map((val) => (
-                        <img
-                          src={`${process.env.REACT_APP_IMG}${val.image_url}`}
-                        />
-                      ))}
-
-                      <div className="overlayInfo">
-                        {/* <BsArrowRightShort className="icon" /> */}
-                      </div>
-                    </div>
-                    <div className="destFooter">
-                      <div className="destText flex">
-                        <h3>{name}</h3>
-                        <h6>{city?.cities_name}</h6>
-
-                        <Text color={"black"}>
-                          Start from:{" "}
-                          {new Intl.NumberFormat("ja-JP", {
-                            style: "currency",
-                            currency: "JPY",
-                          }).format(lowestPrice)}{" "}
-                          /room /night
-                        </Text>
-                      </div>
-                    </div>
-                  </Link>
+    // <div className="popularMain">
+    <section
+      className="popular section container"
+      id="popular"
+      style={{
+        maxWidth: "400px",
+      }}
+    >
+      <div className="secContainer">
+        <Badge.Ribbon text={category}>
+          <div className="mainContent">
+            <div className="singleDestination">
+              <Link to={`/roomdetail/${id}`}>
+                <div className="destImage">
+                  {properties_image.map((val) => (
+                    <img
+                      src={`http://localhost:8204/public/${val.image_url}`}
+                    />
+                  ))}
                 </div>
-              </div>
-            </Badge.Ribbon>
+                <div className="destFooter">
+                  <div className="destText flex">
+                    <h3>{name}</h3>
+                    <h6>{city?.cities_name}</h6>
+
+                    <Text color={"black"}>
+                      Start from:{" "}
+                      {new Intl.NumberFormat("ja-JP", {
+                        style: "currency",
+                        currency: "JPY",
+                      }).format(lowestPrice)}{" "}
+                      /room /night
+                    </Text>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </Badge.Ribbon>
+      </div>
+    </section>
+    // </div>
   )
 }
 

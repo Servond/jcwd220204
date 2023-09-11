@@ -38,45 +38,57 @@ const RegisterTenant = () => {
 
     onSubmit: async (values) => {
       try {
-        createUserWithEmailAndPassword(auth, values.email, values.password)
-          .then(async (userCredential) => {
-            // Signed in
-            const user = userCredential.user
-            // console.log(user)
+        //ADD THE EMAIL TO FIREBASE
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        )
 
-            let newAcc = new FormData()
+        const user = userCredential.user
+        // console.log(user)
 
-            newAcc.append("email", values.email)
-            newAcc.append("password", values.password)
-            newAcc.append("username", values.username)
-            newAcc.append("phone_number", values.phone_number)
-            newAcc.append("role", values.role)
-            newAcc.append("ktp", values.ktp)
-            newAcc.append("loginWith", values.loginWith)
+        let newAcc = new FormData()
 
-            const response = await axiosInstance.post(
-              "/auth/register-tenant",
-              newAcc
-            )
+        newAcc.append("email", values.email)
+        newAcc.append("password", values.password)
+        newAcc.append("username", values.username)
+        newAcc.append("phone_number", values.phone_number)
+        newAcc.append("role", values.role)
+        newAcc.append("ktp", values.ktp)
+        newAcc.append("loginWith", values.loginWith)
+        // const userData = {
+        //   email: values.email,
+        //   password: values.password,
+        //   username: values.username,
+        //   phone_number: values.phone_number,
+        //   role: values.role,
+        //   ktp: values.ktp,
+        //   loginWith: values.loginWith,
+        // }
 
-            navigate("/login/tenant")
+        const response = await axiosInstance.post(
+          "/auth/register-tenant",
+          newAcc
+        )
 
-            toast({
-              title: "Registration successful",
-              description: response.data.message,
-              status: "success",
-            })
-          })
-          .catch((error) => {
-            const errorCode = error.code
-            const errorMessage = error.message
-            if ((error.code = "auth/email-already-in-use")) {
-              toast({
-                title: "Another account is using the same email",
-                status: "error",
-              })
-            }
-          })
+        navigate("/check-email")
+
+        toast({
+          title: "Registration successful",
+          description: response.data.message,
+          status: "success",
+        })
+        // }).catch((error) => {
+        //   const errorCode = error.code
+        //   const errorMessage = error.message
+        //   if (error.code === "auth/email-already-in-use") {
+        //     toast({
+        //       title: "Another account is using the same email",
+        //       status: "error",
+        //     })
+        //   }
+        // })
       } catch (err) {
         toast({
           title: "Registration failed",
@@ -108,13 +120,17 @@ const RegisterTenant = () => {
 
   return (
     <Box h="100vh" display={"flex"} alignItems="center">
-      <Container>
+      <Container border={"2px solid white"} boxShadow="2xl">
         <Box p="8">
           <HStack mb="8">
             <Link to="/">
-              <GrLinkPrevious size={"35px"} />
+              <GrLinkPrevious size={"25px"} />
             </Link>
-            <Text fontWeight="bold" fontSize="3xl" paddingLeft="10">
+            <Text
+              fontWeight="bold"
+              fontSize={{ md: "2xl", sm: "20px" }}
+              paddingLeft="10"
+            >
               Create New Tenant Account
             </Text>
           </HStack>
@@ -177,7 +193,7 @@ const RegisterTenant = () => {
                   marginBottom="20px"
                 />
               </FormControl>
-              <Button type="submit" colorScheme="whatsapp">
+              <Button type="submit" colorScheme="whatsapp" cursor={"pointer"}>
                 Sign up
               </Button>
             </Stack>

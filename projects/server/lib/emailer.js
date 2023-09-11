@@ -38,8 +38,8 @@ const emailer = async ({
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.NODEMAILER_EMAIL,
-      pass: process.env.NODEMAILER_PASS,
+      user: process.env.NODEMAILER_EMAIL || "nginepin9433@gmail.com",
+      pass: process.env.NODEMAILER_PASS || "nnhxgbehhcijebch",
     },
     // secure: false,
     // port: 587,

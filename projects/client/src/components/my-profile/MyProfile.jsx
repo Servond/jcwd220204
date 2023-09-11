@@ -29,15 +29,11 @@ const MyProfile = () => {
   const params = useParams()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const modal2 = useDisclosure()
 
   return (
     <>
-      <Center
-        padding="25px"
-        // mt={{ base: "75px", md: "200px" }}
-        mb="17vh"
-        height="100vh"
-      >
+      <Center padding="25px" height="100vh">
         <Stack
           borderWidth="1px"
           borderRadius="lg"
@@ -58,7 +54,8 @@ const MyProfile = () => {
               height={"266px"}
               width={"278px"}
               bg={useColorModeValue("white", "gray.900")}
-              src={authSelector?.profile_picture}
+              // src={authSelector?.profile_picture}
+              src={`http://localhost:8204/public/${authSelector?.profile_picture}`}
               boxShadow={"2xl"}
               mt="10px"
             />
@@ -113,7 +110,7 @@ const MyProfile = () => {
               justifyContent={"space-between"}
               alignItems={"center"}
             >
-              <Link to={"/editprofile"}>
+              {/* <Link to={"/editprofile"}>
                 <Button
                   flex={1}
                   fontSize={"sm"}
@@ -126,7 +123,19 @@ const MyProfile = () => {
                 >
                   Edit Profile
                 </Button>
-              </Link>
+              </Link> */}
+              <Button
+                flex={1}
+                fontSize={"sm"}
+                rounded={"lg"}
+                boxShadow={
+                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                }
+                colorScheme="whatsapp"
+                cursor={"pointer"}
+              >
+                Edit Profile
+              </Button>
               {authSelector.loginWith === "email" ? (
                 <Button
                   flex={1}

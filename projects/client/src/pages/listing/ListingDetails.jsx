@@ -223,12 +223,12 @@ const ListingDetails = () => {
         <Carousel autoplay effect="fade" nextArrow={StackDivider}>
           {images?.map((val) => (
             <Image
-              // src={val.image_url}
-              src={`${process.env.REACT_APP_IMG}${val.image_url}`}
+              // src={`${process.env.REACT_APP_IMG}${val.image_url}`}
+              src={`http://localhost:8204/public/${val.image_url}`}
               rounded={"md"}
               fit={"cover"}
               align={"center"}
-              w={"100%"}
+              // w={"100%"}
               h={{ base: "350px", sm: "400px", lg: "500px" }}
             />
           ))}

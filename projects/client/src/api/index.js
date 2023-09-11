@@ -3,7 +3,8 @@ import { logout } from "../redux/features/authSlice"
 import { store } from "../redux/store"
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  // baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: "http://localhost:8204",
 })
 
 axiosInstance.interceptors.request.use((req) => {

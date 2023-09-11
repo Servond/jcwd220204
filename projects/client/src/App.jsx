@@ -38,6 +38,7 @@ import UserOrderList from "./pages/UserOrderList"
 import Finances from "./components/finances/Finances"
 import { Spacer } from "@chakra-ui/react"
 import RegisterTenant from "./components/sign-up-form-tenant/sign-up-form-tenant.component"
+import CheckEmailVerif from "./components/check-email/CheckEmailVerif"
 
 function App() {
   const authSelector = useSelector((state) => state.auth)
@@ -76,6 +77,7 @@ function App() {
     ;(async () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API_BASE_URL}/greetings`
+        // `http://localhost:8204/api/greetings`
       )
       setMessage(data?.message || "")
     })()
@@ -135,6 +137,8 @@ function App() {
         <Route path="/roomdetail/:id" element={<DetailProperty />} />
         <Route path="/userpage/:id" element={<UserOrderList />} />
         <Route path="/finances/:id" element={<Finances />} />
+
+        <Route path="/check-email" element={<CheckEmailVerif />} />
       </Routes>
       <Spacer />
       <Footer />

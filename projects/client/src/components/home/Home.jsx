@@ -169,51 +169,48 @@ const Home = () => {
             </section>
           </div>
           <Center>
-            <VStack>
-              <Box ml="-70vw">
-                <HStack gap="2px" marginTop={{ base: "23vh", md: "20vh" }}>
-                  {!property.length ? (
-                    <Center>
-                      <Alert
-                        status="error"
-                        textAlign="center"
-                        justifyContent={"center"}
-                        alignContent="center"
-                        flexDir="column"
-                        borderRadius={"10px"}
-                        // h="200px"
-                        width="350px"
-                        mt={"-50px"}
-                      >
-                        <AlertIcon boxSize="40px" mr="0" />
-                        <AlertTitle>
-                          No Property on your location filter!
-                        </AlertTitle>
-                        <Button boxSize={"-webkit-max-content"}>
-                          <a href="#search">Change keyword</a>
-                        </Button>
-                      </Alert>
-                    </Center>
-                  ) : null}
-                  {page === 1 ? null : (
-                    <FaArrowLeft onClick={previousPage} cursor="pointer" />
-                  )}
-                  <Text fontWeight="semibold" fontSize="20px">
-                    Page: {page}
-                  </Text>
-                  {page >= maxPage ? null : (
-                    <FaArrowRight onClick={nextPage} cursor="pointer" />
-                  )}
-                </HStack>
-              </Box>
+            <Box marginBottom={{ base: "15vh", md: "20vh" }} maxW={"1296px"}>
               <Grid
                 templateColumns={{ md: "repeat(3,1fr)" }}
-                gap="20px"
-                padding={"20px"}
+                gap={{ md: "20px", base: "0px" }}
               >
                 {renderProperty()}
               </Grid>
-            </VStack>
+              <HStack gap="2px" marginTop={{ md: "5vh", base: "0" }}>
+                {!property.length ? (
+                  <Center>
+                    <Alert
+                      status="error"
+                      textAlign="center"
+                      justifyContent={"center"}
+                      alignContent="center"
+                      flexDir="column"
+                      borderRadius={"10px"}
+                      // h="200px"
+                      width="350px"
+                      mt={"-50px"}
+                    >
+                      <AlertIcon boxSize="40px" mr="0" />
+                      <AlertTitle>
+                        No Property on your location filter!
+                      </AlertTitle>
+                      <Button boxSize={"-webkit-max-content"}>
+                        <a href="#search">Change keyword</a>
+                      </Button>
+                    </Alert>
+                  </Center>
+                ) : null}
+                {page === 1 ? null : (
+                  <FaArrowLeft onClick={previousPage} cursor="pointer" />
+                )}
+                <Text fontWeight="semibold" fontSize="20px">
+                  Page: {page}
+                </Text>
+                {page >= maxPage ? null : (
+                  <FaArrowRight onClick={nextPage} cursor="pointer" />
+                )}
+              </HStack>
+            </Box>
           </Center>
         </div>
       )}

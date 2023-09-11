@@ -19,8 +19,9 @@ const categoryRoute = require("../routes/categoriesRoute")
 const schedule = require("../schedule/paymentCheck")
 
 const { verifyToken } = require("../middlewares/authMiddleware")
+const path = require("path")
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8204
 const app = express()
 app.use(
   cors({
@@ -93,10 +94,12 @@ const clientPath = "../../client/build"
 app.use(express.static(join(__dirname, clientPath)))
 
 // Serve the HTML page
-app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, clientPath, "index.html"))
-})
-
+// app.get("*", (req, res) => {
+//   res.sendFile(join(__dirname, clientPath, "index.html"))
+// })
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve("client", "build", "index.html"))
+// })
 //#endregion
 
 app.listen(PORT, (err) => {

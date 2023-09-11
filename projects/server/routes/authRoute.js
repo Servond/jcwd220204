@@ -18,6 +18,7 @@ router.post(
 router.get("/refresh-token", verifyToken, authController.refreshToken)
 router.post("/login-user", authController.loginUser)
 router.post("/login-tenant", authController.loginTenant)
+router.get("/verification", authController.verifyUser)
 
 router.get("/users", authController.getAllUsers)
 router.get("/users/:id", authController.getUserById)

@@ -144,7 +144,7 @@ const PropertyForm = () => {
   }, [])
 
   return (
-    <Box mt="150px" ml="20px">
+    <Box mt="150px" ml="20px" mb={"15vh"}>
       <h1>Register Your Property Here</h1>
       <form onSubmit={formik.handleSubmit}>
         <FormControl isInvalid={formik.errors.name}>

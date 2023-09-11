@@ -62,12 +62,50 @@ const Listing = () => {
           "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
         }
         padding={"10px"}
-        maxW={{ base: "350px", md: "900px" }}
+        width={{ base: "550px", md: "-webkit-fit-content" }}
         backgroundColor={"whiteAlpha.900"}
-        // ml={{ base: "5vw", md: "10vw" }}
-        // mb="10vh"
-        height="100vh"
+        pb="100px"
+        mb="10vh"
+        h={{ md: "65vh", sm: "-moz-max-content" }}
       >
+        <Box backgroundColor={"orange.400"}>
+          <HStack as="nav" cursor={"pointer"}>
+            <Link to="/">
+              <Button
+                color={"white"}
+                cursor="pointer"
+                backgroundColor={"orange.400"}
+                _hover={{ backgroundColor: "orange.300" }}
+                fontSize={"15px"}
+              >
+                Properties
+              </Button>
+            </Link>
+            <Link to={`/orderlist?id=${authSelector.id}`}>
+              <Button
+                color={"white"}
+                cursor="pointer"
+                _hover={{ backgroundColor: "orange.300" }}
+                backgroundColor={"orange.400"}
+                fontSize={"15px"}
+              >
+                Order List
+              </Button>
+            </Link>
+
+            <Link to={`/`}>
+              <Button
+                color={"white"}
+                cursor="pointer"
+                _hover={{ backgroundColor: "orange.300" }}
+                backgroundColor={"orange.400"}
+                fontSize={"15px"}
+              >
+                Finances
+              </Button>
+            </Link>
+          </HStack>
+        </Box>
         <VStack>
           <Box
             maxW="350px"
@@ -76,62 +114,25 @@ const Listing = () => {
             mt={{ base: "5px", md: "0px" }}
             padding="10px"
           >
-            <Center>
-              <HStack spacing={"-5"} as="nav" cursor={"pointer"} gap="2rem">
-                <Link to="/">
-                  <Button
-                    color={"white"}
-                    cursor="pointer"
-                    backgroundColor={"orange.400"}
-                    _hover={{ backgroundColor: "orange.300" }}
-                    fontSize={"15px"}
-                  >
-                    Properties
-                  </Button>
-                </Link>
-                <Link to={`/orderlist?id=${authSelector.id}`}>
-                  <Button
-                    color={"white"}
-                    cursor="pointer"
-                    _hover={{ backgroundColor: "orange.300" }}
-                    backgroundColor={"orange.400"}
-                    fontSize={"15px"}
-                  >
-                    Order List
-                  </Button>
-                </Link>
-                {/* <Link to={`/finances/${params.id}`}> */}
-                <Link to={`/`}>
-                  <Button
-                    color={"white"}
-                    cursor="pointer"
-                    _hover={{ backgroundColor: "orange.300" }}
-                    backgroundColor={"orange.400"}
-                    fontSize={"15px"}
-                  >
-                    Finances
-                  </Button>
-                </Link>
-              </HStack>
-            </Center>
+            {/* <Center> */}
+            {/* </Center> */}
           </Box>
           <Box>
             <Center>
-              <Heading
-                fontFamily={"sans-serif"}
-                fontWeight="bold"
-                fontSize={"2xl"}
-                position="absolute"
-              >
-                Your List of Properties
-              </Heading>
+              <HStack mb="2" p="3" pl="1" pr="1">
+                <Heading
+                  fontFamily={"sans-serif"}
+                  fontWeight="bold"
+                  fontSize={"2xl"}
+                >
+                  Your List of Properties
+                </Heading>
+                <Link to="/property-form">
+                  <GrAdd size={"25px"} />
+                </Link>
+              </HStack>
             </Center>
-            <HStack mb="2" p="3" pl="1" pr="1" justifyContent={"space-between"}>
-              <Link to="/">{/* <GrLinkPrevious size={"15px"} /> */}</Link>
-              <Link to="/property-form">
-                <GrAdd size={"25px"} />
-              </Link>
-            </HStack>
+
             <Grid
               templateColumns={{
                 base: "repeat(1, 1fr)",

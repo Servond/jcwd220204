@@ -2,8 +2,17 @@ const { Op } = require("sequelize")
 const db = require("../models")
 const User = db.User
 const bcrypt = require("bcrypt")
-const { signToken } = require("../lib/jwt")
+const { signToken, validateToken } = require("../lib/jwt")
 const { verifyGoogleToken } = require("../lib/firebase")
+const fs = require("fs")
+const handleBars = require("handlebars")
+const emailer = require("../lib/emailer")
+const {
+  validateVerificationToken,
+  createVerificationToken,
+} = require("../lib/verification")
+
+const { useToast } = require("@chakra-ui/react")
 
 const authController = {
   registerUser: async (req, res) => {
@@ -20,7 +29,7 @@ const authController = {
         })
       }
 
-      await User.create({
+      const newUser = await User.create({
         email,
         username,
         phone_number,
@@ -28,8 +37,28 @@ const authController = {
         loginWith,
       })
 
+      const verificationToken = createVerificationToken({
+        id: newUser.id,
+      })
+
+      const verificationLink = `http://localhost:8204/auth/verification?verification_token=${verificationToken}`
+      //Sending email
+      const rawHTML = fs.readFileSync("templates/register_user.html", "utf-8")
+      const compiledHTML = handleBars.compile(rawHTML)
+      const htmlResult = compiledHTML({
+        username,
+        verificationLink,
+      })
+      await emailer({
+        to: email,
+        html: htmlResult,
+        subject: "Verify your account",
+        text: "Please verify your account",
+      })
+
       return res.status(200).json({
         message: "User registered",
+        data: newUser,
       })
     } catch (error) {
       console.log(error)
@@ -56,7 +85,7 @@ const authController = {
         })
       }
 
-      await User.create({
+      const newUser = await User.create({
         email,
         username,
         phone_number,
@@ -64,9 +93,28 @@ const authController = {
         ktp: req.body.ktp,
         loginWith,
       })
+      const verificationToken = createVerificationToken({
+        id: newUser.id,
+      })
+
+      const verificationLink = `http://localhost:8204/auth/verification?verification_token=${verificationToken}`
+      //Sending email
+      const rawHTML = fs.readFileSync("templates/register_user.html", "utf-8")
+      const compiledHTML = handleBars.compile(rawHTML)
+      const htmlResult = compiledHTML({
+        username,
+        verificationLink,
+      })
+      await emailer({
+        to: email,
+        html: htmlResult,
+        subject: "Verify your account",
+        text: "Please verify your account",
+      })
 
       return res.status(200).json({
         message: "User registered",
+        data: newUser,
       })
     } catch (error) {
       console.log(error)
@@ -181,8 +229,21 @@ const authController = {
           },
         }
       )
+      const idUser = validToken.id
 
-      return res.redirect("http://localhost:3000/login")
+      // const toast = useToast()
+      // toast({
+      //   title: "Verification successful.",
+      //   status: "success",
+      //   duration: 5000,
+      //   isClosable: true,
+      // })
+      const findUserByRole = await User.findByPk(idUser)
+      if (findUserByRole.role === "tenant") {
+        return res.redirect("http://localhost:3000/login/tenant")
+      } else {
+        return res.redirect("http://localhost:3000/login")
+      }
     } catch (err) {
       console.log(err)
       return res.status(500).json({

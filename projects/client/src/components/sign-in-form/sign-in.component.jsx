@@ -142,101 +142,114 @@ const SignIn = () => {
     navigate("/")
   }
   return (
-    <Center mb={{ md: "33vh", base: "17vh" }} mt="30px">
-      <Box
-        display="flex"
-        flexDir="column"
-        width={{ base: "355px", sm: "450px" }}
-        alignSelf="center"
-        h={{ base: "550px", sm: "650px" }}
-        mt={{ sm: "150px", base: "100px" }}
-        justifyContent="center"
-        boxShadow="0px 1px 10px 0px black"
-        borderRadius="10px"
-        textAlign="center"
-        // margin="auto"
-      >
-        <Box margin="auto">
-          <VStack>
-            <Text fontSize="3xl" fontWeight="bold">
-              LOGIN USER
-            </Text>
-            <Text fontSize="xl" fontWeight="bold" mb="10px">
-              Already have an account?
-            </Text>
-            <Text>Sign in with your email and password</Text>
-            <form onSubmit={formik.handleSubmit}>
-              <Box>
-                <FormControl
-                  isInvalid={formik.errors.email}
-                  style={{ marginLeft: "10px" }}
-                >
-                  <FormInput
-                    label="Email"
-                    type="email"
-                    // required
-                    onChange={formChangeHandler}
-                    name="email"
-                    value={formik.values.email}
-                  />
-                  <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-                </FormControl>
-
-                <FormControl
-                  isInvalid={formik.errors.password}
-                  style={{ marginLeft: "10px" }}
-                >
-                  <FormInput
-                    label="Password"
-                    type="password"
-                    // required
-                    onChange={formChangeHandler}
-                    name="password"
-                    value={formik.values.password}
-                  />
-                  <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-                </FormControl>
-              </Box>
-
-              {/* <Box display="grid" border="1px solid red" > */}
-              <Button
-                type="submit"
-                width="fit-content"
-                minW="330px"
-                color="white"
-                backgroundColor="linkedin.500"
-                _hover={{ backgroundColor: "linkedin.400" }}
-                h="45px"
+    <Box
+      display="flex"
+      flexDir="column"
+      width={{ base: "355px", sm: "450px" }}
+      alignSelf="center"
+      h={{ base: "550px", sm: "650px" }}
+      justifyContent="center"
+      boxShadow="0px 1px 10px 0px black"
+      borderRadius="10px"
+      textAlign="center"
+      alignItems="center"
+      position="absolute"
+      top="50%"
+      left="50%"
+      transform="translate(-50%, -50%)"
+      // margin="auto"
+    >
+      <Box margin="auto">
+        <VStack>
+          <Text fontSize="3xl" fontWeight="bold">
+            LOGIN USER
+          </Text>
+          <Text fontSize="xl" fontWeight="bold" mb="10px">
+            Already have an account?
+          </Text>
+          <Text>Sign in with your email and password</Text>
+          <form onSubmit={formik.handleSubmit}>
+            <Box>
+              <FormControl
+                isInvalid={formik.errors.email}
+                style={{ marginLeft: "10px" }}
               >
-                Sign In
-              </Button>
-              <br />
-              <br />
-              <Button
-                width="fit-content"
-                minW="330px"
-                type="button"
-                onClick={signInWithGoogle}
-                bottom="5"
-                h="45px"
-                color="white"
-                backgroundColor="red.500"
-                _hover={{ backgroundColor: "red.400" }}
+                <FormInput
+                  label="Email"
+                  type="email"
+                  // required
+                  onChange={formChangeHandler}
+                  name="email"
+                  value={formik.values.email}
+                />
+                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+              </FormControl>
+
+              <FormControl
+                isInvalid={formik.errors.password}
+                style={{ marginLeft: "10px" }}
               >
-                Sign In With Google
-              </Button>
-              {/* <Button buttonType="inverted" onClick={logoutBtnHandler}>
+                <FormInput
+                  label="Password"
+                  type="password"
+                  // required
+                  onChange={formChangeHandler}
+                  name="password"
+                  value={formik.values.password}
+                />
+                <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+              </FormControl>
+            </Box>
+
+            {/* <Box display="grid" border="1px solid red" > */}
+            <Button
+              type="submit"
+              width="fit-content"
+              minW="330px"
+              color="white"
+              backgroundColor="linkedin.500"
+              _hover={{ backgroundColor: "linkedin.400" }}
+              h="45px"
+              cursor={"pointer"}
+            >
+              Sign In
+            </Button>
+            <br />
+            <br />
+            <Button
+              width="fit-content"
+              minW="330px"
+              type="button"
+              onClick={signInWithGoogle}
+              bottom="5"
+              h="45px"
+              color="white"
+              backgroundColor="red.500"
+              _hover={{ backgroundColor: "red.400" }}
+              cursor={"pointer"}
+            >
+              Sign In With Google
+            </Button>
+            {/* <Button buttonType="inverted" onClick={logoutBtnHandler}>
             Logout
           </Button> */}
-              <Text fontSize="20px" mr="20px">
-                Not a user? <Link to="/register">Sign Up</Link>
-              </Text>
-              {/* </Box> */}
-            </form>
-          </VStack>
-        </Box>
+
+            <Text fontSize="20px" mr="20px">
+              Not a user?{" "}
+              <Link
+                to="/register"
+                style={{
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+              >
+                Sign Up
+              </Link>
+            </Text>
+          </form>
+        </VStack>
       </Box>
-    </Center>
+    </Box>
   )
 }
 

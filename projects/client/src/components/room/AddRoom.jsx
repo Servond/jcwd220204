@@ -172,12 +172,12 @@ const AddRoom = () => {
         >
           <HStack
             onClick={() => navigate(-1)}
-            bgColor="red"
+            // bgColor="red"
             borderRadius={"5px"}
             maxWidth={"-webkit-max-content"}
             cursor="pointer"
           >
-            <MdOutlineKeyboardBackspace color="white" />
+            <MdOutlineKeyboardBackspace color="black" size={"35px"} />
             <Text>Back</Text>
           </HStack>
           <Heading lineHeight="1.1" fontSize={{ base: "2xl", md: "3xl" }}>
@@ -277,6 +277,7 @@ const AddRoom = () => {
                       borderRadius="5px"
                       boxShadow={"lg"}
                       boxSize="-webkit-max-content"
+                      cursor={"pointer"}
                     >
                       <Center
                         backgroundColor={"yellow.400"}
